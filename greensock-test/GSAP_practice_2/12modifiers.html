@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>GSAP 二次練習</title>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <script src="../greensock-js/src/minified/plugins/ModifiersPlugin.min.js" charset="utf-8"></script>
+
+    <style media="screen">
+      #target-arrow{
+        position: relative;
+      }
+
+      .box{
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        text-align: center;
+        line-height: 100px;
+        background-color: #000;
+        color: #fff;
+        position: relative;
+        display: block;
+      }
+
+      .mini-box{
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30;
+        background-color: #000;
+        color: #fff;
+        position: absolute;
+      }
+
+      .contentArea{
+        width: 100px;
+        height: 30px;
+        position: relative;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="contentArea">
+      <div class="mini-box"></div>
+      <div class="mini-box"></div>
+      <div class="mini-box"></div>
+      <div class="mini-box"></div>
+      <div class="mini-box"></div>
+      <div class="mini-box"></div>
+      <div class="mini-box"></div>
+      <div class="mini-box"></div>
+      <div class="mini-box"></div>
+    </div>
+    <br>
+    <span>tweened x value:<span class="tween-value"></span></span><br>
+    <span>modified x value:<span class="modify-value"></span></span>
+    <div class="box"></div>
+
+    <svg id="target-arrow" style="width: 100px; height: 100px;" viewbox="0,0 100,100">
+      <path style="stroke: #000; fill: none;" d="M25 25 L50 0 L75 25 M50 0 L50 100" />
+    </svg>
+
+    <script type="text/javascript">
+      window.onload = function(){
+        arrowAni();
+        boxAni();
+        miniBoxes();
+      }
+
+      function miniBoxes(){
+        var targetBoxes = document.querySelectorAll('.mini-box');
+        var colors = ['blue', 'red', 'yellow'];
+        TweenMax.set(targetBoxes, {
+          backgroundColor: function(index){
+            return colors[index % colors.length];
+          },
+          left: function(index){
+            return index * 30;
+          },
+          top: 0
+        });
+        var miniBoxesAni = TweenMax.to(targetBoxes, 10, {})
+      }
+
+      function boxAni(){
+        var targetBox = document.querySelector('.box');
+        var tweenValue = document.querySelector('.tween-value');
+        var modifyValue = document.querySelector('.modify-value');
+        var boxAni = TweenLite.to(targetBox, 5, {
+          x: '500',
+          modifiers: {
+            x: function(x){
+              tweenValue.textContent = x.toFixed(2);
+              var newX =  x % 100;
+              modifyValue.textContent = newX.toFixed(2);
+              return newX;
+            }
+          },
+          ease: Linear.easeNone
+        })
+      }
+
+      function arrowAni(){
+        var degrees = 30
+        var targetArrow = document.getElementById('target-arrow');
+        var arrowAni = TweenLite.to(targetArrow, 3, {
+          rotation: '360',
+          modifiers: {
+            rotation: function(rotation){
+              return Math.round(rotation / degrees) * degrees;
+            }
+          },
+          ease: Linear.easeNone
+        });
+      }
+    </script>
+  </body>
+</html>

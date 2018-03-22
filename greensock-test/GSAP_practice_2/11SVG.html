@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>GSAP 二次練習</title>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <script src="../greensock-js/src/bonus-files-for-npm-users/MorphSVGPlugin.js"></script>
+    <script src="../greensock-js/src/bonus-files-for-npm-users/DrawSVGPlugin.js"></script>
+
+    <style media="screen">
+      .box{
+        width: 500px;
+        margin: 10px;
+        font-size: 18px;
+        padding: 10px;
+        line-height: 36px;
+        text-align: center;
+        background-color: #000;
+        color: #fff;
+        position: relative;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 137 145" style="width: 100px; height: 100px;">
+      <path id="svgA" stroke="#000" style="fill: rgb(255, 255, 255);" d="M1 9l74-8 61 82L6 145 1 9z" />
+      <path id="svgB" style="visibility: hidden;" stroke="#000" d="M2 15c-6 11 6 22 24 66 15 38 14 54 22 54 10 1 28-33 23-64-1-5-6-29-25-44-11-9-22-10-21-14 0-8 41-9 41-10S13-6 2 15z" />
+    </svg>
+
+    <button type="button" name="button" onclick="reverseAni()">reverse</button>
+    <button type="button" name="button" onclick="drawSvg()">draw</button>
+
+    <script type="text/javascript">
+
+        var targetA = document.getElementById('svgA'), targetB = document.getElementById('svgB');
+        var mySvgAni = TweenLite.to(targetA, 1, {morphSVG: targetB});
+
+        function reverseAni () {
+          if(!mySvgAni.isActive()){
+            mySvgAni.reversed(!mySvgAni.reversed());
+          }
+        }
+
+        function drawSvg () {
+          var drawAniLine = new TimelineLite();
+          var drawAttr = targetA.style.fill;
+          if(drawAttr === 'rgb(255, 255, 255)'){
+            drawAniLine.from(targetA, 1, {drawSVG: 0})
+                       .to(targetA, 1, {fill: 'rgb(0, 0, 0)'}, '-=0.5');
+          }else if(drawAttr === 'rgb(0, 0, 0)'){
+            drawAniLine.to(targetA, 1, {fill: 'rgb(255, 255, 255)'})
+                       .from(targetA, 1, {drawSVG: 0}, '-=0.5');
+          }
+
+        }
+    </script>
+  </body>
+</html>

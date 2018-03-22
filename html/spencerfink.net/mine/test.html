@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="common/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div class="d1">1</div>
+    <div class="d2">1</div>
+    <div class="d3">1</div>
+    <script>
+        $(function () {
+            var multi = ['.d1','.d2','.d3'];
+            /*multi.forEach(function(a){
+                $(a).css('background-color','black');
+            });*/
+            $(multi.join(',')).css('background-color','black');
+        })
+    </script>
+</body>
+</html>

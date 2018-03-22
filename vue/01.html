@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue test</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <style media="screen">
+      .apps::after{
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: #CCC;
+        margin: 10px 0;
+        content: '';
+      }
+    </style>
+  </head>
+  <body>
+    <div class="apps" id="app1"><span>{{ message }}</span></div>
+
+    <div class="apps" id="app2"><span v-bind:title="message" v-bind:alt="alt">Hover your mouse over me</span></div>
+
+    <div class="apps" id="app3"><span v-if="boolean">Now you see me (Try to enter 'app3.boolean = false' in consle.)</span></div>
+
+    <div class="apps" id="app4">
+      <ul>
+        <li v-for="todo in todos">{{ todo.tools }}</li>
+      </ul>
+    </div>
+
+    <div class="apps" id="app5">
+      <span>{{ message }}</span>
+      <button v-on:click="reverse">Reverse</button>
+    </div>
+
+    <div class="apps" id="app6">
+      <input v-model="message" v-bind:alt="message">
+    </div>
+
+    <script type="text/javascript">
+      var app1 = new Vue({
+        el: '#app1',
+        data: {
+          message: 'Hello Vue.'
+        }
+      });
+
+      var app2 = new Vue({
+        el: '#app2',
+        data: {
+          message: new Date().toLocaleString(),
+          alt: 'This is alt.'
+        }
+      });
+
+      var app3 = new Vue({
+        el: '#app3',
+        data: {
+          boolean: true
+        }
+      });
+
+      var app4 = new Vue({
+        el: '#app4',
+        data: {
+          todos: [
+            {tools: 'javascript'},
+            {tools: 'Vue'},
+            {tools: 'front end develop'}
+          ]
+        }
+      });
+
+      var app5 = new Vue({
+        el: '#app5',
+        data: {
+          message: 'Hello Vue!'
+        },
+        methods: {
+          reverse: function(){
+            this.message = this.message.split('').reverse().join('')
+          }
+        }
+      });
+
+      var app6 = new Vue({
+        el: '#app6',
+        data: {
+          message: 'Hello Vue.'
+        }
+      });
+    </script>
+  </body>
+</html>
