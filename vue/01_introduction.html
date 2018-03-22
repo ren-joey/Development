@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>vue introduction</title>
+
+  <style media="screen">
+    .apps::after{
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: #999;
+      margin: 10px 0;
+      content: '';
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+  <div id="app" class="apps">
+    {{ message }}
+  </div>
+
+  <div id="app-2" class="apps">
+    <span v-bind:title="message">
+      Hover your mouse over me for a few seconds
+    to see my dynamically bound title!
+    </span>
+  </div>
+
+  <div id="app-3" class="apps">
+    <span v-if="boolean">
+      Now you see me. enter 'app3.boolean = false' in console log.
+    </span>
+  </div>
+
+  <div id="app-4" class="apps">
+    <ul>
+      <li v-for="todo in todos">
+        {{ todo.text }}
+      </li>
+    </ul>
+  </div>
+
+  <div id="app-5" class="apps">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">Reverse Message</button>
+  </div>
+
+  <div id="app-6" class="apps">
+    <p>{{ message }}</p>
+    <input v-model="inputModel">
+    <button v-on:click="changeMessage">Change Message</button>
+  </div>
+
+  <div id="app-test" class="apps">
+    <sample-item></sample-item>
+  </div>
+
+  <div id="app-7" class="apps">
+    <dynamic-item v-for="item in list" v-bind:todo="item" v-bind:key="item.id" v-bind:id="'item-' + item.id"></dynamic-item>
+  </div>
+
+  <script type="text/javascript">
+    Vue.component('sample-item', {
+      template: '<div>sample component item</div>'
+    });
+
+    Vue.component('dynamic-item', {
+      props: ['todo'],
+      template: '<div>{{ todo.text }}</div>'
+    });
+
+    var app = new Vue ({
+      el: '#app',
+      data: {
+        message: 'Hello Vue.'
+      }
+    });
+    var app2 = new Vue ({
+      el: '#app-2',
+      data: {
+        message: 'You loaded this page on ' + new Date().toLocaleString()
+      }
+    });
+    var app3 = new Vue ({
+      el: '#app-3',
+      data: {
+        boolean: true
+      }
+    });
+    var app4 = new Vue ({
+      el: '#app-4',
+      data: {
+        todos: [
+          {text: 'javascript'},
+          {text: 'vue'},
+          {text: 'building something awesome'}
+        ]
+      }
+    });
+    var app5 = new Vue ({
+      el: '#app-5',
+      data: {
+        message: 'Hello Vue!'
+      },
+      methods:{
+        reverseMessage: function(){
+          this.message = this.message.split('').reverse().join('')
+        }
+      }
+    });
+    var app6 = new Vue ({
+      el: '#app-6',
+      data: {
+        message: 'Trying v-model to input dom',
+        inputModel: 'input model'
+      },
+      methods: {
+        changeMessage: function(){
+          this.inputModel = 'changed!'
+        }
+      }
+    });
+    var app7 = new Vue({
+      el: '#app-7',
+      data: {
+        list: [
+          {id: 0, text: 'Chinese'},
+          {id: 1, text: 'Janpenese'},
+        ]
+      }
+    });
+    var appSample = new Vue({
+      el: '#app-test'
+    });
+  </script>
+</body>
+
+</html>

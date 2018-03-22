@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>json test</title>
+  </head>
+  <body>
+    <div id="demo">insert ajax here</div>
+    <button type="button" name="button" onclick="ajaxDoc();"></button>
+
+    <script type="text/javascript">
+      function ajaxDoc(){
+        var a = {name: "peter", sex: "male"};
+        var json_a = JSON.stringify(a);
+        console.log(a.name);
+        console.log(json_a);
+        var b = JSON.parse(json_a);
+        console.log(b.sex);
+      }
+    </script>
+  </body>
+</html>

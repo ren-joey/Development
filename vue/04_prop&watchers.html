@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue Computed Properties and Watchers</title>
+
+    <style media="screen">
+      .apps::after{
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: #999;
+        margin: 10px 0;
+        content: '';
+      }
+
+     .apps span{
+       display: block;
+     }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+  <body>
+    <div id="app1" class="apps">
+      <span>{{ message }}</span>
+      <span>computed: {{ reverseMessage }}</span>
+      <span>method: {{ reverseMessageMethod() }}</span>
+      <span>fullName computed: {{ fullName }}</span>
+      <span>watched fullName: {{ watchedFullName }}</span>
+      <span>family name: {{ family }}</span>
+      <span>若要set family請輸入 app1.family = '陳'</span>
+    </div>
+
+    <script type="text/javascript">
+      var app1 = new Vue ({
+        el: '#app1',
+        data: {
+          message: 'Hello',
+          firstName: '祖頤',
+          lastName: '任',
+          watchedFullName: '祖頤 任'
+        },
+        computed: {
+          reverseMessage: function(){
+            return this.message.split('').reverse().join('');
+          },
+          now: function(){
+            return Date().now();
+          },
+          fullName: function(){
+            return this.firstName + ' ' + this.lastName;
+          },
+          family: {
+            get: function(){
+              return this.lastName;
+            },
+            set: function(newVal){
+              this.lastName = newVal;
+            }
+          }
+        },
+        methods: {
+          reverseMessageMethod: function(){
+            return this.message.split('').reverse().join('');
+          }
+        },
+        watch: {
+          firstName: function(newVal){
+            this.watchedFullName = newVal + ' ' + this.lastName;
+          },
+          lastName: function(newVal){
+            this.watchedFullName = this.firstName + ' ' + newVal;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
