@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>02 ajax callback function</title>
+  </head>
+  <body>
+    <div id="demo">
+      <h2>contain here</h2>
+    </div>
+    <button type="button" name="button" onclick="loadDoc('phpTest.php', myFunction1)">Request</button>
+
+    <script type="text/javascript">
+      function loadDoc(url, cFunction){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+          if(this.readyState == 4 && this.status == 200){
+            cFunction(this);
+          }
+        };
+        xhttp.open("GET", url, true);
+        xhttp.send();
+      }
+
+      function myFunction1(xhttp){
+        document.getElementById('demo').innerHTML = xhttp.responseText;
+      }
+    </script>
+  </body>
+</html>
