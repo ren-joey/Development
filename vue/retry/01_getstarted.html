@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <style>
+      div[id]{
+        margin-top: 1rem;
+      }
+
+      div[id]::after{
+        display: block;
+        height: 1px;
+        background-color: lightgray;
+        width: 100%;
+        content: "";
+        margin: 1rem 0;
+      }
+
+      div[id]:last-of-type::after{
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- declarative vue render message -->
+    <div id="app">{{ message }}</div>
+
+    <script type="text/javascript">
+      var app = new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello Vue!'
+        }
+      });
+    </script>
+
+    <!-- we can bind a attribute by vue render -->
+    <div id="app2">
+      <input type="text" v-bind:placeholder="message"/>
+      <button type="button" name="button" onclick="app2.message='changed';">change title</button>
+    </div>
+
+    <script type="text/javascript">
+      var app2 = new Vue({
+        el: '#app2',
+        data: {
+          message: 'Now is ' + new Date().toLocaleString()
+        }
+      });
+    </script>
+
+    <!-- conditionals and loops -->
+    <div id="app3">
+      <span v-if="bool">showing</span>
+      <button type="button" name="button" onclick="app3.bool=true;">send ture</button>
+      <button type="button" name="button" onclick="app3.bool=false;">send false</button>
+    </div>
+
+    <script type="text/javascript">
+      var app3 = new Vue ({
+        el: '#app3',
+        data: {
+          bool: false
+        }
+      });
+    </script>
+
+    <div id="app4">
+      <ol>
+        <li v-for="todo in looping">
+          {{ todo.text }}
+        </li>
+      </ol>
+      <button type="button" name="button" onclick="app4.looping.push({'text': 'New one'})">add</button>
+    </div>
+
+    <script type="text/javascript">
+      var app4 = new Vue ({
+        el: '#app4',
+        data: {
+          looping: [
+            {text: 'data 1'},
+            {text: 'data 2'},
+            {text: 'data 3'}
+          ]
+        }
+      });
+    </script>
+
+    <!-- handling user input -->
+    <div id="app5">
+      <p>{{ inputMsg }}</p>
+      <button type="button" name="button" v-on:click="reverseMsg">reverse</button>
+    </div>
+
+    <script type="text/javascript">
+      var app5 = new Vue({
+        el: '#app5',
+        data: {
+          inputMsg: 'none input'
+        },
+        methods: {
+          reverseMsg: function(){
+            this.inputMsg = this.inputMsg.split('').reverse().join('');
+          }
+        }
+      });
+    </script>
+
+    <div id="app6">
+      <p>{{ message }}</p>
+      <input type="text" v-model="message"/>
+    </div>
+
+    <script type="text/javascript">
+      var app6 = new Vue ({
+        el: '#app6',
+        data: {
+          message: 'model text'
+        }
+      });
+    </script>
+
+    <!-- composing with components -->
+
+    <div id="app7-1">
+      <ol>
+        <todo-item></todo-item>
+        <todo-item></todo-item>
+      </ol>
+    </div>
+
+    <script type="text/javascript">
+      Vue.component('todo-item', {
+        template: '<li>this is a component</li>'
+      });
+
+      var app71 = new Vue({
+        el: '#app7-1'
+      })
+    </script>
+
+    <div id="app7-2">
+      <ol>
+        <todo-items
+          v-for="item in todoProps"
+          v-bind:todo="item"
+          v-bind:key="item.id"
+        ></todo-items>
+      </ol>
+    </div>
+
+    <script type="text/javascript">
+      Vue.component('todo-items', {
+        props: ['todo'],
+        template: '<li>{{ todo.text }}</li>'
+      });
+
+      var app72 = new Vue({
+        el: '#app7-2',
+        data: {
+          todoProps: [
+            {id: 1, text: 'data 1'},
+            {id: 2, text: 'data 2'},
+            {id: 3, text: 'data 3'}
+          ]
+        }
+      })
+    </script>
+
+  </body>
+</html>

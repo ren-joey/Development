@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+
+  <style>
+    div[id]{
+      margin-top: 1rem;
+    }
+
+    div[id]::after{
+      display: block;
+      height: 1px;
+      background-color: lightgray;
+      width: 100%;
+      content: "";
+      margin: 1rem 0;
+    }
+
+    div[id]:last-of-type::after{
+      display: none;
+    }
+
+    div[id] .lifecycle-box{
+      padding: 10px;
+      /* border: 1px solid black; */
+      border-radius: .3rem;
+      background-color: cornflowerblue;
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    div[id] .lifecycle-box:not(:last-of-type)::after{
+      color: cornflowerblue;
+      position: absolute;
+      display: block;
+      left: 50%;
+      bottom: 0;
+      line-height: 20px;
+      font-size: 1rem;
+      content: '▼';
+      transform: translate(-50%, 100%);
+    }
+  </style>
+  <body>
+
+    <!-- data freeze -->
+    <div id="app1">
+      <span>{{ message }}</span>
+      <button v-on:click="tryChange('changed');" type="button" name="button">try change</button>
+    </div>
+
+    <script type="text/javascript">
+      var obj = { message: 'placeholder' };
+
+      Object.freeze(obj);
+
+      var app1 = new Vue({
+        el: '#app1',
+        data: obj,
+        methods: {
+          tryChange: function(str){
+            this.message = str;
+          }
+        }
+      });
+    </script>
+
+    <!-- data $ target -->
+    <div id="app2">
+      <span v-bind:class="className">{{ message }}</span>
+      <span v-bind:class="className">{{ message }}</span>
+      <button type="button" name="button" onclick="changeVue();">try change vue</button>
+    </div>
+
+    <script type="text/javascript">
+      var app2 = new Vue({
+        el: '#app2',
+        data: {
+          className: 'my-class',
+          message: 'this is class'
+        }
+      });
+
+      function changeVue(){
+        var tar = app2.$el;
+        var tarMsg = app2.$data;
+        tar.style.color = 'red';
+        tarMsg.className = 'changed';
+        tarMsg.message = 'changed';
+      }
+    </script>
+
+    <!-- instance lifcycle hooks -->
+
+    <div id="lifecycle">
+      <div v-for="todo in lifecycle" v-bind:class="className">
+        {{ todo.text }}
+      </div>
+    </div>
+
+      <script type="text/javascript">
+      var tempVue = new Vue({
+        el: '#lifecycle',
+        data: {
+          className: 'lifecycle-box',
+          lifecycle: [
+            {text: 'main'}
+          ]
+        },
+        beforeCreate: function(){
+          // this.lifecycle.push({text: 'beforeCreate'})
+          // can not catch this before create
+        },
+        created: function(){
+          this.lifecycle.push({text: 'created'})
+        }
+      });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+
+  <style>
+    div[id]{
+      margin-top: 1rem;
+    }
+
+    div[id]::after{
+      display: block;
+      height: 1px;
+      background-color: lightgray;
+      width: 100%;
+      content: "";
+      margin: 1rem 0;
+    }
+
+    div[id]:last-of-type::after{
+      display: none;
+    }
+  </style>
+  <body>
+    <!-- text -->
+    <div id="app0">
+      <div v-once>v-once : {{ message }}</div>
+      <div>{{ message }}</div>
+      <input type="text" v-model="message">
+    </div>
+
+    <script type="text/javascript">
+      var app0 = new Vue({
+        el: '#app0',
+        data: {
+          message: 'rendering'
+        }
+      });
+    </script>
+
+    <!-- raw html -->
+    <div id="app1">
+      <div>you can't pass html code using {} <br>{{ rawHTML }}</div>
+      <br>
+      <span>you can pass html code using v-html</span>
+      <div v-html="rawHTML"></div>
+    </div>
+
+    <script type="text/javascript">
+      var app1 = new Vue({
+        el: '#app1',
+        data: {
+          rawHTML: '<span style="color:red;">raw html</div>'
+        }
+      });
+    </script>
+
+    <!-- attributes -->
+    <div id="app2">
+      <div v-bind:id="myID"></div>
+      <button v-bind:disabled="isButtonDisabled">button</button>
+    </div>
+
+    <script type="text/javascript">
+      var app2 = new Vue({
+        el: '#app2',
+        data: {
+          isButtonDisabled: 'ture',
+          myID: 'myID'
+        }
+      });
+    </script>
+  </body>
+</html>
