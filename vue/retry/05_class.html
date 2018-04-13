@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+
+  <style>
+    div[id *= 'app']{
+      margin-top: 1rem;
+    }
+
+    div[id *= 'app']::after{
+      display: block;
+      height: 1px;
+      background-color: lightgray;
+      width: 100%;
+      content: "";
+      margin: 1rem 0;
+    }
+
+    div[id]:last-of-type::after{
+      display: none;
+    }
+
+    .error{
+      color: red;
+    }
+
+    .active{
+      color: green;
+    }
+  </style>
+  <body>
+    <div id="app1">
+      <div v-bind:class="{ 'active': isActive, 'error': isError }">狀態 class</div>
+      <div v-bind:class="classObject">狀態 classObject</div>
+      <div v-bind:class="classObjectComputed">狀態 class computed</div>
+    </div>
+
+    <script type="text/javascript">
+      var app1 = new Vue ({
+        el: '#app1',
+        data: {
+          isActive: true,
+          isError: false,
+          classObject: {
+            'active': false,
+            'error': true
+          },
+        computed: {
+          classObjectComputed: function(){
+            return {
+              'active': this.isActive && !this.isError,
+
+            }
+          }
+        }
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+
+  <style>
+    div[id *= 'app']{
+      margin-top: 1rem;
+    }
+
+    div[id *= 'app']::after{
+      display: block;
+      height: 1px;
+      background-color: lightgray;
+      width: 100%;
+      content: "";
+      margin: 1rem 0;
+    }
+
+    div[id]:last-of-type::after{
+      display: none;
+    }
+  </style>
+  <body>
+    <div id="app1">
+      <p>original: {{ message }}</p>
+      <p>methods: {{ reversedMessageMethod() }}</p>
+      <p>computed: {{ reversedMessageComputed }}</p>
+      <p>computed now: {{ now }}</p>
+
+      <button onclick="alertVue()">alert</button>
+    </div>
+
+    <script type="text/javascript">
+      var app1 = new Vue({
+        el: '#app1',
+        data: {
+          message: 'Hello',
+        },
+        computed: {
+          reversedMessageComputed: function(){
+            return this.message.split('').reverse().join('');
+          },
+          now: function(){
+            return Date.now();
+          }
+        },
+        methods: {
+          reversedMessageMethod: function(){
+            return this.message.split('').reverse().join('');
+          }
+        }
+      })
+
+      function alertVue(){
+        alert(app1.reversedMessageComputed + ', ' + app1.reversedMessageMethod());
+      }
+    </script>
+
+    <div id="app2">
+      <p>Methods full name demo</p>
+      <p>
+        <input v-model="firstName"><input v-model="lastName">
+      </p>
+      <p>first name: {{ firstName }}</p>
+      <p>last name: {{ lastName }}</p>
+      <p>full name (methods): {{ fullName }}</p>
+    </div>
+
+    <script type="text/javascript">
+      var app2 = new Vue({
+        el: '#app2',
+        data: {
+          firstName: 'TSUYI',
+          lastName: 'REN',
+          fullName: 'TSUYI REN'
+        },
+        watch: {
+          firstName: function(newVal){
+            this.fullName = newVal + ' ' + this.lastName;
+          },
+          lastName: function(newVal){
+            this.fullName = this.firstName + ' ' + newVal;
+          }
+        }
+      });
+    </script>
+
+    <div id="app3">
+      <p>Computed full name demo</p>
+      <p>
+        <input v-model="firstName"><input v-model="lastName">
+      </p>
+      <p>first name: {{ firstName }}</p>
+      <p>last name: {{ lastName }}</p>
+      <p>full name (computed): {{ fullName }}</p>
+    </div>
+
+    <script type="text/javascript">
+      var app3 =new Vue({
+        el: '#app3',
+        data: {
+          firstName: 'TSUYI',
+          lastName: 'REN'
+        },
+        computed: {
+          fullName: function(){
+            return this.firstName + ' ' + this.lastName;
+          }
+        }
+      });
+    </script>
+
+  </body>
+</html>

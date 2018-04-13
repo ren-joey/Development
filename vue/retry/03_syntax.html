@@ -6,14 +6,17 @@
 
     <!-- production version, optimized for size and speed -->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <!-- jquery 3.3.1 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   </head>
 
   <style>
-    div[id]{
+    div[id *= 'app']{
       margin-top: 1rem;
     }
 
-    div[id]::after{
+    div[id *= 'app']::after{
       display: block;
       height: 1px;
       background-color: lightgray;
@@ -55,7 +58,7 @@
       var app1 = new Vue({
         el: '#app1',
         data: {
-          rawHTML: '<span style="color:red;">raw html</div>'
+          rawHTML: '<span style="color:red;">raw html</span>'
         }
       });
     </script>
@@ -75,5 +78,88 @@
         }
       });
     </script>
+
+    <!-- using javascript expressions -->
+    <div id="app3">
+      <div v-bind:id="'id' + key">{{ msg }}. key is equl: {{ key +1 }}</div>
+      <div>{{ bool ? 'yes' : 'no' }}</div>
+      <button v-on:click="changeBool">change bool</button>
+    </div>
+
+    <script type="text/javascript">
+      var app3 = new Vue({
+        el: '#app3',
+        data: {
+          key: 1,
+          msg: 'this is id "id1"',
+          bool: true
+        },
+        methods: {
+          changeBool: function(){
+            if(this.bool){
+              this.bool = false
+            }
+            else {
+              this.bool = true
+            }
+          }
+        }
+      });
+    </script>
+
+    <!-- directive -->
+    <div id="app4">
+      <div v-if="show">
+        <a href="javascript:;" v-bind:href="href" target="_blank">link using v-bind</a>
+        <br>
+        <a href="javascript:;" v-on:click="linkto('http://tw.yahoo.com')">link using Vue methods</a>
+      </div>
+      <button v-on:click="changeBool">change</button>
+    </div>
+
+    <script type="text/javascript">
+      var app4 = new Vue({
+        el: '#app4',
+        data: {
+          show: false,
+          href: 'http://www.gamer.com.tw'
+        },
+        methods: {
+          changeBool: function(){
+            if(this.show){
+              this.show = false;
+            }else{
+              this.show = true;
+            }
+          },
+          linkto: function(url){
+            window.open(url);
+          }
+        }
+      });
+    </script>
+
+    <!-- short hand -->
+    <div id="app5">
+      <a :href="href" target="_blank" ref="hrefBtn">click href</a>
+      <br>
+      <button @click="trigger">trigger click</button>
+    </div>
+
+    <script type="text/javascript">
+      var app5 = new Vue({
+        el: '#app5',
+        data: {
+          href: 'http://tw.yahoo.com'
+        },
+        methods: {
+          trigger: function(){
+            var el = this.$refs.hrefBtn;
+            el.click();
+          }
+        }
+      });
+    </script>
+
   </body>
 </html>
