@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+
+  <style>
+    div[id *= 'app']{
+      margin-top: 1rem;
+    }
+
+    div[id *= 'app']::after{
+      display: block;
+      height: 1px;
+      background-color: lightgray;
+      width: 100%;
+      content: "";
+      margin: 1rem 0;
+    }
+
+    div[id]:last-of-type::after{
+      display: none;
+    }
+  </style>
+  <body>
+    <div id="app1">
+      <h1 v-if="ok">ok</h1>
+      <h1 v-else>no</h1>
+      <h1 v-if="Math.random()  > 0.5">over 0.5</h1>
+      <h1 v-else>less 0.5</h1>
+      <h1 v-if="character == 'A'">A</h1>
+      <h1 v-else-if="character == 'B'">B</h1>
+      <h1 v-else-if="character == 'C'">C</h1>
+      <h1 v-else>Not A/B/C</h1>
+    </div>
+
+    <script type="text/javascript">
+      Vue.component('template', {
+          template: '<div></div>'
+      });
+      var app1 = new Vue({
+          el: '#app1',
+          data: {
+              'ok': false,
+              'character': 'A'
+          }
+      });
+    </script>
+  </body>
+</html>

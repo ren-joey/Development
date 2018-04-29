@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+
+  <style>
+    div[id *= 'app']{
+      margin-top: 1rem;
+    }
+
+    div[id *= 'app']::after{
+      display: block;
+      height: 1px;
+      background-color: lightgray;
+      width: 100%;
+      content: "";
+      margin: 1rem 0;
+    }
+
+    div[id]:last-of-type::after{
+      display: none;
+    }
+  </style>
+  <body>
+    <div id="app1">
+      <ul>
+        <li v-for="item in dataArray">
+          {{ item.message }}
+        </li>
+      </ul>
+    </div>
+    <script type="text/javascript">
+        var app1 = new Vue({
+            el: '#app1',
+            data: {
+                dataArray: [
+                    {message: 'Foo'},
+                    {message: 'Bar'}
+                ]
+            }
+        })
+    </script>
+
+    <div id="app2">
+      <ul>
+        <li v-for="(item, index) in dataArray">
+          {{ defaultMsg }} - {{ index }} - {{ item.msg }}
+        </li>
+      </ul>
+    </div>
+    <script>
+      var app2 = new Vue({
+          el: '#app2',
+          data: {
+              defaultMsg : 'fruits',
+              dataArray: [
+                  {msg: 'apple'},
+                  {msg: 'pineapple'}
+              ]
+          }
+      });
+    </script>
+
+    <div id="app3">
+      <ul>
+        <li v-for="value in object">
+          {{ value }}
+        </li>
+      </ul>
+      <ul>
+        <li v-for="(value, key) in object">
+          {{ key }}: {{ value }}
+        </li>
+      </ul>
+      <ul>
+        <li v-for="(value, key, index) in object">
+          <div :id="index + 1">
+            {{ index + 1 }}. {{ key }}: {{ value }}
+          </div>
+        </li>
+      </ul>
+    </div>
+    <script>
+      var app3 = new Vue({
+        el: '#app3',
+        data: {
+            object: {
+                value: '30',
+                type: 'game',
+                title: 'league of legend'
+            }
+        }
+      });
+    </script>
+
+    <div id="app4">
+      <ul>
+        <li v-for="n in evenNumbers">{{ n }}</li>
+      </ul>
+      <ul>
+        <li v-for="n in 10">{{ n }}</li>
+      </ul>
+      <ul>
+        <template v-for="item in dataItems">
+          <li>{{ item.msg }}</li>
+          <li class="divider"></li>
+        </template>
+      </ul>
+      <ul>
+        <li v-for="todo in todoItems" v-if="todo.isComplete">
+          {{ todo.msg }}
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      var app4 = new Vue({
+          el: '#app4',
+          data: {
+              numbers: [1, 2, 3, 4, 5],
+              dataItems: [
+                  {msg: 'one'},
+                  {msg: 'two'},
+                  {msg: 'three'}
+              ],
+              todoItems: [
+                  {msg: 'hello', isComplete: true},
+                  {msg: 'hello', isComplete: true},
+                  {msg: 'hello', isComplete: false},
+                  {msg: 'hello', isComplete: true}
+              ]
+          },
+          computed: {
+              evenNumbers: function(){
+                  return this.numbers.filter(function(number){
+                      return number % 2 === 0;
+                  })
+              }
+          }
+      });
+    </script>
+
+    <div id="customList">
+      <input v-model="newText" @keyup.enter="addNewItem" placeholder="what do you think">
+      <ul>
+        <li is="customListEach" v-for="(item, index) in todoItems" :key="item.id" :title="item.title" @remove="todoItems.splice(index, 1)"></li>
+      </ul>
+    </div>
+
+    <script>
+      Vue.component('customListEach', {
+          template: '' +
+          '<li>' +
+          '{{ title }}' +
+          '<button @click="$emit(\'remove\')">X</button>' +
+          '</li>',
+          props: ['title']
+      });
+
+      var customList = new Vue({
+          el: '#customList',
+          data: {
+              newText: '',
+              todoItems: [
+                  {
+                      id: 1,
+                      title: 'title 1'
+                  },
+                  {
+                      id: 2,
+                      title: 'title 2'
+                  },
+                  {
+                      id: 3,
+                      title: 'title 3'
+                  }
+              ],
+              nextId: 4
+          },
+          methods: {
+              addNewItem: function(){
+                  this.todoItems.push({
+                      id: this.nextId ++,
+                      title: this.newText
+                  });
+                  this.newText = '';
+              }
+          }
+      })
+    </script>
+  </body>
+</html>
