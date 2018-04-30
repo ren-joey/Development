@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+
+  <style>
+    div[id *= 'app']{
+      margin-top: 1rem;
+    }
+
+    div[id *= 'app']::after{
+      display: block;
+      height: 1px;
+      background-color: lightgray;
+      width: 100%;
+      content: "";
+      margin: 1rem 0;
+    }
+
+    div[id]:last-of-type::after{
+      display: none;
+    }
+  </style>
+  <body>
+    <div id="app1">
+      <button @click="counter += 1">click me</button>
+      <template v-if="counter != 0">
+        <p>The button have been clicked {{ counter }} times</p>
+      </template>
+      <template v-else>
+        <p>Please click the add button</p>
+      </template>
+    </div>
+
+    <script type="text/javascript">
+      var app1 = new Vue({
+          el: '#app1',
+          data: {
+              counter: 0
+          }
+      });
+    </script>
+
+    <div id="app2">
+      <button @click="welcome($event)" :class="name">welcome</button>
+    </div>
+
+    <script>
+      var app2 = new Vue({
+          el: '#app2',
+          data: {
+            name: 'Joey'
+          },
+          methods: {
+              welcome: function(event){
+                  alert('Hello ' + this.name + '!');
+                  if(event){
+                      alert(event.target.tagName + ', ' + event.target.className);
+                  }
+              }
+          }
+      });
+    </script>
+  </body>
+</html>
