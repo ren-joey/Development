@@ -72,3 +72,9 @@ typings/
 
 # next.js build output
 .next
+
+#webstrom
+.idea/
+
+#mac
+.DS_Store
