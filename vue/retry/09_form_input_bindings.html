@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>vue</title>
+
+  <!-- production version, optimized for size and speed -->
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<style>
+  div[id *='app'] {
+    margin-top: 1rem;
+  }
+
+  div[id *='app']::after {
+    display: block;
+    height: 1px;
+    background-color: lightgray;
+    width: 100%;
+    content: "";
+    margin: 1rem 0;
+  }
+
+  div[id]:last-of-type::after {
+    display: none;
+  }
+</style>
+
+<body>
+  <div id="app1">
+    <input v-model="msg" @keyup.ctrl.enter="submit" />
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{ checked }}</label>
+    <input type="checkbox" id="checkbox2" v-model="checkedNames" value="01">
+    <label for="checkbox2">01</label>
+    <input type="checkbox" id="checkbox3" v-model="checkedNames" value="02">
+    <label for="checkbox3">02</label>
+    <p>{{ checkedNames }}</p>
+    <input type="radio" v-model="radio" value="01" id="radio01">
+    <label for="radio01">radio01</label>
+    <input type="radio" v-model="radio" value="02" id="radio02">
+    <label for="radio02">radio02</label>
+    <p>{{ radio }}</p>
+    <select name="select" id="select" v-model="selected">
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+    <p>{{ selected }}</p>
+    <select name="select" id="select" v-model="selected2" multiple>
+      <option value="A">A selection</option>
+      <option value="B">B selection</option>
+      <option value="C">C selection</option>
+    </select>
+    <p>{{ selected2 }}</p>
+    <select v-model="selected3">
+      <option v-for="item in selected3Options" :value="item.value">{{ item.name }}</option>
+    </select>
+    <p>{{ selected3 }}</p>
+  </div>
+  <script type="text/javascript">
+    var app1 = new Vue({
+      el: '#app1',
+      data: {
+        msg: 'Hello Vue!',
+        checked: true,
+        checkedNames: ['01'],
+        radio: '02',
+        selected: 'B',
+        selected2: ['A', 'B'],
+        selected3: 'C',
+        selected3Options: [
+          { name: 'One', value: 'A' },
+          { name: 'Two', value: 'B' },
+          { name: 'three', value: 'C' }
+        ]
+      },
+      methods: {
+        submit: function () {
+          alert('SENDED!');
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

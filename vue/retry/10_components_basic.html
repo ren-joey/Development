@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+
+  <style>
+    div[id *= 'app']{
+      margin-top: 1rem;
+    }
+
+    div[id *= 'app']::after{
+      display: block;
+      height: 1px;
+      background-color: lightgray;
+      width: 100%;
+      content: "";
+      margin: 1rem 0;
+    }
+
+    div[id]:last-of-type::after{
+      display: none;
+    }
+  </style>
+  <body>
+    <div id="vue-app">
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+      <button-counter></button-counter>
+      <blog-title title="Hello this is my first blog"></blog-title>
+      <blog-title title="Today is a very sad day"></blog-title>
+      <blog-title title="But i have my best husband"></blog-title>
+      <blog-title v-for="item in blogItems" :key="item.id" :title="item.title"></blog-title>
+      <blog-each v-for="item in blogItems" type="true" :key="item.id" :title="item" @fire="postFontSize += $event" :style="{ fontSize: postFontSize + 'rem' }"></blog-each>
+      <blog-each v-for="item in blogItems" :type="false" :key="item.id" :title="item" :style="{color: 'blue', fontSize: postFontSize + 'rem'}" @fire="enlargeText">
+      </blog-each>
+      <input is="input-model" v-model.number="postFontSize">
+    </div>
+    <script type="text/javascript">
+        Vue.component('button-counter', {
+            data: function(){
+                return{
+                    count: 0
+                }
+            },
+            template: '<button @click="count++">\
+            You clicked me {{ count }} times.\
+            </button>'
+        });
+
+        Vue.component('blog-title', {
+            props: ['title', 'type'],
+            template: '<h3>{{ title }}</h3>'
+        });
+
+        Vue.component('blog-each', {
+            props: ['title', 'type'],
+            template: '<div class="blog-post">\
+              <h3>{{ title.title }}</h3>\
+              <button v-if="type" @click="$emit(\'fire\', 0.1)">SIZE UP</button>\
+              <button v-else @click="$emit(\'fire\', -0.1)">SIZE DOWN</button>\
+              </div>'
+        });
+
+        Vue.component('input-model', {
+            props: ['value'],
+            template: '<input :value="value" @input="$emit(\'input\', $event.target.value)">'
+        });
+
+        new Vue({
+            el: '#vue-app',
+            data: {
+                blogItems: [
+                    { id: 1, title: 'My blog using data array' },
+                    { id: 2, title: 'Today gonna be a best day' },
+                    { id: 3, title: 'Tomorrow will be too' }
+                ],
+                postFontSize: 1
+            },
+            methods: {
+                enlargeText: function(val){
+                    this.postFontSize += val;
+                }
+            }
+        });
+    </script>
+  </body>
+</html>

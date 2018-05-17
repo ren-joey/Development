@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+
+  <style>
+    div[id *= 'app']{
+      margin-top: 1rem;
+    }
+
+    div[id *= 'app']::after{
+      display: block;
+      height: 1px;
+      background-color: lightgray;
+      width: 100%;
+      content: "";
+      margin: 1rem 0;
+    }
+
+    div[id]:last-of-type::after{
+      display: none;
+    }
+  </style>
+  <body>
+
+    <div id="app1">
+      <component-a :title="'A'"></component-a>
+      <component-b :title="'B'"></component-b>
+    </div>
+
+    <script src="vue_basic.js"></script>
+    <script type="text/javascript">
+        var app1 = new Vue({
+            el: '#app1',
+            components: {
+                'component-a': A,
+                'component-b': B
+            }
+        });
+    </script>
+  </body>
+</html>

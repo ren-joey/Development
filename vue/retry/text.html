@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<style>
+    div[id *= 'app']{
+        margin-top: 1rem;
+    }
+
+    div[id *= 'app']::after{
+        display: block;
+        height: 1px;
+        background-color: lightgray;
+        width: 100%;
+        content: "";
+        margin: 1rem 0;
+    }
+
+    div[id]:last-of-type::after{
+        display: none;
+    }
+</style>
+<body>
+
+<div id="app1">
+    <component-a :title="'A'"></component-a>
+    <component-b :title="'B'"></component-b>
+</div>
+
+<script src="vue_basic.js"></script>
+<script type="text/javascript">
+    var a = [1, 3, 1, 4, 5, 6, 3, 2];
+
+    function tryit(number){
+        var now;
+        var big = 0, temp = 0, remove = [];
+
+        do{
+            now = number[0];
+              for (var c = 0; c <= number.length-1; c++){
+                  if(number[c] == now){
+                      temp++;
+                      remove.push(c);
+                  }
+              }
+              if(temp >= 2){
+                  big++;
+              }
+            temp = 0;
+            do{
+                number.splice(remove[remove.length-1], 1);
+                remove.splice(remove.length-1, 1);
+            }
+            while( remove.length > 0 );
+            remove = [];
+        }
+        while( number.length > 0 );
+
+        return big;
+    }
+
+    console.log(tryit(a));
+</script>
+</body>
+</html>
