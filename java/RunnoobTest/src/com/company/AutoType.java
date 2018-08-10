@@ -3,6 +3,8 @@ package com.company;
 public class AutoType {
 
     public AutoType(){
+        System.out.println("***** AutoType *****");
+
         char c1='a';//定义一个char类型
         int i1 = c1;//char自动类型转换为int
         System.out.println("char自动类型转换为int后的值等于"+i1);

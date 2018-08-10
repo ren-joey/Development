@@ -3,12 +3,15 @@ package com.company;
 import java.util.*;
 
 public class Puppy {
+
     String puppyName = "";
     String puppyAge = "";
     String puppyType = "";
     String puppyPrice = "";
 
     public Puppy(HashMap<String, Object> setObj){
+        System.out.println("***** Puppy *****");
+
         this.puppyName = (String) setObj.get("name");
         this.puppyAge = (String) setObj.get("age");
         this.puppyType = (String) setObj.get("type");

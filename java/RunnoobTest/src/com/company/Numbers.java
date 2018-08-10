@@ -7,6 +7,8 @@ public class Numbers {
     }
 
     public void printNumbers(){
+        System.out.println("***** printNumbers *****");
+
         // byte
         System.out.println("基本类型：byte 二进制位数：" + Byte.SIZE);
         System.out.println("包装类：java.lang.Byte");

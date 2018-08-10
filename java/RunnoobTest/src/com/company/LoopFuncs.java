@@ -5,6 +5,8 @@ import java.util.*;
 public class LoopFuncs {
 
     public  LoopFuncs(){
+        System.out.println("***** LoopFuncs *****");
+
         int [] numbers = {10, 20, 30, 40, 50};
 
         // java 加強型 for 迴圈

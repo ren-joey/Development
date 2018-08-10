@@ -2,6 +2,8 @@ package com.company;
 
 public class ArrayControl {
     public ArrayControl(){
+        System.out.println("***** ArrayControl *****");
+
         String str1 = new String("good job!");
         String str2 = "joey";
         System.out.println("String concat: "+str1.concat(str2));
