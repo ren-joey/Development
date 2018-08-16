@@ -1,6 +1,5 @@
 package com.company;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public abstract class Tester {
@@ -20,6 +19,16 @@ public abstract class Tester {
         }
     }
 
+    public void ForloopBasicTester(List<String> h){
+
+        System.out.println("-basic for loop-");
+
+        for(int i=0; i<h.size(); i++){
+            System.out.println(h.get(i));
+        }
+
+    }
+
     public void ForloopTester(List<String> h){
 
         System.out.println("-for loop-");
@@ -27,11 +36,12 @@ public abstract class Tester {
         for (String s:h){
             System.out.println(s);
         }
+
     }
 
     public void IteratorTester(List<String> h){
 
-        System.out.println("-for loop-");
+        System.out.println("-iterator next-");
 
         Iterator<String> itr;
         itr = h.iterator();
@@ -39,5 +49,9 @@ public abstract class Tester {
         while ( itr.hasNext() ){
             System.out.println(itr.next());
         }
+
     }
+
+
+
 }

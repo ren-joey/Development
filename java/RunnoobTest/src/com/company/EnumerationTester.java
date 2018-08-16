@@ -26,6 +26,11 @@ public class EnumerationTester {
             System.out.println(days.nextElement());
         }
 
+        System.out.println("- basic for loop-");
+        for (int i=0; i<dayNames.size(); i++){
+            System.out.println(dayNames.get(i));
+        }
+
         System.out.println("-for loop-");
         for (String d : dayNames){
             System.out.println(d);
@@ -39,12 +44,3 @@ public class EnumerationTester {
     }
 }
 
-class VectorTester extends Tester{
-    public VectorTester(){
-        super();
-    }
-
-    public void EnumerationTester(Vector<String> h) {
-
-    }
-}

@@ -20,6 +20,7 @@ public class HashSetTester {
         tester.EnumerationTester(list);
         tester.ForloopTester(list);
         tester.IteratorTester(list);
+        tester.ForloopBasicTester(list);
 
     }
 

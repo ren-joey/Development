@@ -92,6 +92,22 @@ public class Main {
         new EnumerationTester();
 
         new HashSetTester();
+
+        new ArrayListTester();
+
+        new HashMapTester();
+
+        new BitSetTester();
+
+        new VectorTester();
+
+        new StackTester();
+
+        new ConcurrentHashMapTester();
+
+        new CollectionFramworks();
+
+        new GenericsType();
     }
 }
 
