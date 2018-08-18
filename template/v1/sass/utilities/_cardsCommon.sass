@@ -1,0 +1,520 @@
+$width-left: 200px
+$width-right: 300px
+$right-margin: 60px
+
+.card-common
+    margin: 2rem 0
+
+    .card-text-info
+        color: #444444
+
+    .article-left
+        width: $width-left
+        float: left
+        position: relative
+        z-index: 3
+        @extend %transition-btn
+
+        +breakpoint(mobile)
+            width: size(100)
+
+
+        // &.is_stuck
+        //     margin-top: 150px
+
+        // flex: none
+
+        .card-poster
+            font-size: 14px
+
+            .posted
+                ~ .posted
+                    margin-top: 10px
+
+    .article-main
+        //no left and right side
+        // flex: 1
+        width: 100%
+        margin: 0 auto
+
+        @extend %transition-btn
+
+        &.hasLeft
+            .article-center
+                width: calc(100% - (#{$width-right} + #{$right-margin}))
+
+                +breakpoint(mobile)
+                    width: size(100)
+
+            &.hasRight
+                .article-center
+                    width: calc(100% - (#{$width-left} + #{$width-right} + #{$right-margin}))
+
+                    +breakpoint(mobile)
+                        width: size(100)
+
+        &.hasRight
+            .article-center
+                width: calc(100% - (#{$width-right} + #{$right-margin}))
+
+                +breakpoint(mobile)
+                    width: size(100)
+
+        .card-text
+            padding: 0px 0px 25px
+
+        .card-text-name
+            font-size: 18px
+            letter-spacing: 1px
+
+            ~ .card-text-info
+                margin-top: 16px
+
+            ~ .card-img
+                margin-top: 16px
+
+        .card-img
+            padding-bottom: 0
+            overflow: visible
+            height: auto
+
+            img, a:not(.imgLink)
+                position: relative
+                height: auto
+                display: inline-block
+                width: size(100)
+
+            > a
+                height: size(100)
+
+                // width: auto
+
+            // > a, > a > img
+            //  width: auto
+            //  max-width: inherit
+
+            .card-text-name
+                font-size: 15px
+
+                > a
+                    padding-bottom: 0
+                    @extend %reset
+                    color: $content-base-color
+                    background-color: transparent
+
+                    +hover-focus-active
+                        color: $title-sub-color
+
+            +hover-focus-active
+                color: $title-sub-color
+
+            ~ .card-text
+                padding: 25px 0px 0px
+
+            .flex-control-paging
+                li
+                    a
+                        height: 11px
+
+            .flex-direction-nav
+                a
+                    position: absolute
+                    width: 40px
+                    height: 40px
+
+            &.text-R
+                margin-left: auto
+                margin-right: 0
+                float: right
+
+                ~ .card-text
+                    float: right
+                    width: size(100)
+
+                .flexslider
+                    margin-left: auto
+                    margin-right: 0
+                    float: right
+
+                    .slides
+                        img
+                            margin: 0 0 0 auto
+
+            &.text-C
+                margin-left: auto
+                margin-right: auto
+
+                .flexslider
+                    margin: 0 auto
+
+                    .slides
+                        img
+                            margin: 0 auto
+
+            &.float-L, &.float-R
+                width: 35%
+
+                ~ .card-text
+                    padding-top: 16px
+
+                .flexslider
+                    width: 100%
+
+            &.float-L
+                margin-right: 20px
+
+            &.float-R
+                margin-left: 20px
+
+                &.text-R
+                    ~ .card-text
+                        float: none
+
+        .card, .card-box, .card-img
+            position: static
+
+            &.video
+                position: relative
+
+                .card-box, .card-img
+                    position: relative
+
+                &.imgWidth-small
+                    .card-img
+                        width: 60%
+
+        .card
+            ~ .card
+                margin-top: 35px
+
+            &:not([class*='imgWidth-'])
+                .card-img
+                    &.text-C
+                        .flexslider
+                            left: 50%
+
+                            +breakpoint(mobile)
+                                left: 0
+                                margin-left: 0 !important
+                                margin-right: 0 !important
+                                width: 100% !important
+
+                .flexslider
+                    a, .imgInfo a
+                        width: initial
+
+                    .flex-direction-nav
+                        position: absolute
+                        top: 50%
+                        left: 0
+                        margin-top: -20px
+
+                        +breakpoint(mobile)
+                            position: static
+                            top: auto
+                            margin-top: 0
+
+
+                        a
+                            width: 40px
+
+                    .slides
+                        img
+                            width: initial
+                            width: auto
+
+                            // height: 100%
+
+            &.imgWidth-large
+                .flexslider
+                    width: size(100)
+                    margin-left: -$width-left
+                    right: -$width-left
+
+                .card-img
+                    &.text-R
+                        .flexslider
+                            right: 0
+
+                    &.text-C
+                        .flexslider
+                            right: -20px
+
+                        .videoIframe
+                            left: -$width-left
+
+                    img
+                        width: size(100)
+
+            &.imgWidth-middle
+                .flexslider
+                    width: size(100)
+
+            &.imgWidth-small
+                .flexslider
+                    width: 60%
+
+                .card-img
+                    &.float-L, &.float-R
+                        .flexslider
+                            width: 100%
+
+    .article-center
+        float: left
+        position: relative
+        z-index: 2
+        width: size(100)
+
+    .article-right
+        // margin-top: 0
+        margin-left: $right-margin
+        width: $width-right
+        float: right
+
+        @extend %transition-btn
+
+        // flex: none
+
+        // &.is_stuck
+        //     margin-top: 100px
+
+        @extend %transition-btn
+
+    .article-right, .article-left
+        .card
+            box-shadow: none
+            position: relative
+            z-index: 2
+
+        .card-datetime
+            .card-date
+                font-size: 2.4rem
+                letter-spacing: -1px
+
+                > span:not(.week)
+                    margin: 0 5px
+
+                > .week
+                    font-size: 1.4rem
+                    letter-spacing: 0px
+                    margin-left: 2px
+
+            .card-time
+                font-size: 16px
+                margin-left: 3px
+                letter-spacing: 0px
+
+            & > div:not(.card-time), &:not(.multiple) > div
+                display: inline-block
+
+                .card-time
+                    margin-left: 5px
+                    vertical-align: bottom
+
+        +breakpoint(mobile)
+            width: size(100)
+            margin-left: 0
+
+    .article-title
+        width: size(100)
+        font-size: 30px
+        color: $title-main-color
+        letter-spacing: 1px
+        margin-bottom: 20px
+        text-align: center
+
+        &.page
+            text-align: left
+            float: left
+
+    .card, .card-box, .copyright, .comment, .recommend
+        float: left
+        width: size(100)
+
+    ul.download
+        font-size: 15px
+
+        @extend %reset
+
+        > li
+            @extend %reset
+
+            > a
+                text-decoration: none
+
+            i
+                vertical-align: text-bottom
+                margin-right: 5px
+                font-size: 18px
+
+    .copyright
+        font-size: 13px
+        margin-top: 60px
+        padding: 30px 0px
+        border-top: 1px solid color("grey", "lighten-2")
+        text-align: center
+
+    //comment and recommend
+    .comment-title, .recommend-title
+        color: #000000
+        padding-bottom: 2px
+        margin-bottom: 17px
+        border-bottom: 1px solid #dddddd
+
+    .comment
+        ul
+            list-style: none
+            margin: 0
+            padding: 0
+
+        li
+            list-style: none
+            margin: 0 0 30px
+            padding: 0
+            border-bottom: 1px solid #eeeeee
+            padding-bottom: 25px
+
+        .userImg
+            width: 40px
+            height: 40px
+            border-radius: 100%
+            overflow: hidden
+            float: left
+            background-color: #dddddd
+            line-height: 40px
+
+            > i
+                font-size: 40px
+
+            > img
+                width: 100%
+                height: 100%
+                display: block
+
+        .time
+            color: #787878
+            font-size: 12px
+            float: right
+            padding-top: 12px
+
+        .userName
+            color: #454545
+            font-size: 13px
+            margin-left: 50px
+            padding-top: 12px
+
+            // float: left
+
+        .content
+            // color: #000000
+            // float: left
+            // width: 100%
+            margin-top: 5px
+            margin-left: 50px
+
+        .commentBtn
+            color: #999999
+            text-align: center
+            width: 64px
+            height: 64px
+            background-color: #f7f7f7
+            border-radius: 100%
+            overflow: hidden
+            padding: 10px
+            border: 1px solid #dedede
+            margin: 20px auto 10px
+            cursor: pointer
+
+            @extend %transition-btn
+
+            > i
+                font-size: 20px
+
+            > span
+                font-size: 13px
+                display: block
+
+            &:hover
+                color: #ffffff
+                background-color: #454545
+                border: 1px solid #666666
+
+        .comment-edit
+            padding: 0px 20px 20px
+            background-color: #f7f7f7
+            margin-bottom: 30px
+            border-bottom: none
+
+            .comment-content
+                margin-left: 0
+
+            .userName
+                margin-left: 0px
+                padding-top: 0px
+
+            .content
+                margin-top: 0px
+                margin-left: 0px
+
+        textarea.materialize-textarea
+            height: 100px
+
+    .recommend
+        margin-top: 30px
+
+        .card-img-box
+            a
+                padding-bottom: 56.25%
+                overflow: hidden
+
+                img
+                    position: absolute
+                    top: 50%
+                    margin-top: -28.125%
+
+                    @extend %transition-scale-org
+
+                &:hover
+                    img
+                        @extend %transition-scale
+
+            .card-text-name
+                @extend %transition-btn
+
+            +hover-focus-active
+                .card-text-name
+                    color: $title-sub-color
+
+                    a
+                        color: $title-sub-color
+
+    .visible_item
+        display: none
+
+    #showMore
+        margin-bottom: 40px
+
+    .hasVideo
+        position: relative
+
+        &::after
+            content: unquote('"\\ea38"')
+            font-size: 32px
+            color: $white
+            display: inline-block
+            width: 38px
+            height: 40px
+            text-align: center
+            line-height: 41px
+            border-radius: 100%
+            border: 2px solid $white
+            background-color: rgba($black, 0.5)
+            position: absolute
+            font-family: 'FontCCwork'
+            padding-left: 2px
+            left: 50%
+            top: 50%
+            margin-top: -20px
+            margin-left: -19px
+            opacity: 0.8
+            @extend %transition-btn

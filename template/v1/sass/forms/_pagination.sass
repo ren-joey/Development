@@ -1,0 +1,139 @@
+// pagination
+.pagination
+    width: size(100)
+    position: relative
+    margin: 20px 0px
+    font-size: 13px
+    font-size: 1.3rem
+    clear: both
+
+    ul
+        display: inline-block
+        margin: 0px
+
+        @extend %list-style-none
+
+        &::after
+            display: inline
+
+        > li
+            display: inline
+
+            +breakpoint(mobile)
+                display: none
+
+
+            &::after
+                display: inline
+
+            > a, > span
+                color: #777777
+                float: left
+                padding: 4px 10px
+                line-height: 20px
+                background-color: color("shades", "white")
+                border: 1px solid #cccccc
+                border-left-width: 0px
+
+            > span
+                color: #999999
+                font-weight: bold
+                line-height: 13px
+                border: none
+
+            &.ep
+                > a
+                    border-left-width: 1px
+
+            > a
+                text-decoration: none
+
+                &:hover, &:focus, &:active, &.active
+                    color: #303030
+                    background-color: #f5f5f5
+
+                    @extend %transition-btn
+
+            &:first-child
+                +breakpoint(mobile)
+                    display: inline
+
+
+                > a
+                    border-left-width: 1px
+
+            &:last-child
+                +breakpoint(mobile)
+                    display: inline
+
+            .button
+                +breakpoint(mobile)
+                    display: inline
+
+    .totalPage
+        margin: 0px 5px
+        vertical-align: top
+        padding-top: 5px
+        display: inline-block
+        font-size: 1.2rem
+        font-size: 12px
+
+        +breakpoint(mobile)
+            display: block
+            padding-top: 10px
+
+
+        .num
+            margin: 0px 5px
+            letter-spacing: 0px
+
+        .slash
+            margin: 0px 3px
+
+    &.text-L
+        .totalPage
+            +breakpoint(pad-portrait)
+                margin: 0px 5px 0px 0px
+
+
+            +breakpoint(mobile)
+                margin: 0px 5px
+
+    &.text-C
+        .totalPage
+            +breakpoint(pad-portrait)
+                margin: 0px 5px
+
+    &.text-R
+        .totalPage
+            +breakpoint(pad-portrait)
+                margin: 0px 0px 0px 5px
+
+
+            +breakpoint(mobile)
+                margin: 0px 5px
+
+// click more
+#infscr-loading
+    text-align: center
+    z-index: 1000
+    position: fixed
+    left: 50%
+    margin-left: -100px
+    bottom: 40px
+    width: 200px
+    background: color("shades", "black")
+    opacity: 0.5
+    color: color("shades", "white")
+    border-radius: 6px
+
+    img
+        margin: 10px 0 5px
+
+    span
+        display: block
+        line-height: 2
+
+.card
+    .pagination
+        padding: 20px 0px

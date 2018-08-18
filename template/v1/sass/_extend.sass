@@ -1,0 +1,183 @@
+%reset
+    margin: 0
+    padding: 0
+    list-style: none
+    text-decoration: none
+
+%border-box
+    -moz-box-sizing: border-box
+    -webkit-box-sizing: border-box
+    box-sizing: border-box
+
+%transition-smoooth
+    -webkit-transition: all 0.2s linear
+    -moz-transition: all 0.2s linear
+    -o-transition: all 0.2s linear
+    transition: all 0.2s linear
+
+%transition-btn
+    -webkit-transition: all 0.4s ease-in-out
+    -moz-transition: all 0.4s ease-in-out
+    -o-transition: all 0.4s ease-in-out
+    transition: all 0.4s ease-in-out
+
+%transition-opacity
+    -webkit-transition: opacity 0.4s ease-in-out
+    -moz-transition: opacity 0.4s ease-in-out
+    -o-transition: opacity 0.4s ease-in-out
+    transition: opacity 0.4s ease-in-out
+
+%transition-show
+    -webkit-transition: all 0.6s ease-in-out
+    -moz-transition: all 0.6s ease-in-out
+    -o-transition: all 0.6s ease-in-out
+    transition: all 0.6s ease-in-out
+
+%transition-scale-org
+    -webkit-transition-duration: 1s
+    -moz-transition-duration: 1s
+    -o-transition-duration: 1s
+    transition-duration: 1s
+    -webkit-transform: scale(1)
+    -moz-transform: scale(1)
+    -o-transform: scale(1)
+    transform: scale(1)
+
+%transition-scale
+    -webkit-transition-duration: 1s
+    -moz-transition-duration: 1s
+    -o-transition-duration: 1s
+    transition-duration: 1s
+    -webkit-transform: scale(1.05)
+    -moz-transform: scale(1.05)
+    -o-transform: scale(1.05)
+    transform: scale(1.05)
+
+%transition-none
+    -webkit-transition: none
+    -moz-transition: none
+    -o-transition: none
+    transition: none
+
+%list-style-none
+    list-style: none
+
+%flex
+    display: -moz-box
+    display: -webkit-box
+    display: -ms-flexbox
+    display: -webkit-flex
+    display: flex
+
+%inline-flex
+    display: -moz-inline-box
+    display: -webkit-inline-box
+    display: -ms-inline-flexbox
+    display: -moz-inline-flex
+    display: -webkit-inline-flex
+    display: inline-flex
+
+%flex-wrap
+    -ms-flex-wrap: wrap
+    -moz-flex-wrap: wrap
+    -webkit-flex-wrap: wrap
+    flex-wrap: wrap
+
+%flex-row
+    -ms-flex-direction: row
+    -moz-flex-direction: row
+    -webkit-flex-direction: row
+    flex-direction: row
+
+%flex-column
+    -ms-flex-direction: column
+    -moz-flex-direction: column
+    -webkit-flex-direction: column
+    flex-direction: column
+
+%justify-center
+    -ms-flex-pack: center
+    -ms-justify-content: center
+    -moz-justify-content: center
+    -webkit-justify-content: center
+    justify-content: center
+
+%align-center
+    -ms-flex-align: center
+    -ms-align-items: center
+    -moz-align-items: center
+    -webkit-align-items: center
+    align-items: center
+
+%align-end
+    -ms-flex-align: flex-end
+    -ms-align-items: flex-end
+    -moz-align-items: flex-end
+    -webkit-align-items: flex-end
+    align-items: flex-end
+
+%align-self-center
+    -webkit-align-self: center
+    align-self: center
+
+%align-self-start
+    -webkit-align-self: flex-start
+    align-self: flex-start
+
+%text-truncate
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+// %text-truncate-two
+//     overflow: hidden
+//     text-overflow: ellipsis
+//     word-break: break-all
+//     -webkit-box-orient: vertical
+//     -webkit-line-clamp: 2
+//     display: -webkit-box
+
+// %text-truncate-three
+//     overflow: hidden
+//     text-overflow: ellipsis
+//     word-break: break-all
+//     -webkit-box-orient: vertical
+//     -webkit-line-clamp: 3
+//     display: -webkit-box
+
+$black: color("shades", "black") !default
+$white: color("shades", "white") !default
+$gray: color("grey", "base") !default
+
+// forms
+$secondary-color: color("grey", "darken-3") !default
+$success-color: color("green", "base") !default
+$error-color: color("red", "base") !default
+
+$button-background-focus: lighten($secondary-color, 4%) !default
+
+// 8. Dropdown
+// ==========================================================================
+$off-black: rgba(0, 0, 0, 0.87) !default
+$dropdown-bg-color: #fff !default
+$dropdown-hover-bg-color: #eee !default
+$dropdown-color: $secondary-color !default
+$dropdown-item-height: 50px !default
+
+// Text Inputs + Textarea
+$input-border-color: color("grey", "base") !default
+$input-border: 1px solid $input-border-color !default
+$input-background: #fff !default
+$input-error-color: $error-color !default
+$input-success-color: $success-color !default
+$input-focus-color: $secondary-color !default
+$input-invalid-border: 1px solid $input-error-color !default
+$placeholder-text-color: lighten($input-border-color, 20%) !default
+
+// Radio Buttons
+$radio-fill-color: $secondary-color !default
+$radio-border: 1px solid $radio-fill-color !default
+
+// Select
+$select-focus: 1px solid lighten($secondary-color, 47%) !default
+$select-padding: 5px !default

@@ -1,0 +1,115 @@
+.dropdown-button
+    margin-right: 0px
+
+    &.active
+        margin-right: 4px
+
+.dropdown-content
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
+    background-color: $dropdown-bg-color
+    margin: 0
+    display: none
+    min-width: 100px
+    max-height: 650px
+    overflow-y: auto
+    opacity: 0
+    position: absolute
+    z-index: 1001
+    will-change: width, height
+    padding-left: 0
+    list-style-type: none
+
+    li
+        clear: both
+        color: $off-black
+        cursor: pointer
+        min-height: $dropdown-item-height
+        line-height: 1.5rem
+        width: 100%
+        text-align: left
+        text-transform: none
+        list-style-type: none
+
+        &:hover, &.active, &.selected
+            background-color: $dropdown-hover-bg-color
+
+        &.active.selected
+            background-color: darken($dropdown-hover-bg-color, 5%)
+
+        &.divider
+            min-height: 0
+            height: 1px
+            overflow: hidden
+            background-color: color("grey", "lighten-2")
+
+        & > span
+            font-size: 16px
+            color: $dropdown-color
+            display: block
+            line-height: 22px
+            padding: (($dropdown-item-height - 22) / 2) 16px
+
+        // & > a
+        //     font-size: 16px
+        //     color: $dropdown-color
+        //     display: block
+        //     line-height: 22px
+        //     padding: (($dropdown-item-height - 22) / 2) 16px
+
+        & > span > label
+            top: 0
+            left: 0
+            height: 18px
+
+        // Icon alignment override
+        // & > a > i
+        //     height: inherit
+        //     line-height: inherit
+        //     float: left
+        //     margin: 0 24px 0 0
+        //     width: 24px
+
+    &.customContent
+        min-width: 360px
+        height: 280px
+
+        &.large
+            height: 330px
+
+        &.full
+            min-width: 800px
+            height: 400px
+
+        li
+            cursor: default
+            padding: 0
+
+    &.customContent, &.btnStyle
+        background-color: $body-lightBox-bg-color
+        max-height: 400px
+
+        li
+            min-height: initial
+            line-height: 1
+
+            &:hover, &.active, &.selected
+                background-color: transparent
+
+            &.active.selected
+                background-color: transparent
+
+    &.btnStyle
+        li
+            padding: 5px 0px
+
+            &:first-child
+                padding-top: 10px
+
+            &:last-child
+                padding-bottom: 10px
+
+// Input field specificity bugfix
+.input-field[class*='col-'] .dropdown-content [type="checkbox"] ~ label
+    top: 1px
+    left: 0
+    height: 18px

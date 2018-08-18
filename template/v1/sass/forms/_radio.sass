@@ -1,0 +1,332 @@
+// extend
+%label-before-after-base
+    content: ""
+    position: absolute
+    left: 0
+    top: 0
+    margin: 3px 4px 3px 0
+    width: 16px
+    height: 16px
+    z-index: 0
+    transition: 0.28s ease
+
+%label-before-after-checked
+    position: relative
+    padding-left: 24px
+    cursor: pointer
+    display: inline-block
+    height: 25px
+    color: $input-focus-color
+    line-height: 25px
+    font-size: $label-font-size
+    transition: 0.28s ease
+    -webkit-user-select: none
+    -moz-user-select: none
+    -khtml-user-select: none
+    -ms-user-select: none
+    user-select: none
+
+//Radio Buttons
+[type="radio"]
+    ~ img, ~ i
+        width: 100px
+        height: 100px
+        line-height: 100px
+        display: block
+        margin: 0 auto
+        background-color: #f2f2f2
+        font-size: 45px
+        text-align: center
+
+    ~ label
+        &::before
+            @extend %label-before-after-base
+
+        &::after
+            @extend %label-before-after-base
+
+    &:not(:checked)
+        position: absolute
+        left: 0
+        opacity: 0
+
+        ~ label
+            @extend %label-before-after-checked
+
+            &::before
+                border-radius: 50%
+                border: 1px solid $radio-empty-color
+
+            &::after
+                border-radius: 50%
+                border: 1px solid $radio-empty-color
+                transform: scale(0)
+
+            &[data-color]
+                &::before, &::after
+                    border: transparent
+
+    &:checked
+        position: absolute
+        left: 0
+        opacity: 0
+
+        ~ img, ~ i
+            background-color: #dedede
+
+        ~ label
+            @extend %label-before-after-checked
+
+            &::before
+                border-radius: 50%
+                border: 1px solid transparent
+
+            &::after
+                border-radius: 50%
+                border: $radio-border
+                background-color: $radio-fill-color
+                transform: scale(1.02)
+
+    // Disabled style
+    &:disabled
+        ~ label
+            color: $input-disabled-color
+
+        &:not(:checked)
+            ~ label
+                &:before
+                    background-color: transparent
+                    border-color: $input-disabled-color
+                    border-color: $input-disabled-color
+
+                // &:after
+
+        &:checked
+            ~ label
+                &:before
+                    background-color: transparent
+                    border-color: $input-disabled-color
+
+                &:after
+                    background-color: $input-disabled-color
+                    border-color: $input-disabled-solid-color
+
+    &.with-gap
+        ~ label
+            &[data-color]
+                width: 17px
+                height: 17px
+                border-radius: 50%
+                padding-left: 0
+
+                &::after
+                    margin: 0
+                    width: 8px
+                    height: 8px
+                    top: 4px
+                    left: 0px
+                    border: transparent
+                    border-radius: 0
+                    transition: 0.2s
+                    background-color: transparent
+                    transform: rotate(0deg)
+
+        &:checked
+            ~ label
+                &:before
+                    border-radius: 50%
+                    border: $radio-border
+
+                &:after
+                    border-radius: 50%
+                    border: $radio-border
+                    background-color: $radio-fill-color
+                    transform: scale(0.5)
+
+                &[data-color]
+                    &::before
+                        border: transparent
+
+                    &::after
+                        border: transparent
+                        border-right: 1px solid #ffffff
+                        border-bottom: 1px solid #ffffff
+                        border-radius: 0
+                        background-color: transparent
+                        transform: rotate(40deg)
+                        backface-visibility: hidden
+                        transform-origin: 100% 100%
+
+        // Disabled Radio With gap
+        &:disabled
+            &:checked
+                ~ label
+                    &:before
+                        border: 1px solid $input-disabled-color
+
+                    &:after
+                        border: none
+                        background-color: $input-disabled-color
+
+    &.with-item
+        ~ label
+            width: 100%
+            height: 100%
+            position: absolute
+            bottom: 0
+
+            @extend %flex
+
+            @extend %flex-row
+            @extend %justify-center
+
+            @extend %align-end
+
+            font-size: $label-font-size
+            color: $input-border-color
+            line-height: 1
+            padding-bottom: 5px
+
+            &:before
+                margin: 0
+                width: 30px
+                height: 30px
+
+            &:after
+                margin: 0
+                width: 12px
+                height: 22px
+                left: 4px
+                top: 6px
+                border-right: 1px solid #5a5a5a
+                border-bottom: 1px solid #5a5a5a
+                border-radius: 0
+                transition: 0.2s
+
+            i
+                font-size: 26px
+
+        &:not(:checked)
+            ~ label
+                padding-left: 0
+                @extend %flex
+
+                &:before
+                    border-radius: 0
+                    border: none
+
+                &:after
+                    border-radius: 0
+                    border: none
+                    transform: scale(1)
+
+        &:checked
+            ~ label
+                padding-left: 0
+                @extend %flex
+
+                &:before
+                    border-radius: 0
+                    border: none
+
+                &:after
+                    border-radius: 0
+                    border: none
+                    background-color: transparent
+
+                    // transform: none
+
+                    border-right: 1px solid #000000
+                    border-bottom: 1px solid #000000
+                    transform: rotate(40deg)
+                    backface-visibility: hidden
+                    transform-origin: 100% 100%
+
+                    // transform: scale(1)
+
+        // Disabled style
+        &:disabled
+            ~ label
+                color: $input-disabled-color
+
+            &:not(:checked)
+                ~ label
+                    &:before
+                        background-color: transparent
+                        border-color: $input-disabled-color
+                        border-color: $input-disabled-color
+
+                    // &:after
+
+            &:checked
+                ~ label
+                    &:before
+                        background-color: transparent
+                        border-color: $input-disabled-color
+
+                    &:after
+                        background-color: $input-disabled-color
+                        border-color: $input-disabled-solid-color
+
+        &.transparent
+            ~ img, ~ i
+                width: inherit
+                height: inherit
+                line-height: 1
+                display: inline-block
+                margin: 0
+                background-color: transparent
+                font-size: 20px
+                vertical-align: middle
+                color: $input-border-color
+
+            ~ label
+                width: inherit
+                height: inherit
+                position: relative
+                display: inline-block
+                padding-bottom: 0
+                color: $input-border-color
+
+                &:before
+                    width: 200%
+                    height: 100%
+                    left: -100%
+
+                &:after
+                    width: 100%
+                    height: 100%
+                    left: 0
+                    top: 0
+                    border-right: none
+                    border-bottom: none
+
+            &.icon
+                ~ label
+                    &:before
+                        width: 100%
+                        left: 0%
+
+            &:checked
+                ~ img, ~ i
+                    color: $input-focus-color
+
+                ~ label
+                    color: $input-focus-color
+
+                    &:after
+                        border-right: none
+                        border-bottom: none
+                        transform: rotate(0deg)
+
+        &.video-img
+            ~ img
+                width: 300px
+                height: 169px
+
+    // Focused styles
+    &.tabbed
+        &:focus
+            ~ label
+                &:before
+                    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1)

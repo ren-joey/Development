@@ -1,0 +1,487 @@
+﻿.DDmenu
+    +text-L
+
+.section-heading
+    > div
+        display: inline-block
+        vertical-align: middle
+        line-height: 1
+        margin: 30px 0 10px
+
+        &.dd-empty
+            margin: 10px auto
+
+    .addMenu
+        position: absolute
+        right: 18px
+        font-size: map-get($fonts-px, lg)
+        font-size: map-get($fonts, lg)
+
+    &.nestable-topMenu
+        > div:not(.dd-empty)
+            margin: 0px 0 10px
+
+    > .dd-list
+        display: none
+
+        &.show
+            display: block
+
+    &.setting-ad
+        max-width: 320px
+        width: 100%
+
+        &.active
+            .toggleBox i
+                transform: rotate(180deg)
+
+        .dd-list
+            display: block
+            animation-duration: 1s
+            animation-fill-mode: both
+            animation-name: flipOutY
+            backface-visibility: visible !important
+
+            .dd-handle
+                cursor: inherit
+
+        &>.dd-list>.dd-item
+            &:before
+                content: ""
+                display: block
+                position: absolute
+                left: 30px
+                background-color: #dddddd 
+                visibility: visible
+                overflow: visible
+
+            &:after
+                content: ""
+                display: block
+                position: absolute
+                left: 30px
+                background-color: #dddddd 
+                visibility: visible
+                overflow: visible
+
+            &:before
+                width: 1px
+                height: 38px
+                top: 0
+
+            &:after
+                width: 11px
+                height: 1px
+                top: 19px
+                margin-top: -0.5px
+
+            &:last-child:before
+                width: 1px
+                height: 19px
+                top: 0
+
+            &:last-child:after
+                width: 11px
+                height: 1px
+                top: 19px
+                margin-top: -0.5px
+        
+        &.active
+            .dd-list
+                display: block
+                animation-duration: 1s
+                animation-fill-mode: both
+                backface-visibility: visible !important
+                animation-name: flipInY
+
+        .cc.cc-check
+            opacity: 0
+
+        .has-ad
+            .cc.cc-check
+                opacity: 1
+                color: #0070c0
+
+            .menu-title
+                color: #0070c0
+
+        .icons-box 
+            a
+                opacity: 0.6
+            
+                &:hover
+                    opacity: 1
+
+            i
+                display: inline-block
+                position: static
+
+        .ad-content
+            position: absolute
+            left: 100%
+            width: 100%
+            min-width: 480px
+
+            ul
+                list-style: none
+                padding-left: 0px
+                margin-left: 0px
+
+                li
+                    display: inline-block
+                    margin-left: 1rem
+
+            .ad-display-position
+                color: #0070c0
+
+                &+.ad-display-position:before
+                    content: '、'
+
+
+
+
+
+
+
+.toggleBox
+    margin: 0 5px 0 10px
+    padding: 3px 6px
+    cursor: pointer
+
+    i
+        transition: all 0.3s ease
+
+    &:hover, &.active
+        i
+            transform: rotate(180deg)
+
+[class^='iconMenu-']
+    position: relative
+    width: 14px
+    height: 12px
+    margin-right: 5px
+
+    &::before, &::after
+        content: ""
+        display: block
+        overflow: visible
+        visibility: visible
+
+    > div, &::before, &::after
+        position: absolute
+        width: 100%
+        height: 2px
+        background-color: #cccccc
+        transition-duration: 0.5s
+
+    > div
+        top: 5px
+
+    &::before
+        top: 0
+
+    &::after
+        bottom: 0
+
+.iconMenu-top::before
+    background-color: #999999
+
+.iconMenu-main > div
+    background-color: #999999
+
+.iconMenu-bottom::after
+    background-color: #999999
+
+.icons-box
+    position: absolute
+    right: 20px
+
+    i
+        color: #000000
+        position: absolute
+        right: 0
+
+    a
+        i.cc-settings
+            display: none
+            z-index: 100
+
+// license Copyright https://github.com/RamonSmit/Nestable
+.dd
+    position: relative
+    display: block
+    margin: 0
+    padding: 0
+    list-style: none
+    font-size: map-get($fonts-px, sm)
+    font-size: map-get($fonts, sm)
+    line-height: 20px
+
+.dd-list
+    display: block
+    position: relative
+    margin: 0
+    padding: 0
+    list-style: none
+
+    .menu-title
+        max-width: 130px
+
+        +text-truncate
+
+    .dd-list
+        .dd-item
+            .dd-handle, > .dd-nodrag
+                &::before
+                    width: 1px
+                    height: 38px
+                    top: 0
+
+            &:last-child
+                > .dd-handle, > .dd-nodrag
+                    &::before
+                        width: 1px
+                        height: 19px
+                        top: 0
+
+        .menu-title
+            max-width: 110px
+
+        .dd-handle, .dd-item > .dd-nodrag
+            padding-left: 70px
+
+            &::before, &::after
+                content: ""
+                display: block
+                position: absolute
+                left: 50px
+                background-color: #dddddd
+                visibility: visible
+                overflow: visible
+
+            &::after
+                width: 11px
+                height: 1px
+                top: 19px
+                margin-top: -0.5px
+
+        .dd-list
+            .dd-handle, .dd-item > .dd-nodrag
+                padding-left: 95px
+
+                &::before, &::after
+                    left: 80px
+
+            .menu-title
+                max-width: 90px
+
+            .dd-list
+                .dd-handle, .dd-item > .dd-nodrag
+                    padding-left: 120px
+
+                    &::before, &::after
+                        left: 110px
+
+                .menu-title
+                    max-width: 70px
+
+                .dd-list
+                    .dd-handle, .dd-item > .dd-nodrag
+                        padding-left: 145px
+
+                        &::before, &::after
+                            left: 135px
+
+                    .menu-title
+                        max-width: 50px
+
+    &.checkStyle
+        .dd-list
+            .dd-handle
+                padding-left: 25px
+
+                &::before, &::after
+                    left: 8px
+
+            .dd-list
+                .dd-handle
+                    padding-left: 50px
+
+                    &::before, &::after
+                        left: 33px
+
+                    .dd-handle
+                        padding-left: 75px
+
+                        &::before, &::after
+                            left: 58px
+
+                .dd-list
+                    .dd-handle
+                        padding-left: 75px
+
+                        &::before, &::after
+                            left: 58px
+
+.dd-item, .dd-empty, .dd-placeholder
+    display: block
+    position: relative
+    margin: 0
+    padding: 0
+    min-height: 20px
+    font-size: map-get($fonts-px, sm)
+    font-size: map-get($fonts, sm)
+    line-height: 20px
+
+.current-menu
+    > .dd-handle, > .dd-nodrag
+        background: #e4e4e4
+
+        &:hover
+            background: #e4e4e4
+
+        > .icons-box
+            i:not(.cc-settings)
+                right: inherit
+                margin-right: 3px
+
+            a
+                i.cc-settings
+                    display: block
+
+    &.active-menu
+        > .dd-handle, > .dd-nodrag
+            .icons-box
+                i:not(.cc-settings)
+                    display: block
+
+.active-menu
+    > .dd-handle, > .dd-nodrag
+        .icons-box
+            a
+                i.cc-settings
+                    display: block
+
+            i:not(.cc-settings)
+                display: none
+
+.disable-menu
+    .dd-handle, .icons-box i:not(.cc-settings), > .dd-nodrag
+        color: #999999
+
+.dd-handle, .dd-item > .dd-nodrag
+    display: block
+
+    // height: 30px
+    margin: 2px 0
+    padding: 10px 10px 10px 45px
+    color: #3e3e3e
+    text-decoration: none
+
+    // font-weight: bold
+    // border: 1px solid #ccc
+    // background: #fafafa
+    // border-radius: 3px
+    box-sizing: border-box
+    line-height: 1
+    cursor: pointer
+
+    &:hover
+        background: rgba(228, 228, 228, 0.55)
+
+    i
+        font-size: map-get($fonts-px, mm)
+        font-size: map-get($fonts, mm)
+
+    > *
+        display: inline-block
+        vertical-align: middle
+
+    > i
+        margin-right: 3px
+
+.dd-item
+    > button
+        position: relative
+        cursor: pointer
+        float: left
+        width: 25px
+        height: 20px
+        margin: 5px 0
+        padding: 0
+        text-indent: 100%
+        white-space: nowrap
+        overflow: hidden
+        border: 0
+        background: transparent
+        font-size: 12px
+        line-height: 30px
+        text-align: center
+        font-weight: bold
+        z-index: 1
+
+        &::before
+            display: block
+            position: absolute
+            width: 100%
+            text-align: center
+            text-indent: 0
+
+        &.dd-expand:before
+            content: "+"
+
+        &.dd-collapse:before
+            content: "-"
+
+.dd-expand
+    display: none
+
+.dd-collapsed .dd-list, .dd-collapsed .dd-collapse
+    display: none
+
+.dd-collapsed .dd-expand
+    display: block
+
+.dd-empty, .dd-placeholder
+    margin: 5px 0
+    padding: 0
+    min-height: 30px
+
+    // background: #f2fbff
+    border: 1px dashed #b6bcbf
+    border-left: none
+    border-right: none
+    box-sizing: border-box
+    -moz-box-sizing: border-box
+
+.dd-empty
+    +d-block
+
+    width: size(90)
+    border: 2px dashed #cccccc
+    min-height: 40px
+
+    // background-color: #e5e5e5
+    // background-size: 60px 60px
+    // background-position: 0 0, 30px 30px
+
+    &::before
+        +d-block
+        +text-C
+
+        font-size: map-get($fonts-px, xs)
+        font-size: map-get($fonts, xs)
+        padding: 15px 0
+        color: #bbbbbb
+        content: "This navigation is empty"
+
+.dd-dragel
+    position: absolute
+    pointer-events: none
+    z-index: 9999
+
+    > .dd-item .dd-handle, > .dd-item > .dd-nodrag
+        margin-top: 0
+
+.dd-nochildren .dd-placeholder
+    display: none

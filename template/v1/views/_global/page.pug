@@ -1,0 +1,46 @@
+html
+  head
+    title 松鶴山水
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1")
+    meta(name= "title", content= "")
+    meta(name= "description", content= "")
+    meta(name= "keywords", content= "" )
+
+    // twitter card start
+    meta(property= "twitter:card", content= "")
+    meta(property= "twitter:url", content= "//wwww.google.com")
+    meta(property= "twitter:title", content= "")
+    meta(property= "twitter:description", content= "")
+    meta(property= "twitter:site", content= "")
+
+    // fb start
+    meta(property= "og:title", content= "")
+    meta(property= "og:url", content= "//wwww.google.com")
+    meta(property= "og:description", content= "")
+    meta(property= "og:image", content= "mages/benspic.jpg")
+    meta(property= "og:image:type", content="image/jpeg")
+    meta(property= "og:image:width", content="500")
+    meta(property= "og:image:height", content="300")
+
+    // libraries
+    // jQuery 3.3.1
+    script(src="./libraries/jquery.min.js")
+
+    // Bootstrap 4.0
+    link(rel="stylesheet", href="./libraries/bootstrap.min.css")
+    script(src="./libraries/bootstrap.min.js")
+
+    // GSAP 2.0.1
+    script(src="./libraries/TweenMax.js")
+
+    // global style
+    link(rel="stylesheet", href="./css/global.css")
+    link(rel="stylesheet", href="./css/main.css")
+
+    block head_end
+
+  body
+    include ./header
+
+    block body_content

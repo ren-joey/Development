@@ -1,0 +1,71 @@
+@import ../../variables
+@import ../../utilities
+@import ../../extend
+@import ../../mixins/rwd
+@import mixins
+@import core
+@import navigation
+@import effects
+@import zoom
+@import scrollbar
+@import preloader
+
+.swiper-container
+    &.swiper-tab-bar
+        position: fixed
+        width: 100%
+        margin: 0px
+        z-index: 50
+        border-bottom: 1px solid $search-box-color
+        background: $body-lightBox-bg-color
+        top: 0
+
+        .swiper-slide
+            text-align: center
+            font-size: 15px
+            padding: 17px 20px
+            color: #999999
+            line-height: 1
+            display: inline-block
+            width: initial
+            cursor: pointer
+
+            &:hover, &:focus
+                color: #000000
+
+            &.selected
+                color: #000000
+                cursor: default
+
+            > i
+                margin-right: 10px
+                font-size: 24px
+                vertical-align: sub
+
+            +breakpoint(desktop)
+                padding: 17px 35px
+
+.swiper-container
+    &.swiper-tab-content
+        position: absolute
+        z-index: 1
+
+        // overflow: hidden
+        margin-top: 55px
+        top: 0
+        min-height: 90%
+        overflow: visible
+
+        .swiper-wrapper
+            position: absolute
+            width: 100%
+            min-height: 100% !important
+            top: 0
+            left: 0
+
+            .swiper-slide
+                padding: 10px 20px 60px
+                background: $body-lightBox-bg-color
+
+                +breakpoint(desktop)
+                    padding: 30px 60px 60px

@@ -1,0 +1,295 @@
+﻿@import ../../variables
+@import ../../utilities
+
+//colors
+$color_chicago_approx: #aaaaaa
+$black: black
+$white: white
+
+.tooltip
+    display: inline-block
+    vertical-align: middle
+
+    &.help
+        cursor: help
+
+.tooltipster-base
+    display: flex
+    pointer-events: none
+    position: absolute
+    font-size: 13px
+    pointer-events: auto
+
+.tooltipster-box
+    flex: 1 1 auto
+
+.tooltipster-content
+    //If you use compass, instead of the line below you could use + box-sizing($bs)
+    box-sizing: border-box
+    max-height: 100%
+    max-width: 100%
+    overflow: auto
+
+.tooltipster-ruler
+    bottom: 0
+    left: 0
+    overflow: hidden
+    position: fixed
+    right: 0
+    top: 0
+    visibility: hidden
+
+.tooltipster-fade
+    opacity: 0
+
+    //If you use compass, instead of the line below you could use + transition-property($property-1, $property-2, $property-3, $property-4, $property-5, $property-6, $property-7, $property-8, $property-9, $property-10)
+    transition-property: opacity
+
+    &.tooltipster-show
+        opacity: 1
+
+.tooltipster-grow
+    //If you use compass, instead of the line below you could use + transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: scale(0, 0)
+
+    //If you use compass, instead of the line below you could use + transition-property($property-1, $property-2, $property-3, $property-4, $property-5, $property-6, $property-7, $property-8, $property-9, $property-10)
+    transition-property: transform
+
+    &.tooltipster-show
+        //If you use compass, instead of the line below you could use + transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: scale(1, 1)
+
+        //If you use compass, instead of the line below you could use + transition-timing-function($function-1, $function-2, $function-3, $function-4, $function-5, $function-6, $function-7, $function-8, $function-9, $function-10)
+        transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15)
+
+.tooltipster-swing
+    opacity: 0
+
+    //If you use compass, instead of the line below you could use + transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: rotateZ(4deg)
+
+    //If you use compass, instead of the line below you could use + transition-property($property-1, $property-2, $property-3, $property-4, $property-5, $property-6, $property-7, $property-8, $property-9, $property-10)
+    transition-property: transform
+
+    &.tooltipster-show
+        opacity: 1
+
+        //If you use compass, instead of the line below you could use + transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotateZ(0deg)
+
+        //If you use compass, instead of the line below you could use + transition-timing-function($function-1, $function-2, $function-3, $function-4, $function-5, $function-6, $function-7, $function-8, $function-9, $function-10)
+        transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4)
+
+.tooltipster-fall
+    //If you use compass, instead of the line below you could use + transition-property($property-1, $property-2, $property-3, $property-4, $property-5, $property-6, $property-7, $property-8, $property-9, $property-10)
+    transition-property: top
+
+    //If you use compass, instead of the line below you could use + transition-timing-function($function-1, $function-2, $function-3, $function-4, $function-5, $function-6, $function-7, $function-8, $function-9, $function-10)
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15)
+
+    &.tooltipster-initial
+        top: 0 !important
+
+    &.tooltipster-show
+
+    &.tooltipster-dying
+        //If you use compass, instead of the line below you could use + transition-property($property-1, $property-2, $property-3, $property-4, $property-5, $property-6, $property-7, $property-8, $property-9, $property-10)
+        transition-property: all
+        top: 0 !important
+        opacity: 0
+
+.tooltipster-slide
+    //If you use compass, instead of the line below you could use + transition-property($property-1, $property-2, $property-3, $property-4, $property-5, $property-6, $property-7, $property-8, $property-9, $property-10)
+    transition-property: left
+
+    //If you use compass, instead of the line below you could use + transition-timing-function($function-1, $function-2, $function-3, $function-4, $function-5, $function-6, $function-7, $function-8, $function-9, $function-10)
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15)
+
+    &.tooltipster-initial
+        left: (-40px) !important
+
+    &.tooltipster-show
+
+    &.tooltipster-dying
+        //If you use compass, instead of the line below you could use + transition-property($property-1, $property-2, $property-3, $property-4, $property-5, $property-6, $property-7, $property-8, $property-9, $property-10)
+        transition-property: all
+        left: 0 !important
+        opacity: 0
+
+@keyframes tooltipster-fading
+    0%
+        opacity: 0
+
+    100%
+        opacity: 1
+
+.tooltipster-update-fade
+    animation: tooltipster-fading 400ms
+
+@keyframes tooltipster-rotating
+    25%
+        //If you use compass, instead of the line below you could use + transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(-2deg)
+
+    75%
+        //If you use compass, instead of the line below you could use + transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(2deg)
+
+    100%
+        //If you use compass, instead of the line below you could use + transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(0)
+
+.tooltipster-update-rotate
+    animation: tooltipster-rotating 600ms
+
+@keyframes tooltipster-scaling
+    50%
+        //If you use compass, instead of the line below you could use + transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: scale(1.1)
+
+    100%
+        //If you use compass, instead of the line below you could use + transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: scale(1)
+
+.tooltipster-update-scale
+    animation: tooltipster-scaling 600ms
+
+.tooltipster-sidetip
+    .tooltipster-box
+        background: $color_chicago_approx
+        box-shadow: 0 0 15px #b4b4b4
+
+        // border: 2px solid $black
+
+        //If you use compass, instead of the line below you could use + border-radius($radius, $vertical-radius)
+        // border-radius: 4px
+
+    &.tooltipster-bottom
+        .tooltipster-box
+            margin-top: 8px
+
+        .tooltipster-arrow
+            height: 8px
+            margin-left: -10px
+            top: 0
+            width: 20px
+
+        .tooltipster-arrow-background
+            border-bottom-color: $color_chicago_approx
+            left: 0
+            top: 0
+
+        .tooltipster-arrow-border
+            // border-bottom-color: $black
+
+        .tooltipster-arrow-uncropped
+            top: 0
+
+    &.tooltipster-left
+        .tooltipster-box
+            margin-right: 8px
+
+        .tooltipster-arrow
+            height: 20px
+            margin-top: -4px
+            right: 0
+            top: 0
+            width: 8px
+
+        .tooltipster-arrow-background
+            border-left-color: $color_chicago_approx
+            left: -3px
+            top: 0
+
+        .tooltipster-arrow-border
+            // border-left-color: $black
+
+    &.tooltipster-right
+        .tooltipster-box
+            margin-left: 8px
+
+        .tooltipster-arrow
+            height: 20px
+            margin-top: -4px
+            left: 0
+            top: 0
+            width: 8px
+
+        .tooltipster-arrow-background
+            border-right-color: $color_chicago_approx
+            left: 3px
+            top: 0
+
+        .tooltipster-arrow-border
+            // border-right-color: $black
+
+        .tooltipster-arrow-uncropped
+            left: -10px
+
+    &.tooltipster-top
+        .tooltipster-box
+            margin-bottom: 8px
+
+        .tooltipster-arrow
+            bottom: 0
+            height: 8px
+            margin-left: -10px
+            width: 20px
+
+        .tooltipster-arrow-background
+            border-top-color: $color_chicago_approx
+            left: 0
+            top: 0
+
+        .tooltipster-arrow-border
+            // border-top-color: $black
+
+    .tooltipster-content
+        color: $white
+        line-height: 18px
+        padding: 10px 14px
+        position: relative
+        height: 100%
+
+    .tooltipster-arrow
+        overflow: hidden
+        position: absolute
+
+    .tooltipster-arrow-background
+        height: 0
+        position: absolute
+        width: 0
+        border: 8px solid transparent
+
+    .tooltipster-arrow-border
+        height: 0
+        position: absolute
+        width: 0
+        border: 8px solid transparent
+        left: 0
+        top: 0
+
+    .tooltipster-arrow-uncropped
+        position: relative
+
+// custom carrie 20170531
+//
+.input-field
+    ~ .tooltip
+        position: relative
+        margin-top: -50px
+        float: right
+        z-index: 2
+        background-color: $body-lightBox-bg-color
+
+    &.inline
+        ~ .tooltip
+            margin-top: auto
+            float: none
+            background-color: transparent
+
+        &.full
+            ~ .tooltip
+                margin-top: -25px
+                float: right
+                background-color: $body-lightBox-bg-color

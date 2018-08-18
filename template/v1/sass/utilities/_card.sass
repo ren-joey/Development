@@ -1,0 +1,308 @@
+// base
+//
+.card
+    position: relative
+
+    @extend %border-box
+
+    // background-color: color("shades", "white")
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
+
+    > *
+        padding: 25px 20px
+
+    > .card-box
+        padding: 0px
+
+    &.shadow-none
+        box-shadow: none
+
+.card-box
+    @extend %border-box
+
+    position: relative
+
+    +hover-focus
+        .card-img-content
+            opacity: 1
+
+.card-img
+    position: relative
+    width: size(100)
+    overflow: hidden
+    height: 0
+
+    @extend %transition-btn
+
+    padding-bottom: size(75)
+    text-align: left
+
+    &.wide
+        padding-bottom: size(56.25)
+
+    &.square
+        padding-bottom: size(100)
+
+    &.original
+        padding: 0
+        height: auto
+
+        // > img, > a, .card-img-content
+        //     position: relative
+        //     height: auto
+
+        > img, > a
+            position: relative
+            height: auto
+
+    > img, > a, .card-img-content
+        position: absolute
+        width: size(100)
+        height: size(100)
+
+    > a
+        display: block
+
+    .imgInfo
+        margin-top: 5px
+        text-align: left
+
+        .imgIntro, .imgLink, .datetime, .count
+            display: inline-block
+            vertical-align: top
+
+        .imgIntro
+            max-width: calc(100% - 50px)
+            margin-right: 15px
+
+        .imgLink
+            float: right
+
+            i
+                font-size: 22px
+                margin-right: 0
+                vertical-align: top
+                color: color("grey", "base")
+
+    .videoIframe
+        position: relative
+        width: size(100)
+        height: 0
+        padding-bottom: size(75)
+        overflow: hidden
+
+        > iframe
+            position: absolute
+            width: size(100) !important
+            height: size(100) !important
+            top: 0
+            left: 0
+
+        > img
+            z-index: 2
+
+    &.border-T
+        border-top: none
+
+        > *
+            border-top: 3px solid color("grey", "lighten-2")
+
+            +breakpoint(mobile)
+                border-top: none
+
+    &.flex
+        @extend %flex
+
+        @extend %flex-wrap
+
+        > *
+            margin-right: 2.5%
+            width: 31.66666%
+
+            +breakpoint(mobile)
+                margin-right: 0
+                width: 100%
+
+
+            &:nth-child(3n)
+                margin-right: 0px
+
+                ~ *
+                    margin-top: 30px
+
+        .imgInfo
+            .imgIntro
+                max-width: 100%
+                margin-right: 0
+
+        &.bottom
+            align-items: flex-end
+
+        &.border-T
+            > *
+                padding-top: 15px
+
+                +breakpoint(mobile)
+                    padding-top: 0
+
+
+                ~ *
+                    +breakpoint(mobile)
+                        padding-top: 15px
+
+    +hover-focus
+        .activeWrap
+            opacity: 1
+            bottom: 0
+
+
+    .chips
+        position: absolute
+        width: size(100)
+        bottom: 0
+        background-color: rgba(0, 0, 0, 0.5)
+        text-align: center
+        padding: 8px 12px 9px
+        line-height: 1
+
+        *, > .chip
+            color: $white
+            text-align: center
+            margin: 0px 5px
+            padding: 0
+            height: auto
+            line-height: 1
+
+    .card-text-name
+        font-size: 15px
+        color: $content-base-color
+
+.card-img, .card-img a, .card-img-content
+    +bg-pos-cc
+    +bg-repeat-none
+    +bg-cover
+
+.card-img-content
+    opacity: 0
+
+    @extend %transition-btn
+
+    top: 0
+    left: 0
+    background-color: rgba(255, 255, 255, 0.3)
+    background-blend-mode: screen
+    box-sizing: border-box
+
+    &.flex
+        @extend %flex
+
+        @extend %flex-wrap
+
+        align-items: center
+        justify-content: center
+
+    &.active
+        opacity: 1
+        z-index: 3
+
+.activeWrap
+    position: absolute
+    width: size(100)
+    height: auto
+    max-height: size(100)
+    background-color: rgba(0, 0, 0, 0.3)
+    bottom: -100%
+    left: 0
+    opacity: 0
+
+    @extend %transition-btn
+
+    +breakpoint(mobile)
+        bottom: 0%
+        opacity: 1
+
+.card-text
+    padding: 10px 15px 15px
+
+.card-text-name
+    font-size: 16px
+    color: $title-sub-color
+
+.card-text-dt
+    font-size: map-get($fonts-px, sm)
+    font-size: map-get($fonts, sm)
+
+    > div
+        display: inline-block
+        vertical-align: middle
+
+.card-text-time
+    margin: 0 5px
+
+.card-text-info
+    word-break: break-all
+    white-space: normal
+    font-size: 15px
+    color: #999999
+
+.card-text-btn
+    margin-top: 35px
+    border-top: 1px solid #eeeeee
+    padding-top: 10px
+
+.card-poster
+    color: #787878
+    font-size: 13px
+    padding-top: 7px
+
+    .posted
+        .img
+            display: inline-block
+            width: 32px
+            height: 32px
+            margin-right: 6px
+            text-align: center
+            border-radius: 100%
+            overflow: hidden
+            vertical-align: middle
+
+            img
+                width: 32px
+                height: 32px
+
+.imgIntro, .imgLink, .datetime, .count
+    font-size: 13px
+
+.datetime, .count
+    color: color("grey", "base")
+    margin-right: 15px
+
+    i
+        margin-right: 5px
+
+.card
+    &.video
+        .card-img
+            height: size(100)
+            padding-bottom: 0
+
+            &.wide
+                padding-bottom: 0
+
+                .videoIframe
+                    padding-bottom: size(56.25)
+
+            &.cube
+                padding-bottom: 0
+
+                .videoIframe
+                    padding-bottom: size(100)
+
+        .imgInfo
+            .imgIntro
+                display: block
+                max-width: 100%
+                margin-right: 0
+
+                ~ .datetime, ~ .count
+                    margin-top: 5px

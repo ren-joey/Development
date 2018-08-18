@@ -1,0 +1,86 @@
+.groove
+    @extend %border-box
+
+    // overflow: hidden
+
+    // text-overflow: ellipsis
+    // white-space: nowrap
+    // flex: 1
+    +breakpoint(mobile)
+        flex: none !important
+        width: size(100)
+
+.groove-cut
+    width: size(100)
+    flex-wrap: wrap
+
+    +d-flex
+    +breakpoint(mobile)
+        +d-block
+
+@for $i from 1 through $groove-number
+    .groove-#{$i}
+        flex: $i
+
+        +breakpoint(mobile)
+            flex: none
+            width: size(100)
+
+.groove-1
+    width: size(100)
+
+    // overflow: hidden
+
+.groove
+    &[data-cardtype="ImageTextList"], &[data-cardtype="ArticleSet"], &[data-cardtype="EventSet"]
+        overflow: hidden
+
+//main margin
+[mT='main']
+    margin-top: $groove-margin-Main
+
+    +breakpoint(mobile)
+        margin-top: 0
+
+[mR='main']
+    margin-right: $groove-margin-Main
+
+    +breakpoint(mobile)
+        margin-right: 0
+
+[mB='main']
+    margin-bottom: $groove-margin-Main
+
+    +breakpoint(mobile)
+        margin-bottom: 0
+
+[mL='main']
+    margin-left: $groove-margin-Main
+
+    +breakpoint(mobile)
+        margin-left: 0
+
+// sub margin
+[mT='sub']
+    margin-top: $groove-margin-Sub
+
+    +breakpoint(mobile)
+        margin-top: 0
+
+[mR='sub']
+    margin-right: $groove-margin-Sub
+
+    +breakpoint(mobile)
+        margin-right: 0
+
+[mB='sub']
+    margin-bottom: $groove-margin-Sub
+
+    +breakpoint(mobile)
+        margin-bottom: 0
+
+[mL='sub']
+    margin-left: $groove-margin-Sub
+
+    +breakpoint(mobile)
+        margin-left: 0

@@ -1,0 +1,70 @@
+.alert
+    border: 1px solid $input-border-color
+    background-color: #f5f5f5
+    color: $input-border-color
+    font-size: $label-font-size
+    padding: 7px 10px
+    position: relative
+
+    &.big
+        padding: 10px 12px
+
+    &.small
+        padding: 4px 7px 5px
+
+    &.transparent
+        padding: 4px 0 5px
+        border: none
+        background: none
+
+    > span.short
+        margin-right: 5px
+        font-weight: bold
+
+    > i
+        // margin-right: 3px
+        // vertical-align: sub
+        font-size: $input-font-size
+        float: left
+
+    > div
+        margin-left: 23px
+
+    > .closeBtn
+        margin-top: 4px
+
+    &.alert-green
+        border-color: #d6e9c6
+        background-color: #dff0d8
+        color: #3c763d
+
+    &.alert-blue
+        border-color: #bce8f1
+        background-color: #d9edf7
+        color: #31708f
+
+    &.alert-yellow
+        border-color: #faebcc
+
+        background-color:#fcf8e3
+
+        color:#8a6d3b
+
+    &.alert-red
+        border-color:#ebccd1
+
+        background-color:#f2dede
+
+        color:#a94442
+
+span.alert, .alert.inline
+    display: inline-block
+    line-height: 1.2
+    vertical-align: middle
+
+    &.bottom
+        vertical-align: bottom
+
+    > i
+        vertical-align: baseline
+        margin-bottom: 2px

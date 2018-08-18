@@ -1,0 +1,142 @@
+﻿[class*='col-']
+    display: inline-block
+    vertical-align: top
+    box-sizing: border-box
+    margin: 0 -2px
+
+@for $i from 1 through $col-number
+    .col-#{$i}
+        width: 100% / $i
+
+        +breakpoint(mobile)
+            width: size(100)
+
+.col-5-partner
+    width: 80%
+
+.col-4-partner
+    width: 75%
+
+.col-3-partner
+    width: 66.66667%
+
+.bg-fixed
+    +bg-fixed
+
+.bg-repeat-none
+    +bg-repeat-none
+
+.bg-pos-ct
+    +bg-pos-ct
+
+.bg-pos-cc
+    +bg-pos-cc
+
+.bg-img
+    +bg-img
+
+.fixed
+    +fixed
+
+.absolute
+    +absolute
+
+.relative
+    +relative
+
+.sticky
+    +sticky
+
+.float-L
+    +float-L
+    +breakpoint(mobile)
+        +float-none
+
+.float-R
+    +float-R
+    +breakpoint(mobile)
+        +float-none
+
+.float-none
+    +float-none
+
+.text-L
+    +text-L
+
+.text-R
+    +text-R
+
+.text-C
+    +text-C
+
+.text-ii
+    +text-ii
+
+.text-ih
+    +text-ih
+
+.text-jt
+    +text-jt
+
+.text-truncate
+    +text-truncate
+
+.text-deco-none
+    +text-deco-none
+
+.text-deco-over
+    +text-deco-over
+
+.text-deco-through
+    +text-deco-through
+
+.text-deco-under
+    +text-deco-under
+
+.text-lowercase
+    +text-transform-lower
+
+.text-uppercase
+    +text-transform-upper
+
+.text-capitalize
+    +text-transform-capi
+
+.d-none
+    +d-none
+
+.d-inline
+    +d-inline
+
+.d-inline-block
+    +d-inline-block
+
+.d-table
+    +d-table
+
+.d-table-cell
+    +d-table-cell
+
+.d-block
+    +d-block
+
+.d-flex
+    +d-flex
+
+.d-inline-flex
+    +d-inline-flex
+
+.desktop-none
+    +d-none
+    +breakpoint(mobile)
+        +d-block
+
+.mobile-none
+    +d-block
+    +breakpoint(mobile)
+        +d-none
+
+.mobile-show
+    +d-none
+    +breakpoint(mobile)
+        +d-block
