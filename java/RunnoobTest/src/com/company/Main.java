@@ -108,6 +108,12 @@ public class Main {
         new CollectionFramworks();
 
         new GenericsType();
+
+        new SerializationTest();
+
+        new MultiThreading();
+
+        new RequestDatabase();
     }
 }
 
