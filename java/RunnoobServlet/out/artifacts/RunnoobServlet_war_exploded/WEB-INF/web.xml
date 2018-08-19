@@ -32,4 +32,34 @@
         <servlet-name>UpdatePage</servlet-name>
         <url-pattern>/updatePage</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AllRequest</servlet-name>
+        <servlet-class>cc.com.servlet.AllRequest</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AllRequest</servlet-name>
+        <url-pattern>/allRequest</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AutoRefresh</servlet-name>
+        <servlet-class>cc.com.servlet.AutoRefresh</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AutoRefresh</servlet-name>
+        <url-pattern>/autoRefresh</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ThrowError</servlet-name>
+        <servlet-class>cc.com.servlet.ThrowError</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>ThrowError</servlet-name>
+        <url-pattern>/throwError</url-pattern>
+    </servlet-mapping>
 </web-app>
