@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-component></my-component>
+        <my-component></my-component>
+        <my-component></my-component>
+    </div>
+
+    <script type="text/x-template" id="xTemplateComponent">
+        <div>
+                  <div class="custom-block">{{ msg }}</div>
+                </div>
+              </script>
+    <script type="text/javascript">
+
+        var customBlock = Vue.extend({
+            template: '#xTemplateComponent',
+            // components 的 data 一定要透過 function 來 return
+            data: function () {
+                return {
+                    msg: 'block work!'
+                }
+            }
+        });
+
+        var myComponent = Vue.extend({
+            template: '<div class="component">\
+            {{ msg }}\
+            <custom-block></custom-block>\
+            </div>',
+            components: {
+                customBlock
+            },
+            data: function () {
+                return {
+                    msg: 'components!'
+                }
+            }
+        });
+
+        var app = new Vue({
+            el: '#app',
+            components: {
+                myComponent
+            }
+        });
+    </script>
+</body>
+
+</html>

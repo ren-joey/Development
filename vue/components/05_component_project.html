@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-component v-for="str in msg" :parent-msg="str"></my-component>
+    </div>
+
+    <script type="text/x-template" id="xTemplateComponent">
+        <div>
+                  <div class="custom-block">{{ msg }}</div>
+                  <div class="custom-block">{{ parentMsg }}</div>
+                  <div class="custom-block">{{ requiredMsg }}</div>
+                </div>
+              </script>
+
+    <script type="text/javascript">
+        Vue.component('my-component', {
+            template: '#xTemplateComponent',
+            props: {
+                parentMsg: null, // 不檢查
+                propA: Number, // 數字限定
+                propB: [String, Boolean], // 多重檢查條件
+                requiredMsg: { // 必要欄位及預設值
+                    required: true,
+                    default: 'column is required'
+                },
+                propE: {
+                    type: Object, // 物件或陣列
+                    default: function () {
+                        return 'Hello'
+                    }
+                },
+                propF: { // 自訂驗證條件
+                    validator: function (value) {
+                        return value > 10
+                    }
+                }
+            },
+            data() {
+                return {
+                    msg: 'Hello'
+                }
+            }
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: ['Hello Parent', 'good Parent', 'bad Parent'],
+                requiredMsg: 'ok!'
+            }
+        });
+    </script>
+</body>
+
+</html>

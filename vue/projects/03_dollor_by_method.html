@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        輸入台幣<input type="text" v-model="NTD" @keyup="NTDgo">
+        <br>
+        輸入日幣<input type="text" v-model="JPD" @keyup="JPDgo">
+        <br>
+        輸入美金<input type="text" v-model="USD" @keyup="USDgo">
+    </div>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                NTD: 0,
+                USD: 0,
+                JPD: 0
+            },
+            methods: {
+                NTDgo: function () {
+                    var val = this.NTD;
+                    this.USD = (val / 30.687).toFixed(1);
+                    this.JPD = (val / .2713).toFixed(1);
+                },
+                JPDgo: function () {
+                    var val = this.JPD;
+                    this.NTD = (val * .2713).toFixed(1);
+                    this.USD = (val * .2713 / 30.687).toFixed(1);
+                },
+                USDgo: function () {
+                    var val = this.USD;
+                    this.NTD = (val * 30.687).toFixed(1);
+                    this.JPD = (val * 30.687 / .2713).toFixed(1);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

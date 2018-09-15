@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>vue</title>
+
+  <!-- production version, optimized for size and speed -->
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+  <div id="vueApp">
+    路人A的體脂肪：
+    <input type="text" v-model="a">
+    <br>
+    路人B的體脂肪：
+    <input type="text" v-model="b">
+    <ul>
+      <li>
+        誰的體脂肪比較高？{{ whosHeavier }}
+      </li>
+      <li v-if="a != 0">
+        A與國人平均體脂肪的之差異：{{ judgeA }}
+      </li>
+      <li v-if="b != 0">
+        B與國人平均體脂肪的之差異：{{ judgeB }}
+      </li>
+    </ul>
+  </div>
+
+  <script type="text/javascript">
+    var vueApp = new Vue({
+      el: '#vueApp',
+      data: {
+        a: 0,
+        b: 0,
+        BMI: 20
+      },
+      computed: {
+        whosHeavier: function () {
+          if (this.a > this.b) {
+            return 'a比較高'
+          } else if (this.b > this.a) {
+            return 'b比較高'
+          } else {
+            return '一樣高'
+          }
+        },
+        judgeA: function () {
+          return this.a - this.BMI;
+        },
+        judgeB: function () {
+          return this.b - this.BMI;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <my-component></my-component>
+        <my-component></my-component>
+        <my-component></my-component>
+    </div>
+
+    <div id="app2">
+        <my-component></my-component>
+        <my-component></my-component>
+        <my-component></my-component>
+    </div>
+
+
+    <script type="text/javascript">
+        Vue.component('my-component', {
+            template: '<div class="component">Component!</div>'
+        });
+
+        var app = new Vue({
+            el: '#app'
+        });
+
+        var app2 = new Vue({
+            el: '#app2'
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>vue</title>
+
+  <!-- production version, optimized for size and speed -->
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+  <div id="vueApp">
+    <div class="bracnchs">
+      <label v-for="(value, key) in branchs" :for="'branch' + key">
+        <input type="radio" name="branchsName" :value="value" :id="'branch' + key" v-model="currentBranch">{{ value }}
+      </label>
+      <br>
+      區間 <input v-model="sinceDate" type="datetime-local"> ~ <input v-modal="untilDate" type="datetime-local">
+    </div>
+    <div class="commit-list">
+      <table border="1">
+        <thead>
+          <tr>
+            <th>branch</th>
+            <th>name</th>
+            <th>time</th>
+            <th>description</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var githubCommitApi = 'https://api.github.com/repos/jquery/jquery/commits';
+    var requestList = {
+      'sha': 'master',
+      'since': '',
+      'until': ''
+    }
+    var githubBranchs = ['master', '1.12-stable', '2.2-stable'];
+
+    function getUrlGenerator() {
+      var str = githubCommitApi;
+      str += '?sha=' + requestList.sha;
+      if (requestList.since.length > 0) {
+        str += '&since=' + requestList.since + 'Z';
+      }
+      if (requestList.until.length > 0) {
+        str += '&until=' + requestList.until + 'Z';
+      }
+      return str;
+    }
+
+    var vueApp = new Vue({
+      el: '#vueApp',
+      data: {
+        sinceDate: '',
+        untilDate: '',
+        branchsName: 'branchs',
+        currentBranch: 'master',
+        branchs: githubBranchs
+      },
+      watch: {
+        currentBranch(str) {
+          requestList.sha = str;
+          fetchData();
+
+        },
+        sinceDate(date) {
+          requestList.since = date;
+          fetchData();
+        },
+        untilDate(date) {
+          requestList.until = date;
+          fetchData();
+        }
+      },
+      methods: {}
+    });
+
+    function fetchData() {
+      var xhr = new XMLHttpRequest();
+      var self = this;
+      var url = getUrlGenerator();
+      xhr.open('GET', url, false);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          alert('good');
+        }
+
+      }
+    }
+  </script>
+</body>
+
+</html>

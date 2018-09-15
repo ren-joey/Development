@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app1">
+        {{ message }}
+        <br>
+        {{ score * .35 }}
+        <input type="text" v-model="score">
+        <h2>你考幾分？</h2>
+        <div v-if="score >= 60">及格！</div>
+        <div v-else>不及格</div>
+        <ul>
+            <li v-for="value in colors">{{ value }}
+                <a href="#" @click.prevent="removeColor(value)">刪除</a>
+            </li>
+        </ul>
+        <ul>
+            <li v-for="value in home">{{ value.father }}
+                <button @click="good(value.father)">{{ value.father }}</button>
+            </li>
+        </ul>
+        <input type="text" v-model="newColor" @keyup.enter="addColor(newColor)" placeholder="please enter color" />
+        <pre>
+              {{ colors }}
+              </pre>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app1',
+            data: {
+                message: 'Hello World',
+                score: 60,
+                loading: false,
+                colors: ['red', 'blue'],
+                home: [{
+                    father: 'peter'
+                }, {
+                    father: 'tom'
+                }],
+                newColor: ""
+            },
+            methods: {
+                good: function (str) {
+                    alert(str);
+                },
+                addColor: function (str) {
+                    this.colors.push(str);
+                },
+                removeColor: function (str) {
+                    this.colors.splice(this.colors.indexOf(str), 1);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-component></my-component>
+        <my-component2></my-component2>
+    </div>
+
+
+    <script type="text/x-template" id="template3">
+        <div class="components">
+                  <input type="text" v-model="msg">
+                  <button @click="submit">Submit</button>
+                </div>
+              </script>
+
+    <script type="text/javascript">
+        var bus = new Vue();
+
+        Vue.component('my-component', {
+            template: '#template3',
+            data() {
+                return {
+                    msg: '456'
+                }
+            },
+            methods: {
+                submit() {
+                    bus.$emit('receive', this.msg);
+                }
+            }
+        });
+
+        Vue.component('my-component2', {
+            template: '<div class="components">\
+    {{ msg }}\
+  </div>',
+            data() {
+                return {
+                    msg: '123'
+                }
+            },
+            created() {
+                var that = this;
+                bus.$on('receive', function (val) {
+                    that.msg = val;
+                });
+            }
+        });
+
+        var app = new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="parent">{{ msg }}</div>
+
+        <!--   {{ msg }} in child not work -->
+        <child1>999</child1>
+        <child2>777</child2>
+    </div>
+
+    <!--  vue 只編譯有效的範圍，所以亂打的字串都不會被編譯進去，除非有使用slot作為容器 -->
+    <template id="child-template1">
+        <div class="child">
+            <span class="msg">999不會被編譯進來</span>
+        </div>
+    </template>
+
+    <template id="child-template2">
+        <div class="child">
+            <span class="msg">777會編譯進slot中：</span>
+            <slot>Default slot content</slot>
+        </div>
+    </template>
+    <script type="text/javascript">
+        Vue.component('child1', {
+            template: '#child-template1',
+            data() {
+                return {
+                    msg: 'I\'m child'
+                }
+            }
+        })
+
+        Vue.component('child2', {
+            template: '#child-template2',
+            data() {
+                return {
+                    msg: 'I\'m child'
+                }
+            }
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'Hello'
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        TWD<input type="text" v-model="basic" />
+        <div class="usa">USD: {{usa}}</div>
+    </div>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                basic: '300'
+            },
+            computed: {
+                usa() {
+                    return this.basic * 30;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

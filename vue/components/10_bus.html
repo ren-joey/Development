@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <test :parent-msg="msg"></test>
+        <test></test>
+        <custom-header msg="header"></custom-header>
+        <custom-main></custom-main>
+        <custom-aside></custom-aside>
+
+        <br><br>
+        <div>
+            card parent {{cards}}<br>
+            <button v-for="card in cards" @click="cardInfo(card)">{{card.show}}</button>
+        </div>
+        <card-component v-for="item in cards" :card="item"></card-component>
+    </div>
+
+    <script type="text/x-templat" id="test">
+        <div>
+                  <h1>{{msg}} {{count}}<button @click="count++">add</button>
+                </h1>
+                    <h2 v-if="parentMsg">{{parentMsg}}</h2>
+                </div>
+              </script>
+    <script type="text/javascript">
+        // video https://www.youtube.com/watch?v=T2JsTE0Hq58
+        // note https://quip.com/N3iKAEDJEVmD
+
+        var bus = new Vue();
+
+        var CustomBlock = Vue.extend({
+            template: '<div class="block">{{content}}</div>',
+            data() {
+                return {
+                    content: 'B'
+                }
+            }
+        });
+
+        var CustomMain = Vue.extend({
+            template: '<div class="main">\
+  <custom-block></custom-block>\
+  <custom-block></custom-block>\
+  <custom-block></custom-block>\
+  </div>',
+            components: {
+                CustomBlock
+            }
+        });
+
+        var CustomHeader = Vue.extend({
+            render(createElement) {
+                return createElement('div', {
+                    class: 'header'
+                }, [this.greet, ' ', this.msg]);
+            },
+            // template: '<div class="header">\
+            // {{greet}} {{msg}}\
+            // </div>',
+            data() {
+                return {
+                    greet: 'Hi'
+                }
+            },
+            props: {
+                msg: {
+                    type: String,
+                    default: 'Hello'
+                }
+            }
+        });
+
+        var CustomAside = Vue.extend({
+            template: '<div class="aside">Aside</div>',
+        });
+
+        var CardComponent = Vue.extend({
+            template: '<div v-if="mycard.show">\
+  <input v-model="mycard.card_id" />\
+  <input v-model="mycard.card_name" />\
+  <input @keyup.enter="pass()" v-model="busName" />\
+  </div>',
+            props: ['card'],
+            data() {
+                return {
+                    busName: '',
+                    mycard: this.card
+                }
+            },
+            created() {
+                var that = this;
+                bus.$on('pass', function (newName) {
+                    that.busName = newName;
+                });
+            },
+            methods: {
+                pass() {
+                    bus.$emit('pass', this.busName)
+                }
+            }
+        });
+
+        Vue.component('test', {
+            template: '#test',
+            props: ['parentMsg'],
+            data: function () {
+                return {
+                    msg: 'component work!',
+                    count: 0
+                }
+            }
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'From Parent',
+                cards: [{
+                        card_id: '01',
+                        card_name: 'card001',
+                        show: false
+                    },
+                    {
+                        card_id: '02',
+                        card_name: 'card002',
+                        show: false
+                    }
+                ]
+            },
+            components: {
+                CustomMain,
+                CustomHeader,
+                CustomAside,
+                CardComponent
+            },
+            methods: {
+                cardInfo(card) {
+                    if (card.show) {
+                        card.show = false;
+                    } else {
+                        card.show = true;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

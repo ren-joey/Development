@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>vue</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <div class="left">
+            <button @click="currentView = 'c1'">c1</button>
+            <button @click="currentView = 'c2'">c2</button>
+            <button @click="currentView = 'c3'">c3</button>
+
+            <keep-alive>
+                <!-- keep-alive 讓內部 component 的狀態可以一直保留，不會因為不顯示時而刪除 -->
+                <component :is="currentView"></component>
+            </keep-alive>
+        </div>
+
+
+
+    </div>
+
+    <script type="text/x-template" id="c1">
+        <div class="channel-container">
+                  這裡是C1
+                  {{ count }}
+                </div>
+              </script>
+
+    <script type="text/x-template" id="c2">
+        <div class="channel-container">
+                  這裡是C2
+                  {{ count }}
+                </div>
+              </script>
+
+    <script type="text/x-template" id="c3">
+        <div class="channel-container">
+                  這裡是C3
+                  {{ count }}
+                </div>
+              </script>
+
+    <script type="text/javascript">
+        Vue.component('c1', {
+            template: '#c1',
+            data() {
+                return {
+                    count: 0
+                }
+            },
+            activated() {
+                this.count++;
+            }
+        });
+
+        Vue.component('c2', {
+            template: '#c2',
+            data() {
+                return {
+                    count: 0
+                }
+            },
+            activated() {
+                this.count++;
+            }
+        });
+
+        Vue.component('c3', {
+            template: '#c3',
+            data() {
+                return {
+                    count: 0
+                }
+            },
+            activated() {
+                this.count++;
+            }
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                currentView: 'c1'
+            },
+            activated() {
+                this.count++;
+            }
+        });
+    </script>
+</body>
+
+</html>
