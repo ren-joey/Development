@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.joey.entities.CardEntity" table="card" schema="hibernate">
+        <id name="uuid" column="uuid"/>
+        <property name="id" column="id"/>
+        <property name="securityCode" column="security_code"/>
+        <property name="deadline" column="deadline"/>
+
+        <many-to-one name="owner" class="com.joey.entities.EmployeeEntity">
+            <column name="owner" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

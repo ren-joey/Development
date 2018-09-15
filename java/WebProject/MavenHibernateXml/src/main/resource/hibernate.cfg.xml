@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate?characterEncoding=utf-8</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">123456789</property>
+
+        <mapping class="com.joey.entities.EmployeeEntity"/>
+        <mapping class="com.joey.entities.HouseEntity"/>
+        <mapping class="com.joey.entities.LikeRelEntity"/>
+        <mapping resource="EmployeeEntity.hbm.xml"/>
+        <mapping resource="HouseEntity.hbm.xml"/>
+        <mapping resource="LikeRelEntity.hbm.xml"/>
+        <mapping resource="CardEntity.hbm.xml"/>
+        <mapping class="com.joey.entities.CardEntity"/>
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+
+        <!--<property name="connection.driver_class">com.mysql.jdbc.Driver</property>-->
+        <!--<property name="connection.url">jdbc:mysql://localhost:3306/hibernate?characterEncoding=utf-8</property>-->
+        <!--<property name="connection.username">root</property>-->
+        <!--<property name="connection.password">123456789</property>-->
+    </session-factory>
+</hibernate-configuration>

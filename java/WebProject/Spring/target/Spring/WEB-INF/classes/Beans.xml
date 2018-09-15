@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="helloWorld" class="service.HelloWorld"
+          init-method="init"
+          destroy-method="destroy">
+        <!--init method -> Bean 「起始」時的要啟動的 method-->
+        <!--destroy method -> Bean 「銷毀」時的要啟動的 method-->
+        <property name="msg" value="Hello World!" />
+        <property name="msg2" value="Cool Men!" />
+    </bean>
+
+    <bean id="initHelloWorld" class="processor.InitHelloWorld" />
+
+    <!--創建依賴注入關係-->
+    <bean id="textEditer" class="service.TextEditer">
+        <!--設定 bean 中 private 的參數對象-->
+        <property name="spellChecker">
+            <bean id="spekkChecker" class="service.SpellChecker" />
+        </property>
+
+        <!--設定 constructor 的參數對象-->
+        <constructor-arg ref="spellChecker" index="0" />
+        <constructor-arg name="str" value="測試" index="1" />
+    </bean>
+
+    <!--constructor 的參數對象必須對應到一個設定好的 bean-->
+    <bean id="spellChecker" class="service.SpellChecker" />
+
+    <!--auto-wire 自動裝配-->
+    <bean id="autoWire" class="service.AutoWire" autowire="byName" />
+
+    <!--設定注入集合-->
+    <bean id="javaCollections" class="service.JavaCollections">
+        <property name="set">
+            <set>
+                <value>set 01</value>
+                <value>set 02</value>
+                <value>set 03</value>
+            </set>
+        </property>
+
+        <property name="list">
+            <list>
+                <value>list 01</value>
+                <value>list 02</value>
+                <value>list 03</value>
+            </list>
+        </property>
+
+        <property name="map">
+            <map>
+                <entry key="1" value="map 01" />
+                <entry key="2" value="map 02" />
+                <entry key="3" value="map 03" />
+            </map>
+        </property>
+
+        <property name="properties">
+            <props>
+                <prop key="1">property 01</prop>
+                <prop key="2">property 02</prop>
+                <prop key="3">property 03</prop>
+            </props>
+        </property>
+
+        <property name="textEditers">
+            <set>
+                <ref bean="textEditer" />
+            </set>
+        </property>
+    </bean>
+
+
+</beans>

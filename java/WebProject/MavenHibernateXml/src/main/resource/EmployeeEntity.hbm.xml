@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.joey.entities.EmployeeEntity" table="employee" schema="hibernate">
+        <id name="uuid">
+            <column name="uuid" sql-type="varchar(50)" length="50"/>
+        </id>
+        <property name="id">
+            <column name="id" sql-type="int(32)"/>
+        </property>
+        <property name="name">
+            <column name="name" sql-type="varchar(50)" length="50"/>
+        </property>
+        <property name="role">
+            <column name="role" sql-type="varchar(255)"/>
+        </property>
+
+        <set name="houses">
+            <key column="owner" />
+            <one-to-many class="com.joey.entities.HouseEntity" />
+        </set>
+
+        <set name="likeRels">
+            <key column="end1" />
+            <one-to-many class="com.joey.entities.LikeRelEntity" />
+        </set>
+
+        <one-to-one name="card" class="com.joey.entities.CardEntity" />
+    </class>
+</hibernate-mapping>
