@@ -4,6 +4,4 @@
 [dev photos](https://picsum.photos/)
 [firebase host video](https://www.youtube.com/watch?v=puikU47XqvE)
 [firebase host documentation](https://firebase.google.com/docs/hosting/quickstart?authuser=0)
-``
-`key word` serverless
-``
+`**key word** serverless``
