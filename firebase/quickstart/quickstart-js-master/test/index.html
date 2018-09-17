@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+
+</head>
+
+<body>
+    <!-- [video] https://www.youtube.com/watch?v=1s2kUYixGwA
+    [note] https://paper.dropbox.com/doc/Vue-Cli-pbpJGPUyjZy5xuoSFffId -->
+
+    <input type="text" id="input">
+    <button id="btn">SEND</button>
+
+    <ul id="list">
+    </ul>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        // TODO: Replace with your project's customized code snippet
+        var config = {
+            apiKey: "AIzaSyAA1Vi8GDPkLB56Q6gm6k5NpiDrDuMX8_o",
+            authDomain: "vue-js-test-c3c45.firebaseapp.com",
+            databaseURL: "https://vue-js-test-c3c45.firebaseio.com",
+            projectId: "vue-js-test-c3c45",
+            storageBucket: "vue-js-test-c3c45.appspot.com",
+            messagingSenderId: "<SENDER_ID>",
+        };
+        firebase.initializeApp(config);
+
+        window.onload = defaultSettings;
+
+        function defaultSettings() {
+            var msgRef = firebase.database().ref('/messages/');
+
+            document.getElementById('btn').addEventListener('click', function () {
+                var msg = document.getElementById('input').value;
+                msgRef.push({
+                    message: msg
+                }, (error) => {
+                    if (error) {
+                        console.log('push error: ' + error);
+                    } else {
+                        console.log('data has been pushed successfully');
+                    }
+                });
+
+            }, false);
+
+            // msgRef.once('value').then( (snapshot) => {
+            msgRef.on('value', (snapshot) => {
+                var val = snapshot.val();
+
+                var list = '';
+
+                if (val != null && typeof val != typeof undefined) {
+                    Object.keys(val).forEach((key) => {
+                        var value = val[key];
+                        console.log(key, value);
+                        list =
+                            `${list}<li>${value.message} <button type="button" class="remove" data-key="${key}">remove</button> </li>`;
+                    });
+                }
+
+                document.getElementById('list').innerHTML = list;
+            });
+
+            $('#list').on('click', '.remove', function () {
+                var key = $(this).attr('data-key');
+                // console.log(key);
+                msgRef.child(key).remove();
+            });
+
+        }
+    </script>
+</body>
+
+</html>
