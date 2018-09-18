@@ -10,4 +10,8 @@
 
 [firebase host documentation](https://firebase.google.com/docs/hosting/quickstart?authuser=0)
 
+[Vue 總複習](https://paper.dropbox.com/doc/Vue-ADvo0tRHmXqoJGIfAs4N9)
+
+[Random User](https://randomuser.me/)
+
 **key word** serverless
