@@ -1,14 +1,14 @@
 /*global require*/
-"use strict";
+'use strict';
 
-const gulp = require('gulp'),
-      ts = require('gulp-typescript');
+var gulp = require('gulp'),
+    ts = require('gulp-typescript');
 
-const path = {
+var path = {
     output: './dist/'
 };
 
-const tsProject = ts.createProject('tsconfig.json');
+var tsProject = ts.createProject('tsconfig.json');
 
 gulp.task('ts', function(){
     /**
@@ -24,7 +24,7 @@ gulp.task('ts', function(){
     /**
      * usage with tsconfig.ts
      */
-    var tsResult = gulp.src("./src/**/*.ts") // or tsProject.src()
+    var tsResult = gulp.src('./src/**/*.ts') // or tsProject.src()
         .pipe(tsProject());
 
     return tsResult.js.pipe(gulp.dest(path.output));

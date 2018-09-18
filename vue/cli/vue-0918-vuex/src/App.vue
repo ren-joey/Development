@@ -29,7 +29,7 @@
     </nav>
     <!-- <img src="./assets/logo.png"> -->
     <!-- vuex -->
-    <router-view @pushNewName="getNewName" />
+    <router-view />
 </div>
 </template>
 
@@ -46,10 +46,6 @@ export default {
     methods: {
         changeStatus() {
             this.$store.state.status = this.status;
-        },
-        getNewName(newName) {
-            let vm = this;
-            vm.username = newName;
         }
     },
     mounted() {

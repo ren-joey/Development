@@ -17,6 +17,7 @@
                     <th scope="col">Photo</th>
                     <th scope="col">Full Name</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Todo</th>
                     <th scope="col">tools</th>
                 </tr>
             </thead>
@@ -26,6 +27,11 @@
                     <td><img :src="item.picture.thumbnail" width="50" height="50" alt=""></td>
                     <td>{{item.name.first}} {{item.name.last}}</td>
                     <td>{{item.email}}</td>
+                    <td>
+                        <ul>
+                            <li v-for="(item, i) in allTodos" :class="{'done': item.done}" :key="i">{{item.text}}</li>
+                        </ul>
+                    </td>
                     <td><button class="btn btn-sm" :class="{'btn-primary': !item.selected, 'btn-default': item.selected}" @click="clickMe(item)">click</button></td>
                 </tr>
             </tbody>
@@ -35,6 +41,8 @@
 </template>
 
 <script>
+import {mapGetters, mapMutations, mapState} from 'vuex';
+
 export default {
     name: "HelloWorld",
     data() {
@@ -71,17 +79,47 @@ export default {
         clickMe(item) {
             item.selected = !item.selected;
             console.log(item.selected);
+        },
+        mutationTest() {
+            this.$store.commit('increment', 10);
+            console.log(this.getCount);
         }
     },
     // vue 運行完成後自動執行
     mounted() {
-        this.getData();
-        this.updateUsername();
+        var vm = this;
+        vm.getData();
+        vm.updateUsername();
+
+        console.log(vm.$store.getters.doneTodos);
+        console.log(vm.$store.getters.doneTodosCount);
+        console.log(vm.$store.getters.getTodoById(2));
+        console.log(vm.doneTodosCount);
+
+        vm.mutationTest();
+
+        vm.$store.commit('newTodo', {
+            text: '睡覺打東東',
+            done: true
+        });
     },
     computed: {
         showStatus() {
-            return this.$store.state.status
-        }
+            return this.$store.state.status;
+        },
+        doneTodos() {
+            return this.$store.getters.doneTodos;
+        },
+        allTodos() {
+            return this.$store.getters.allTodos;
+        },
+        /**
+         * https://stackoverflow.com/questions/48091687/how-exactly-does-the-mapgetters-syntax-work
+         */
+        ...mapGetters([
+            'doneTodosCount',
+            'getCount'
+        ])
     }
 };
 </script>
@@ -93,16 +131,23 @@ export default {
         box-sizing: border-box;
     }
 
+    .done{
+        color: green;
+    }
+
     .active{
         background-color: cornflowerblue !important;
         color: white;
         img{
             border: 1px solid white;
         }
+        .done{
+            color: white;
+        }
     }
 
     tr{
-        transition: .3s all;
-        line-height: 50px;
+        transition: .3s background-color;
+        // line-height: 50px;
     }
 </style>
