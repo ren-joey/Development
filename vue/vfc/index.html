@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.1/vue-router.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const List = {
+            template: `
+            <div>
+                <div>
+                <p>
+                    <input type="text" v-model.trim="input" @keyup.enter="createHandler">
+                    <a href="javascript:void(0);" @click="createHandler">CREATE</a>
+                </p>
+            </div>
+            <ol>
+                <li v-for="(item, i) in contents" :key="item.id">
+                    {{item.content}}
+                    <a href="javascript:void(0);" @click="updateHandler(i)">UPDATE</a>
+                    <a href="javascript:void(0);" @click="deleteHandler(i)">DELETE</a>
+                </li>
+            </ol>
+        </div>`,
+            data() {
+                return {
+                    input: '',
+                    contents: []
+                }
+            },
+            methods: {
+                createHandler() {
+                    let vm = this;
+
+                    if( !vm.input ) return false;
+                    axios.post('http://localhost:3000/contents', {
+                        "content": vm.input
+                    }).then((res) => {
+                        vm.input = '';
+                        vm.contents.push(res.data);
+                    });
+                },
+                deleteHandler(index) {
+                    let vm = this;
+                    let target = vm.contents[index];
+
+                    axios.delete(`http://localhost:3000/contents/${target.id}`).then((res) => {
+                        console.log(res);
+                        vm.contents.splice(index, 1);
+                    });
+                },
+                updateHandler(index){
+                    let vm = this;
+                    let target = vm.contents[index];
+                    // 可以上下頁
+                    // METHOD NO.1
+                    // vm.$router.push({ path: `/update/${target.id}` });
+                    vm.$router.push({ name: 'update', params: {id: target.id} });
+
+                    // 不能上下頁
+                    // METHOD  NO.2
+                    // vm.$router.replace({ path: `/update/${target.id}` });
+                }
+            },
+            mounted() {
+                let vm = this;
+
+                axios.get('http://localhost:3000/contents').then((res) => {
+                    vm.contents = res.data;
+                }).catch((err) => {
+
+                });
+            },
+        };
+        const Edit = {
+            template: `<div>
+            <input type="text"/>
+            <button type="button">update</button>
+            </div>`
+        };
+
+        const router = new VueRouter({
+        //    mode: 'history',
+           routes: [
+               {
+                   path: '/',
+                   name: 'list',
+                   component: List
+               },{
+                   path: '/update/:id',
+                   name: 'update',
+                   component: Edit
+               },{
+                   path: '*',
+                   redirect: '/'
+               }
+           ]
+        });
+
+        // Vue.config.devtools = true;
+
+        new Vue({
+            el: '#app',
+            router
+        });
+    </script>
+</body>
+
+</html>

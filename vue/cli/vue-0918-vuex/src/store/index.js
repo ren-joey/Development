@@ -33,7 +33,16 @@ const getters = {
 }
 
 // https://vuex.vuejs.org/zh/guide/actions.html
-const actions = {}
+// action 類似 mutations
+// action 提交 mutations 而不直接更改狀態
+// action 可以進行 () => {} 等非同步操作
+const actions = {
+    increment (context) {
+        setTimeout(function() {
+            context.commit('increment');
+        }, 1000);
+    }
+}
 const mutations = {
     updateStatus (value) {
         this.state.status = value;
