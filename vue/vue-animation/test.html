@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js'></script>
+</head>
+
+<body>
+    <div id="app">
+        <pre>
+            {{data}}
+        </pre>
+    </div>
+
+    <script>
+        Vue.config.devtools = true;
+
+        var store = new Vuex.Store({
+            state: {
+                data: []
+            }
+        })
+
+        new Vue({
+            el: '#app',
+            computed: {
+                data() {
+                    return store.state.data
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

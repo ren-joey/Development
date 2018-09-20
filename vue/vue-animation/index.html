@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css' />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.1/vue-router.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js'></script>
+
+    <!-- local components -->
+    <script src="./script/store.js"></script>
+    <script src="./script/main-components.js"></script>
+    <script src="./script/user-components.js"></script>
+    <script src="./script/group-components.js"></script>
+    <script src="./script/vuex-components.js"></script>
+
+    <link rel="stylesheet" href="./style/common.css">
+
+    <style>
+        .imgPopup {
+            position: absolute;
+            left: 40px;
+            top: 40px;
+            z-index: 1;
+        }
+
+        .o-fade-enter,
+        .o-fade-leave-to
+
+        /* .fade-leave-active below version 2.1.8 */
+            {
+            transform: translateX(100px);
+            opacity: 0;
+        }
+
+        .o-fade-move
+        { transition: all 200ms ease-in-out 50ms }
+
+        .fade-enter-active,
+        .fade-leave-active,
+        .o-fade-enter-active,
+        {
+            transition: all .3s;
+            /* transform: scale(1); */
+        }
+
+        .o-fade-leave-active{
+            transition: none;
+            left: -100vw;
+            bottom: -100vh;
+            position: absolute;
+        }
+
+        .fade-enter,
+        .fade-leave-to
+
+        /* .fade-leave-active below version 2.1.8 */
+            {
+            transform: scale(.8) translateY(-50%);
+            opacity: 0;
+        }
+    </style>
+
+</head>
+
+<body class="bg-dark">
+
+    <div id="app">
+        <header-menu></header-menu>
+        <router-view></router-view>
+    </div>
+
+    <script>
+        /****************** 設定localStorage ******************/
+        if (!localStorage.getItem('user')) {
+            var user_JSON = JSON.stringify({
+                'USER_ID': 'admin',
+                'TOKEN': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOiIyMDE4LTA4LTIzVDA5OjUwOjEyLjc4OTkxMjk5NloiLCJzdWIiOiJhZG1pbiJ9.9PV20Y8So3CbPmX3zbKX-aKzgWeu1F7UGyMswX3CTmQ'
+            });
+            localStorage.setItem('user', user_JSON);
+        }
+
+        /****************** 取得localStorage ******************/
+        var a = localStorage.getItem('user');
+        a = JSON.parse(a);
+        const USER_ID = a.USER_ID;
+        const TOKEN = a.TOKEN;
+
+        const router = new VueRouter({
+            // mode: 'history',
+            routes: [{
+                    path: '/index.html',
+                    component: mainContainer
+                },
+                {
+                    path: '/',
+                    component: mainContainer
+                },
+                {
+                    path: '/user',
+                    component: userContainer
+                },
+                {
+                    path: '/group',
+                    component: groupContainer
+                },
+                {
+                    path: '/vuex',
+                    component: vuexContainer
+                },
+                {
+                    path: '*',
+                    redirect: '/'
+                }
+            ]
+        });
+
+        var bus = new Vue({});
+
+        new Vue({
+            el: '#app',
+            components: {
+                headerMenu,
+                mainContainer,
+                userContainer,
+                vuexContainer
+            },
+            router,
+            store
+        });
+    </script>
+
+</body>
+
+</html>

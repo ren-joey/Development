@@ -1,0 +1,31 @@
+.pointer {
+    cursor: pointer;
+}
+
+.d-block{
+    display: block;
+}
+
+.d-relative{
+    position: relative;
+}
+
+.d-absolute{
+    position: absolute;
+}
+
+.y-center{
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.x-center{
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.xy-center{
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
