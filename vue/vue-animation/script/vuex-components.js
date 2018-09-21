@@ -13,6 +13,7 @@ var userTableList = Vue.extend({
         </td>
         <td>{{user.dob.age}}</td>
         <td>{{user.cell}}</td>
+        <td>{{user.city}}</td>
     </tr>
     `,
     props: ['user', 'i'],
@@ -26,19 +27,21 @@ var userTableList = Vue.extend({
 
 var userTable = Vue.extend({
     template: `
-    <table class="table table-striped table-dark">
+    <table class="table table-striped table-dark" style="transition: .3s height;">
         <thead>
             <tr>
                 <th scope="col" style="width: 50px;">#</th>
                 <th scope="col">Name</th>
                 <th scope="col" style="width: 50px;">Age</th>
-                <th scope="col">cell</th>
+                <th scope="col">Cell</th>
+                <th scope="col">City</th>
             </tr>
         </thead>
         <transition-group name="o-fade" tag="tbody">
             <user-table-list v-for="(user, i) in data" :key="user.id" :user="user" :i="i"></user-table-list>
-            <tr v-if="data.length < 1" :key="0">
-                <td style="width: 100%">Nothing to show</td>
+            <tr v-if="data.length < 1" :key="dataOrigin.length + 1">
+                <td></td>
+                <td>Nothing to show</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -49,6 +52,9 @@ var userTable = Vue.extend({
     computed: {
         data() {
             return this.$store.getters.filterData;
+        },
+        dataOrigin() {
+            return this.$store.state.data;
         }
     },
     mounted() {

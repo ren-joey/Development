@@ -1,6 +1,7 @@
 const store = new Vuex.Store({
     state: {
         data: [],
+
         filter: {
             order: false,
             age30d: false,
@@ -45,10 +46,36 @@ const store = new Vuex.Store({
                 }
             }).then((res) => {
                 let alias = [];
+                let cities = ['unknown'];
 
                 res.data.results.forEach((user, i) => {
                     user['id'] = i;
                     alias.push(user);
+
+                    let latlng = `${user.location.coordinates.latitude},${user.location.coordinates.longitude}`;
+                    console.log(latlng);
+
+                    axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+                        params: {
+                            key: 'AIzaSyBMd4jEPOPso5PkCp46H02dtjKb4jdA5sQ',
+                            latlng: latlng,
+                            language: 'en-US'
+                        }
+                    }).then((res) => {
+                        let city;
+
+                        if(res.data.results.length == 0){
+                            city = 'unknown';
+                        }else{
+                            city = res.data.results[0].address_components[0].long_name;
+                            cities.push(city);
+                        }
+
+                        console.log(city);
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+
                 });
                 context.commit('increment', alias);
             }).catch((err) => {

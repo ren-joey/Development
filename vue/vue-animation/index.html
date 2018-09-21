@@ -35,31 +35,29 @@
             z-index: 1;
         }
 
-        .o-fade-enter,
-        .o-fade-leave-to
+        .o-fade-enter-active {
+            transition: all .3s;
+        }
 
-        /* .fade-leave-active below version 2.1.8 */
-            {
+        .o-fade-leave-active {
+            display: none;
+        }
+
+        .o-fade-enter,
+        .o-fade-leave-to {
             transform: translateX(100px);
             opacity: 0;
         }
 
-        .o-fade-move
-        { transition: all 200ms ease-in-out 50ms }
+        .o-fade-move {
+            transition: all 200ms ease-in-out 50ms
+        }
 
         .fade-enter-active,
         .fade-leave-active,
-        .o-fade-enter-active,
-        {
+            {
             transition: all .3s;
             /* transform: scale(1); */
-        }
-
-        .o-fade-leave-active{
-            transition: none;
-            left: -100vw;
-            bottom: -100vh;
-            position: absolute;
         }
 
         .fade-enter,
