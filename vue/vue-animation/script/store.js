@@ -1,7 +1,7 @@
 const store = new Vuex.Store({
     state: {
         data: [],
-
+        cities: ['unknown'],
         filter: {
             order: false,
             age30d: false,
@@ -27,15 +27,18 @@ const store = new Vuex.Store({
                 }
             });
 
-            return alias;
+            return alias.sort((a, b) => a.id - b.id );
         }
     },
     mutations: {
-        increment (state, results) {
-            state.data = results;
+        increment (state, user) {
+            state.data.push(user);
         },
         updateFilter(state, filter) {
             state.filter = filter;
+        },
+        increment_cities (state, city) {
+            if(state.cities.indexOf(city) == -1) state.cities.push(city);
         }
     },
     actions: {
@@ -45,15 +48,13 @@ const store = new Vuex.Store({
                     'results': 50
                 }
             }).then((res) => {
-                let alias = [];
-                let cities = ['unknown'];
-
+                let limit = res.data.results.length;
+                let count = 0;
                 res.data.results.forEach((user, i) => {
                     user['id'] = i;
-                    alias.push(user);
 
                     let latlng = `${user.location.coordinates.latitude},${user.location.coordinates.longitude}`;
-                    console.log(latlng);
+                    // console.log(latlng);
 
                     axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
                         params: {
@@ -68,16 +69,20 @@ const store = new Vuex.Store({
                             city = 'unknown';
                         }else{
                             city = res.data.results[0].address_components[0].long_name;
-                            cities.push(city);
+                            context.commit('increment_cities', city);
                         }
 
-                        console.log(city);
+                        user['city'] = city;
+                        count ++;
+
+                        context.commit('increment', user);
+
+                        // console.log(city);
                     }).catch((err) => {
-                        console.log(err);
+                        // console.log(err);
                     });
 
                 });
-                context.commit('increment', alias);
             }).catch((err) => {
 
             });
