@@ -10,13 +10,40 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js'></script>
+
+    <style>
+        .fade-enter-active{
+            transition: 2000ms all cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+        .fade-leave-active{
+            transition: 2000ms all cubic-bezier(0.075, 0.82, 0.165, 1);
+            height: 0;
+        }
+
+        .fade-enter{
+            opacity: 0;
+        }
+
+        .fade-leave-to{
+            opacity: 0;
+        }
+
+        .fade-move{
+            transition: 2000ms all;
+        }
+    </style>
 </head>
 
 <body>
     <div id="app">
-        <pre>
-            {{data}}
-        </pre>
+        <pre style="display: none;">{{data}}</pre>
+
+        <input type="text" v-model="input" @keyup.enter="submit"><button @click="submit">submit</button>
+        <transition-group name="fade" tag="ol">
+            <li v-for="item in data" :key="item.id">{{item.content}} <a href="javascript: void(0);" @click="deleteData(item.id)">DELETE</a></li>
+        </transition-group>
+
     </div>
 
     <script>
@@ -25,16 +52,81 @@
         var store = new Vuex.Store({
             state: {
                 data: []
+            },
+            mutations: {
+                insertData(state, input){
+                    state.data.push(input);
+                },
+                increment(state, data) {
+                    state.data = data;
+                },
+                deleteData(state, id) {
+                    state.data.forEach((element, i) => {
+                        if(element.id == id) state.data.splice(i, 1);
+                    });
+                }
+            },
+            actions: {
+                GET_DATA(context) {
+                    axios({
+                        method: 'get',
+                        url: 'http://localhost:3000/data'
+                    }).then((res) => {
+                        context.commit('increment', res.data);
+                    }).catch((err) => {
+                        console.log(err);
+                    });;
+                },
+                PUSH_DATA(context, input){
+                    if(!input) return false
+                    axios({
+                        method: 'post',
+                        url: 'http://localhost:3000/data',
+                        data: {
+                            content: input
+                        }
+                    }).then((res) => {
+                        context.commit('insertData', res.data);
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+                },
+                DELETE_DATA(context, id){
+                    if(!id) return false;
+                    axios({
+                        method: 'delete',
+                        url: `http://localhost:3000/data/${id}`
+                    }).then((res) => {
+                        context.commit('deleteData', id);
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+                }
             }
         })
 
         new Vue({
             el: '#app',
+            data: {
+                input: ''
+            },
             computed: {
                 data() {
-                    return store.state.data
+                    return this.$store.state.data;
                 }
-            }
+            },
+            mounted() {
+                this.$store.dispatch('GET_DATA');
+            },
+            methods: {
+                submit() {
+                    this.$store.dispatch('PUSH_DATA', this.input);
+                },
+                deleteData(id) {
+                    this.$store.dispatch('DELETE_DATA', id);
+                }
+            },
+            store
         })
     </script>
 </body>

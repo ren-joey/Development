@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css' />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.1/vue-router.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js'></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script> -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css"> -->
+
+</head>
+<body>
+
+    <div id="app">
+        <ul>
+            <li v-for="item in list">
+                {{ item }}
+                <br>
+                <list-data></list-data>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        var listData = Vue.extend({
+            template: `
+            <div>
+                <button @click="toggle = !toggle">toggle</button>
+                <transition
+                    @before-enter="beforeEnter"
+                    @enter="enter"
+                    @after-enter="afterEnter"
+                    @enter-cancelled="enterCancelled"
+
+                    @before-leave="beforeLeave"
+                    @leave="leave"
+                    @after-leave="afterLeave"
+                    @leave-cancelled="leaveCancelled"
+                    >
+                    <div v-show="toggle" style="overflow: hidden;">
+                        {{message}}
+                    <div>
+                </transition>
+            </div>
+            `,
+            data() {
+                return {
+                    message: 'Hello',
+                    toggle: false,
+                    trueHeight: 0
+                }
+            },
+            methods: {
+
+                /**
+                 * ENTERING
+                 */
+                beforeEnter(el) {
+
+                },
+                enter(el, done) {
+                    let vm = this;
+
+                    TweenMax.fromTo(el, .3, {'height': 0}, {'height': vm.trueHeight});
+                    done();
+                },
+                afterEnter(el) {
+
+                },
+                enterCancelled(el) {
+
+                },
+
+                /**
+                 * LEAVING
+                 */
+                beforeLeave(el) {
+
+                },
+                leave(el, done) {
+                    let vm = this;
+
+                    TweenMax.fromTo(el, .3, {'height': vm.trueHeight}, {'height': 0, onComplete() {
+                        done();
+                    }});
+                },
+                afterLeave(el) {
+
+                },
+                leaveCancelled(el) {
+
+                }
+            },
+            mounted() {
+                let a = $(this.$el).clone();
+                a.appendTo('body');
+
+                let aHeight = a.height();
+                a.remove();
+
+                this.trueHeight = aHeight;
+            },
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                list: ['a', 'b', 'c']
+            },
+            components: {
+                listData
+            }
+        });
+    </script>
+
+</body>
+</html>

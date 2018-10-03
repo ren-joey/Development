@@ -17,6 +17,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.1/vue-router.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js'></script>
 
     <!-- local components -->
     <script src="./script/store.js"></script>
@@ -34,6 +35,16 @@
             top: 40px;
             z-index: 1;
         }
+
+        /* .tree-enter-active,
+        .tree-leave-active{
+            transition: .3s all;
+        }
+
+        .tree-enter,
+        .tree-leave-to{
+            opacity: 0;
+        } */
 
         .o-fade-enter-active {
             transition: all .3s;
@@ -55,7 +66,7 @@
 
         .fade-enter-active,
         .fade-leave-active
-            {
+        {
             transition: all .3s;
             /* transform: scale(1); */
         }
@@ -63,10 +74,33 @@
         .fade-enter,
         .fade-leave-to
         /* .fade-leave-active below version 2.1.8 */
-            {
+        {
             transform: scale(.8) translateY(-50%);
             opacity: 0;
         }
+
+        .list-arrow{
+            position: absolute;
+            left: -20px;
+            top: 10px;
+            width: 24px;
+            height: 39px;
+            border-left: 1px dotted white;
+            border-bottom: 1px dotted white;
+            transform: translate(12px, -29px);
+            z-index: -1;
+        }
+
+        .list-left-border{
+            position: absolute;
+            left: -38px;
+            top: -19px;
+            bottom: 18px;
+            width: 1px;
+            border-left: 1px dotted white;
+            z-index: -1;
+        }
+
     </style>
 
 </head>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css' />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.1/vue-router.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js'></script>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="p-5">
+            <pre style="font-size: 12px;">{{results}}</pre>
+            <button @click="consoleOut">debounce 1000</button>
+            <br>
+            <input type="number" v-model="times" />
+            <button @click="getMultipleNumbers">random {{times}} times</button>
+            <br>
+            <input type="number" v-model="age" placeholder="please enter age" />
+            <input type="radio" id="male" value="male" v-model="sex" />
+            <label for="male">male</label>
+            <input type="radio" id="female" value="female" v-model="sex" />
+            <label for="female">female</label>
+            <button @click="searchingContents">search</button>
+            <button @click="filteringContents">filter</button>
+            <br>
+            <button @click="getProperties">get {{`'[3].age'`}}</button>
+            <br>
+            <button @click="createAlias">create alias json by name</button>
+            <br>
+            <button @click="reduceUsers">reduceUsers</button>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                content: {},
+                results: {},
+                times: 0,
+                age: null,
+                sex: 'male',
+                contentArray:
+                [
+                    { name: 'joey', age: '18', sex: 'male' },
+                    { name: 'john', age: '30', sex: 'male' },
+                    { name: 'mary', age: '29', sex: 'female' },
+                    { name: 'lora', age: '29', sex: 'female' },
+                    { name: 'peter', age: '19', sex: 'male' },
+                    { name: 'tiffany', age: '44', sex: 'female' },
+                    { name: 'luna', age: '34', sex: 'female' },
+                    { name: 'david', age: '14', sex: 'male' },
+                    { name: 'david', age: '20', sex: 'male' }
+                ]
+            },
+            methods: {
+
+                /**
+                 * _.debounce
+                 * 防抖函數
+                 * 如果此函數重複被觸發，只有最後一次符合頓點的 function 才對啟動
+                 */
+                consoleOut: _.debounce(function () {
+                    console.log(JSON.stringify(this.content));
+                }, 1000),
+
+                randomNumber() {
+                    return Math.round(Math.random() * 100);
+                },
+
+                /**
+                 * _.items
+                 * 自動迭代
+                 */
+                getMultipleNumbers() {
+                    let vm = this;
+                    let results = _.times(vm.times, function () {
+                        return vm.randomNumber();
+                    });
+
+                    this.results = results;
+
+                    // return results;
+                },
+
+                /**
+                 * _.find
+                 * JSON Array 搜索
+                 * 只回傳一筆
+                 */
+                searchingContents() {
+                    let vm = this;
+
+                    /**
+                     * 使用簡單的搜尋條件
+                     */
+                    // let user = _.find(vm.contentArray, { sex: vm.sex });
+
+                    /**
+                     * 使用複雜的搜尋條件
+                     */
+                    let user = _.find(vm.contentArray, function (user) {
+                        if (vm.age == null) {
+                            return user.sex == vm.sex
+                        } else {
+                            return user.sex == vm.sex && parseInt(user.age) >= vm.age
+                        }
+                    });
+
+                    this.results = user;
+                },
+
+                /**
+                 * _.filter
+                 * JSON Array 搜索
+                 * 回傳所有結果
+                 */
+                filteringContents() {
+                    let vm = this;
+
+                    /**
+                     * 使用間單的搜尋條件
+                     */
+                    // let users = _.filter(vm.contentArray, { sex: vm.sex });
+
+                    /**
+                     * 使用複雜的搜尋條件
+                     */
+                    let users = _.filter(vm.contentArray, function (user) {
+                        if (vm.age == null) {
+                            return user.sex == vm.sex
+                        } else {
+                            return user.sex == vm.sex && parseInt(user.age) >= vm.age
+                        }
+                    });
+
+                    this.results = users;
+                },
+
+                /**
+                 * _.set
+                 * _.get
+                 * 根據對象路徑設置或取得
+                 */
+                getProperties() {
+                    let vm = this;
+
+                    vm.results = _.get(vm.contentArray, '[3].age');
+                },
+
+                /**
+                 * _.keyBy
+                 * 將對象重新映射
+                 */
+                createAlias() {
+                    let vm = this;
+
+                    vm.results = _.keyBy(vm.contentArray, 'name');
+                },
+
+                /**
+                 * _.reduce
+                 * 執行特定事件後返回一個常用的對象
+                 * 第一個參數是製作對象，第二參數是方法，第三個參數是 result 初始值(必傳))
+                 */
+                reduceUsers() {
+                    let vm = this;
+
+                    let reducedUsers = _.reduce( vm.contentArray, function (result, user) {
+                        if(user.age > 20 && user.age < 40){
+
+                            // 檢查 result[user.age] 是否可以 push ，如過不行，將 result[user.age] 定義成空集合
+                            (result[user.age] || (result[user.age] = [])).push(user);
+                            console.log(result.toString());
+
+                            // 相關練習
+                            var a;
+                            ( Array.isArray(a) || (a = [1,2,3]) ).forEach((value, key) => {
+                                console.log(value);
+                            });
+                        }
+
+                        return result;
+                    }, {});
+
+                    vm.results = reducedUsers;
+
+                    // var users = [
+                    //     { name: "John", age: 30 },
+                    //     { name: "Jane", age: 28 },
+                    //     { name: "Bill", age: 65 },
+                    //     { name: "Emily", age: 17 },
+                    //     { name: "Jack", age: 30 }
+                    // ]
+
+                    // var reducedUsers = _.reduce(users, function (result, user) {
+                    //     if (user.age >= 18 && user.age <= 59) {
+                    //         (result[user.age] || (result[user.age] = [])).push(user);
+                    //     }
+
+                    //     return result;
+                    // }, {});
+
+                    // this.results = reducedUsers;
+                }
+
+            },
+            mounted() {
+                let a = {
+                    'a': 'cool',
+                    'b': 'sexy'
+                };
+                let b = {
+                    'c': 'men'
+                };
+
+                /**
+                 * _.assign
+                 * 擴展json
+                 * 將 assign 內所有的項目整合成一個 json
+                 */
+                let result = _.assign({
+                    'd': 'women'
+                }, a, b);
+                this.content = result;
+                this.results = result;
+            }
+        })
+    </script>
+
+</body>
+
+</html>
