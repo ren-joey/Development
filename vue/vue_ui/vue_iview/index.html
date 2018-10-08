@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>iview example</title>
+
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
+    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+    <script type="text/javascript" src="http://unpkg.com/iview/dist/iview.min.js"></script>
+
+    <style>
+        .bg-blue{
+            background-color: cornflowerblue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- https://www.iviewui.com/components/layout -->
+
+    <div id="app">
+        <layout>
+            <i-header></i-header>
+            <layout>
+                <sider hide-trigger :style="{background: '#fff'}">
+                    <i-menu active-name="1-2" theme="light" width="auto" :open-names="['1']">
+                        <submenu name="1">
+                            <template slot="title">
+                                <Icon type="ios-navigate"></Icon>
+                                Item 1
+                            </template>
+                            <menu-item name="1-1">1</menu-item>
+                            <menu-item name="1-2">2</menu-item>
+                        </submenu>
+                    </i-menu>
+                </sider>
+                <layout :style="{padding: '0 24px 24px'}">
+                    <i-breadcrumb :style="{margin: '24px 0'}">
+                        <breadcrumb-item>Home</breadcrumb-item>
+                        <breadcrumb-item>Components</breadcrumb-item>
+                        <breadcrumb-item>Layout</breadcrumb-item>
+                    </i-breadcrumb>
+                    <i-content>
+                        <modal v-model="visible" title="Welcome">Welcome to iView</modal>
+                        <row type="flex" justify="space-between" align="middle">
+                            <i-col span="4" class-name="bg-blue">1</i-col>
+                            <i-col span="4" class-name="bg-blue">2</i-col>
+                            <i-col span="4" class-name="bg-blue">3</i-col>
+                            <i-col span="4" class-name="bg-blue">4</i-col>
+                        </row>
+                        <row :gutter="16">
+                            <i-col :lg="6" :xs="24">
+                                <i-button @click="show">Click me!</i-button>
+                            </i-col>
+                            <i-col :lg="6" :xs="24">2</i-col>
+                            <i-col :lg="6" :xs="24">3</i-col>
+                            <i-col :lg="6" :xs="24">4</i-col>
+                        </row>
+                    </i-content>
+                </layout>
+            </layout>
+        </layout>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                visible: false
+            },
+            methods: {
+                show: function () {
+                    this.visible = true;
+                    ｂ
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
