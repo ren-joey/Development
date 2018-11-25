@@ -48,7 +48,7 @@
                 createHandler() {
                     let vm = this;
 
-                    if( !vm.input ) return false;
+                    if (!vm.input) return false;
                     axios.post('http://localhost:3000/contents', {
                         "content": vm.input
                     }).then((res) => {
@@ -65,13 +65,18 @@
                         vm.contents.splice(index, 1);
                     });
                 },
-                updateHandler(index){
+                updateHandler(index) {
                     let vm = this;
                     let target = vm.contents[index];
                     // 可以上下頁
                     // METHOD NO.1
                     // vm.$router.push({ path: `/update/${target.id}` });
-                    vm.$router.push({ name: 'update', params: {id: target.id} });
+                    vm.$router.push({
+                        name: 'update',
+                        params: {
+                            id: target.id
+                        }
+                    });
 
                     // 不能上下頁
                     // METHOD  NO.2
@@ -96,21 +101,19 @@
         };
 
         const router = new VueRouter({
-        //    mode: 'history',
-           routes: [
-               {
-                   path: '/',
-                   name: 'list',
-                   component: List
-               },{
-                   path: '/update/:id',
-                   name: 'update',
-                   component: Edit
-               },{
-                   path: '*',
-                   redirect: '/'
-               }
-           ]
+            //    mode: 'history',
+            routes: [{
+                path: '/',
+                name: 'list',
+                component: List
+            }, {
+                path: '/update/:id',
+                name: 'update',
+                component: Edit
+            }, {
+                path: '*',
+                redirect: '/'
+            }]
         });
 
         // Vue.config.devtools = true;
