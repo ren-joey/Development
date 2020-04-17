@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/test04.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('a[target]').css({'background':'#6c6c6c'}).append('<br>this is target');  //篩選a之中擁有target屬性的dom
+            $('a[target = "_blank"]').css({'background':'#bdbdbd'}).append('<br>this is targer = _blank');  //篩選a之中擁有target屬性且其值為_blank的dom
+            $('<div/>',{'class':'target_self'}).appendTo('a[target = "_self"]').append('<br>this is target = self');
+            $('a[target *= "s"]').append('i have s');   //篩選a之中擁有target屬性且其值包含s的dom       *=包含    ^=開頭相同   $=結尾相同
+            $('a[href $= ".jp"]').css({'background-color':'Aqua'}); //篩選a之中擁有href屬性且其值結尾為.jp的dom
+            $('a:not([target = "_blank"])').css({'border':'#000000 1px solid'}); //篩選a中不包含targer = _blank的元素
+            $('label:has(:checked)').css({'background':'#000000'}); //如果label中的input已被點選checked，則改變其css參數
+            $('input[name = "gender01"]').prop('checked',true); //如果input中的name等於gender01，則自動選取該input為checked
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li><a href="#">non-target</a></li>
+    <li><a href="#" target="_blank">target:blank</a></li>
+    <li><a href="#" target="_self">targer:self</a></li>
+
+    <form>
+        <label>
+            <input type="checkbox" name="gender01" value="m">boy
+        </label>
+        <label>
+            <input type="checkbox" name="gender02" value="f">fenmale
+        </label>
+        <label>
+            <input type="checkbox" name="gender02" value="f" checked="checked">fenmale
+        </label>
+    </form>
+</ul>
+</body>
+</html>

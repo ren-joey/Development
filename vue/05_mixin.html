@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>vue Computed Properties and Watchers</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+  <div id="app">
+    <test-component></test-component>
+    <test-component-2></test-component-2>
+  </div>
+  <script type="text/javascript">
+    // 多個 components 可以共用同一個 mixin 參數
+
+    var mixin = {
+      methods: {
+        log(){
+          console.log('testing is good.');
+        }
+      }
+    }
+
+    Vue.component('test-component', {
+      template: `
+      <div @click="log">test</div>
+      `,
+      mixins: [mixin]
+    });
+
+    Vue.component('test-component-2', {
+      template: `
+      <div @click="log">test2</div>
+      `,
+      mixins: [mixin]
+    })
+
+    var app = new Vue({
+      el: '#app'
+    });
+  </script>
+</body>
+
+</html>

@@ -14,4 +14,6 @@
 
 [Random User](https://randomuser.me/)
 
+[Vue cli basic project](https://github.com/guahsu/vue-project-base)
+
 **key word** serverless

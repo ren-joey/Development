@@ -1,0 +1,5 @@
+@import '@/styles/z-index.scss';
+
+.test {
+    z-index: map-get($z-index, TestRed);
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/test04.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        //$('div:not([class = "test-box"])').addClass('test-box');  //可以用not的方式判斷div是否沒有特定class名稱
+
+        $('div.test-box').on('click',function(){
+           $(this).toggleClass('try').scrollTop('100').scrollLeft('100');  //當該dom被點擊的時候，會自動加入/移除try的class名稱
+        });
+
+        $('input.test-ip').attr({checked:'checked'});   //可以用attr的方式來操作input是否預設checked
+    });
+    </script>
+    <style>
+        .try{
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-box"></div>
+    <div class="test-box"><div style="width: 200px; overflow: visible;">測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。測試文字。</div></div>
+    <label for="test-ip-1">
+    <input type="checkbox" name="test-ip-1" id="test-ip-1" class="test-ip">測試radio1</label>
+</body>
+</html>

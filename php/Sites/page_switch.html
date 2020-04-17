@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+<script src="common/jquery.min.js"></script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+	function pageSwitch(targ,selObj,restore){
+		eval(targ + ".location'" + selObj.options[selObj.selectedIndex].value+"'");
+		if(restore) selObj.selectedIndex=0;
+	}
+	</script>
+
+<form id="form1" name="form1" method="post" action="">
+	<select name="menu1" id="menu1" onChange="pageSwitch('parent',this,0)">
+		<option value="www.hinet.net">hinet</option>
+		<option value="tw.yahoo.com">yahoo</option>
+		<option value="www.microsoft">microsoft</option>
+	</select>
+</form>
+
+</body>
+</html>

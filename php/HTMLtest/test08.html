@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+            $('p').wrap('<div class="test-box"></div>'); /*把p dom個別用div包起來*/
+            var str = $('h1').text();
+            $('h1').replaceWith('<div class="test-box">'+ str +'</div>');   /*把h1的dom 替換成div*/
+            $('span').wrapAll('<div class="test-box"></div>');  /*把所有的span放進div裡面*/
+            $('h3').wrapInner('<div class="test-box"></div>');  /*把div放在h3裡面*/
+        });
+
+        function unwrapFunc(){
+            $('p').unwrap(); /*將所有p dom外層的div刪除*/
+        }
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+<h1>測試用h1</h1>
+<p>測試用文字</p>
+<p>測試用文字2</p>
+<span>span1</span>
+<span>span2</span>
+<h3>h3</h3>
+<input type="button" onclick="unwrapFunc()" value="unwrap"/>
+</body>
+</html>

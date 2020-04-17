@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+            $('<li>',{'id':'test02'}).text('test02-prependto').prependTo('ul#test-ul'); //prependTo是插入到指定dom底下的所有元素之前
+            $('<li id="test03">test03-appendto</li>').appendTo('ul#test-ul');   //appendTo是插入到指定dom底下的所有元素之後
+            $('<p>test04-insertbefore</p>').insertBefore('ul#test-ul'); //insertBefore是插入到指定dom的前面
+            $('<p>test05-insertafter</p>').insertAfter('ul#test-ul');   //insertAfter是插入到指定dom的後面
+        });
+
+        function move_dom(){
+            $('#test02').insertAfter('ul#test-ul'); //也可以利用選取器來改變既有dom的位置
+        }
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+<ul id="test-ul">
+    <li id="test-li-1">test01</li>
+</ul>
+<input type="button" value="測試移動dom" onclick="move_dom()"/>
+</body>
+</html>

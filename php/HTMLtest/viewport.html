@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"> <!--width=divice-width表示寬度根據裝置的寬度,initial-scale=1表示第一次載入頁面的縮放比例-->
+    <title></title>
+
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var viewport_width = $(window).width();
+        if(viewport_width <= 480){alert('This device is mobile.');}
+        else if(viewport_width > 854){alert('This device is PC.');}
+        else{alert('This device is tablet.');}
+
+        $(document).click(function(){
+            viewport_width = $(window).width();
+            alert(viewport_width);
+        });
+    </script>
+</head>
+<body>
+<div style="width: 1000px; height: 1000px; position: fixed; z-index:1; background-color:#6c6c6c;"></div>
+</body>
+</html>

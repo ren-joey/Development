@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/test04.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('div#test-01').text('<a href="#" >測試用.text</a>'); //使用.text加入字串，會將字串重新編碼成字串放入html中，因此<a>等元素都會被顯示出來
+            $('div#test-02').html('<a href="#" >測試用.html</a>'); //使用.html加入字串，會將字串原封不動放入html，因此<a>會被視為一個html dom來處理
+            $('div.test-box').on('click',function(){
+                var str = $(this).html();   //如果沒有輸入字串，則取得該dom之中的內容。html會取得內容原始碼
+                alert(str);
+                str = $(this).text();   //.text只會取得dom中的字串
+                alert(str);
+            });
+        });
+
+        function book_name(){
+            alert($('input#title').val());  //輸出input的值會擷取value=""中的數值
+        }
+
+        function publish(){
+            alert($('select#publish').val());   //輸出select的值會擷取所選option中的value=""值
+        }
+
+        function introduce(){
+            alert($('textarea#memo').val());    //輸出textarea的值會擷取textarea內部所包含的文字
+        }
+
+        function submit(){
+            alert($('input#submit').val());
+        }
+
+        function reset_btn(){
+            $('input#title').val('就是一本書不然你要怎樣');    //同理也可以用這種方式來改變form中各種dom的value值
+            $('select#publish').val('option2');
+            $('textarea#memo').val('就是書謝謝');
+            $('input#submit').val('送看看');
+        }
+    </script>
+    <style>
+        .try{
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-box" id="test-01"></div>
+    <div class="test-box" id="test-02"></div>
+    <br>
+    <form>
+        <label>
+            <a href="#" onclick="book_name()">書名：</a><input type="text" id="title" name="title" value="10天學會" />
+        </label><br>
+        <label>
+            <a href="#" onclick="publish()">出版社：</a>
+            <select id="publish" name="publish">
+                <option value="option1">社1</option>
+                <option value="option2">社2</option>
+                <option value="option3">社3</option>
+            </select>
+        </label><br>
+        <label>
+            <a href="#" onclick="introduce()">概要：</a>
+            <textarea id="memo" name="meno" cols="40" rows="3">這是一本新書</textarea>
+        </label><br>
+        <input onclick="submit()" type="submit" id="send" value="傳送"/><input onclick="reset_btn()" type="button" id="reset" value="重置"/>
+    </form>
+</body>
+</html>

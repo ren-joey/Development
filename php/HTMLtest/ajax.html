@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script>
+        var ajaxText = function(){
+            var variable=new XMLHttpRequest();
+            variable.open("GET","data/testdata.txt",true);
+            variable.send();
+            variable.onreadystatechange = function(){
+                if(variable.readyState == 4 && variable.status ==200){
+                    $(' #testing').text(variable.responseText);
+                }
+            };
+        };
+
+        $(function () {
+
+        });
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <button type="button" onclick="ajaxText()">ajax test</button>
+    <div id="testing" class="test-box"></div>
+</body>
+</html>

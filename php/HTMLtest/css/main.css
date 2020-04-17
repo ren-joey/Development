@@ -1,0 +1,16 @@
+.origin_css{
+    margin-top: -10px;
+    opacity: 0;
+    width: 200px;
+    height: 200px;
+    background-color: beige;
+    display: inline-block;
+}
+
+.test-box{
+    width: 100px;
+    height: 100px;
+    background-color: #1c94c4;
+    overflow: scroll;
+    display: inline-block;
+}
