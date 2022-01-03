@@ -1,0 +1,8 @@
+#module-1::after{
+  content: "succeed to catch";
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 10px;
+  color: white;
+  background: #CCCCCC;
+}

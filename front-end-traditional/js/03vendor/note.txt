@@ -1,0 +1,37 @@
+若缺少node_modules資料
+npm install
+npm install --dev
+
+----------------------------------------------
+
+multi bundle
+可以將多個檔案指定包到一個entry
+entry: {
+  main: ['./main.js', './module.js', ...]
+}
+或指定哪些檔案包到哪些特定的entry
+entry: {
+  main: 'main.js',
+  module: 'module.js'
+}
+
+vendor bundle 可以進一步將重複的code分離開來
+plugins: [
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    filename: 'vendor.bundle.js',
+    minChunks: 2
+  })
+]
+也可以指定想要 vendor bundle 的目標
+entry: {
+  main: './main.js',
+  vendor: ['lodash', ...]
+},
+plugins: [
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    filename: 'vendor.bundle.js',
+    minChunks: Infinity
+  })
+]

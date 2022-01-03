@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <style>
+        .GreenStyle{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<div id="img"></div>
+    <script type="text/babel">
+        function Welcome(prop) {
+            return <p className="GreenStyle">name:{prop.name},phone:{prop.phone}</p>;
+        }
+        
+        function App() {
+            return (
+                    <div>
+                        <Welcome name="Joey" phone="0937472767"/>
+                        <Welcome name="Hao" phone="0929152771"/>
+                        <Welcome name="Hank" phone="0928696078"/>
+                    </div>
+            );
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+</html>

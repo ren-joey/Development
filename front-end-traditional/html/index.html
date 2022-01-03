@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width , initial-scale=1.0">
+
+  <!--- Bootstrap CDN --->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway" rel="stylesheet">
+
+  <!--- local --->
+  <style>
+      body {
+      font-family: 'Raleway',apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif !important;
+      padding-top: .75rem;
+    }
+
+    div , div *{
+      margin-bottom: .25rem;
+    }
+
+    a,
+    a:hover,
+    a:visited {
+      text-decoration: none !important;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+    }
+
+    .display-none{
+      display: none;
+    }
+
+    .card-title::before{
+      content: '📌 ';
+    }
+
+    .card-text {
+      margin-bottom: .75rem;
+    }
+
+    .col,.col-12 {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    h1,h2,h3,h4,h5,h6{
+      font-weight: bolder;
+    }
+
+    /*--- For CSS Tutorial ---*/
+    .bg-test{
+      height: 100px;
+      overflow: scroll;
+    }
+    .bg-test-text{
+      color: #ffffff;
+      background: #000000 url('https://p2.bahamut.com.tw/M/2KU/82/0001595582.JPG')center scroll no-repeat;
+    }
+    .bg-test-text-2{
+      color: #ffffff;
+      background: #000000 url('https://p2.bahamut.com.tw/M/2KU/82/0001595582.JPG')center fixed no-repeat;
+      -webkit-background-size: contain;
+      background-size: contain;
+    }
+    /*-- pseudo classes & element --*/
+    #selectors a[data-src*='src']::before{
+      content: '{*="com"}';
+      color: red;
+      font-weight: bold;
+    }
+    #selectors a[data-src$='03']::after{
+      content: '{$="03"}';
+      color: green;
+      font-weight: bold;
+    }
+    #selectors p:not(.nouppercase)::first-letter{
+      font-size: 200%;
+    }
+    #selectors p::first-line{
+      font-size: 150%;
+    }
+    #selectors p[title]::before{
+      font-weight: bold;
+    }
+    #selectors ul.targetUl + p::after{
+      color: blue;
+    }
+    #selectors ul.targetUl ~ p::after{
+      content: '{li~p}';
+      font-weight: bold;
+    }
+    #selectors ul.targetUl > li:nth-child(2)::after{
+      content:'{li:child(2)}';
+      font-weight: bold;
+    }
+    #selectors p:nth-of-type(2){
+      border-bottom:1px solid #cccccc;
+    }
+    #selectors p:last-of-type::before{
+      content: '{margin:0 auto}';
+    }
+    /*-- Relative Metrics & Box Sizing --*/
+    .boxSizing{
+      width: 80%;
+      max-width: 50rem;
+      margin: 0 auto;
+      font-size: .8rem;
+      padding: 3rem;
+      border: 1rem solid #cccccc;
+    }
+    .boxSizing strong{
+      font-size: 1.5em;
+    }
+    .boxSizing title{
+      font-size: 2em;
+      font-weight: bold;
+      display: inline;
+    }
+    .bxzi{
+      -webkit-box-sizing: unset;
+      box-sizing: unset;
+    }
+
+    /*-- Positioning --*/
+    .boxContainer.clearBoth::after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    #positioning .boxContainer .floatBoxLeft{
+      float: left;
+      width: 5rem;
+      height: 5rem;
+      margin: .5rem;
+      background-color: #cccccc;
+    }
+    #positioning .boxContainer .floatBoxRight{
+      float: right;
+      width: 5rem;
+      height: 5rem;
+      margin: .5rem;
+      background-color: #cccccc;
+    }
+
+    /*-- Demo: Image Gallery --*/
+    #galleryContainer{
+      margin: 0 auto;
+    }
+    #galleryContainer img{
+      width: 20%;
+      margin: 1rem;
+      cursor: pointer;
+    }
+    #galleryContainer img.active{
+      width: auto;
+      height: 60%;
+      position: fixed;
+      z-index: 2;
+      top: 20%;
+      left: 50%;
+      cursor: default;
+    }
+
+    .backmask{
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      visibility: hidden;
+      opacity: 0;
+      cursor: pointer;
+      -webkit-transition: 2s cubic-bezier(.23, 1, .32, 1);
+      -o-transition: 2s cubic-bezier(.23, 1, .32, 1);
+      transition: 2s cubic-bezier(.23, 1, .32, 1);
+    }
+    .backmask.active{
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /*-- Stacking Order --*/
+    .prtest{
+      position: relative;
+      width: 100px;
+      height: 100px;
+      left: 80px;
+      top: 0;
+      background: #636363;
+      color: #ffffff;
+      z-index: 2;
+      text-align: left;
+    }
+    .prtest::after{
+      content: 'relative';
+    }
+    .patest{
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      left: 20px;
+      top: 20px;
+      background: #000;
+      color: #ffffff;
+      z-index: 3;
+      -ms-text-align-last: auto;
+      text-align: left;
+    }
+    .patest::after{
+      content: 'absolute';
+    }
+
+    /*-- bootstrap flex box --*/
+    #bootstrap-card .p-2{
+      background-color: #519ca3;
+    }
+    #bootstrap-card .d-flex{
+      background-color: #dddddd;
+    }
+    #bootstrap-card .d-flex *{
+      color: white !important;
+    }
+
+    /*-- media queries --*/
+    .media-contain{
+      background-color: #cccccc;
+      padding: 1rem;
+    }
+    @media (max-width: 575px) {
+      .media-contain::before{
+        content: '(xs)max-width:575px';
+        display: inline-block;
+      }
+    }
+    @media (min-width: 576px) {
+      .media-contain::before{
+        content: '(sm)min-width:576px';
+        display: inline-block;
+      }
+    }
+    @media (min-width: 768px){
+      .media-contain::before{
+        content: '(md)min-width:768px';
+        display: inline-block;
+      }
+    }
+    @media (min-width: 992px){
+      .media-contain::before{
+        content: '(lg)min-width:992px';
+        display: inline-block;
+      }
+    }
+    @media (min-width: 1200px){
+      .media-contain::before{
+        content: '(xl)min-width:1200px';
+        display: inline-block;
+      }
+    }
+
+    /*-- Primitive & Object --*/
+    #el1::before{
+      content: 'Slice text';
+      display: block;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+    #el2::before{
+      content: 'Object & JSON things';
+      display: block;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+    #el3::before , #el4::before{
+      content: 'Function things';
+      display: block;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">html</li>
+          <li class="breadcrumb-item">forms & form validation</li>
+        </ol>
+        <div class="card" id="html-card">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <h5 class="card-title">POST</h5>
+              <div class="card-text">
+                <form action="" method="post">
+                  <div class="form-group">
+                    <label for="account">Username</label>
+                    <input id="account" class="form-control" name="account" placeholder="email address" type="email" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="psw">Password</label>
+                    <input id="psw" class="form-control" name="psw" type="password" placeholder="8 digits" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="date">Date</label>
+                    <input id="date" class="form-control form-control-sm" type="date">
+                  </div>
+                  <div class="form-group">
+                    <input type="color">
+                  </div>
+                  <button type="submit" class="btn btn-sm btn-primary">login</button>
+                </form>
+              </div>
+              <small class="text-muted">
+                        <ol>
+                          <li>POST方法"不會"把帳號密碼顯示在網址上</li>
+                          <li>該form使用Bootstrap進行排版</li>
+                        </ol>
+              </small>
+            </li>
+            <li class="list-group-item">
+              <h5 class="card-title">GET</h5>
+              <div class="card-text">
+                <form action="" method="get">
+                  <label for="account2">Username</label>
+                  <input id="account2" name="account" type="email">
+                  <label for="psw2">Password</label>
+                  <input id="psw2" name="psw" type="password">
+                  <button>login</button>
+                </form>
+              </div>
+              <small class="text-muted">
+                        <ol>
+                          <li>
+                            POST方法"會"把帳號密碼顯示在網址上
+                          </li>
+                        </ol>
+                      </small>
+            </li>
+            <li class="list-group-item">
+              <a class="btn btn-sm btn-danger" href="https://nthu-datalab.github.io/ss/" target="_blank">Git</a>
+              <a class="btn btn-sm btn-success" href="https://www.youtube.com/watch?v=LBHCl6nQsco&index=8&list=PLlPcwHqLqJDlD86V7FNTP8d7JBvQmITrP" target="_blank">Video</a>
+              <a class="btn btn-sm btn-primary" href="https://nthu-datalab.github.io/ss/slides/web/01_Web_HTML.pdf" target="_blank">Slides</a>
+              <a class="btn btn-sm btn-info" href="https://www.w3schools.com/html/" target="_blank">HTML5</a>
+              <a class="btn btn-sm btn-info" href="https://developer.mozilla.org/en-US/" target="_blank">MDN</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-12">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">CSS</li>
+        </ol>
+        <div class="card" id="css-card">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <h5 class="card-title">background scroll</h5>
+              <div class="card-text">
+                <div class="bg-test">
+                  <div class="bg-test-text">
+                    So, you've done a few courses and read a few books but still don't feel great about your relationship with JavaScript. How do you get better? Build things. Lots of things. Build 1,000 things. Keep it up and don't stop. Seriously. This has always been
+                    my advice. Just put in the work and you will get better. But Wes, what should I build? I have no ideas! Please don't make me do another todo app.
+                    So, you've done a few courses and read a few books but still don't feel great about your relationship with JavaScript. How do you get better? Build things. Lots of things. Build 1,000 things. Keep it up and don't stop. Seriously. This has always been
+                    my advice. Just put in the work and you will get better. But Wes, what should I build? I have no ideas! Please don't make me do another todo app.
+                  </div>
+                </div>
+              </div>
+              <small class="text-muted">
+                        <ul>
+                          <li>DIV內的background會隨著內容滾動而移動</li>
+                        </ul>
+                      </small>
+            </li>
+            <li class="list-group-item">
+              <h5 class="card-title">background fixed</h5>
+              <div class="card-text">
+                <div class="bg-test">
+                  <div class="bg-test-text-2">
+                    So, you've done a few courses and read a few books but still don't feel great about your relationship with JavaScript. How do you get better? Build things. Lots of things. Build 1,000 things. Keep it up and don't stop. Seriously. This has always been
+                    my advice. Just put in the work and you will get better. But Wes, what should I build? I have no ideas! Please don't make me do another todo app.
+                    So, you've done a few courses and read a few books but still don't feel great about your relationship with JavaScript. How do you get better? Build things. Lots of things. Build 1,000 things. Keep it up and don't stop. Seriously. This has always been
+                    my advice. Just put in the work and you will get better. But Wes, what should I build? I have no ideas! Please don't make me do another todo app.
+                  </div>
+                </div>
+              </div>
+              <small class="text-muted">
+                <ul>
+                  <li>DIV內的background將會鎖定</li>
+                </ul>
+                      </small>
+            </li>
+            <li class="list-group-item" id="selectors">
+              <h5 class="card-title">Selectors</h5>
+              <div class="card-text">
+                <p data-src="src-00">Owl uses hardware acceleration with CSS3 Translate3d transitions. Its fast and works like a charm!</p>
+                <ul class="targetUl">
+                  <li><a href="#" data-src="src-01">Over 60 options. Easy for novice users and even more powerful for advanced developers.</a></li>
+                  <li><a href="#" data-src="src-02">Designed specially to boost mobile browsing experience. Mouse drag works great on desktop too!</a></li>
+                  <li><a href="#" data-src="src-03">Almost all options are responsive and include very intuitive breakpoints settings.</a></li>
+                </ul>
+                <p data-src="src-04">Owl uses hardware acceleration with CSS3 Translate3d transitions. Its fast and works like a charm!</p>
+                <p data-src="src-05">Owl Carousel supports plugin modular structure. Therefore, you can dettach plugins that you wont use on project or create new ones that fit your needs</p>
+                <p title="css">This sibling combinator is similar to X + Y, however, it's less strict. While an adjacent selector (ul + p) will only select the first element that is immediately preceded by the former selector, this one is more generalized. It will select, referring to our example above, any p elements, as long as they follow a ul.</p>
+                <p class="nouppercase" style="display:block; text-align: center;"><img src="https://p2.bahamut.com.tw/M/2KU/82/0001595582.JPG" alt="center" width="200" height="auto" style="margin:0 auto"></p>
+              </div>
+              <small class="text-muted">
+                <ul>
+                  <li>display:block如果要用margin:0 auto對齊，父DOM必須要包含text-align:center的style(margin:auto代表越大越好)</li>
+                  <li>Margin Collapsing: 當兩個dom的margin-bottom跟margin-top相撞的時候，會取較大的那一個當間距</li>
+                </ul>
+                      </small>
+            </li>
+            <li class="list-group-item">
+              <h5 class="card-title">Relative Metrics & Box Sizing</h5>
+              <div class="card-text text-center">
+                <p class="boxSizing nouppercase bxzi">
+                  <title>This is box-sizing unset</title><br>
+                  If you want to use Isotope to <strong>develop commercial sites</strong>, themes, projects, and applications, the Commercial license is the appropriate license.
+                </p>
+                <br>
+                <p class="boxSizing nouppercase">
+                  <title>This is box-sizing border-box</title><br>
+                  If you want to use Isotope to <strong>develop commercial sites</strong>, themes, projects, and applications, the Commercial license is the appropriate license.
+                </p>
+              </div>
+              <small class="text-muted">
+                <ul>
+                  <li>rem單位是依據html定義的font-size來作縮放</li>
+                  <li>em單位則是依據該dom所繼承到的font-size來作縮放</li>
+                  <li>若想要div width包含padding及border，需啟動box-sizing: border-box;</li>
+                  <li>bootstrap預設已經為box-sizing border-box</li>
+                </ul>
+                      </small>
+            </li>
+            <li class="list-group-item" id="positioning">
+              <h5 class="card-title">Positioning</h5>
+              <div class="card-text text-center clearfix">
+                <p class="boxContainer clearBoth">
+                  <span class="floatBoxLeft"></span>
+                  <span class="floatBoxLeft"></span>
+                  <span class="floatBoxRight"></span>
+                </p>
+                <p>
+                  <strong>WITHIN CLEARFIX</strong> Removed from normal flow and stick to the left/right-most side of its container. – Unless specified, width and height shrink to fit thecontent.
+                </p>
+                <hr>
+                <p class="boxContainer">
+                  <span class="floatBoxLeft"></span>
+                  <span class="floatBoxLeft"></span>
+                  <span class="floatBoxRight"></span>
+                </p>
+                <p>
+                  <strong>WITHOUT CLEARFIX</strong> Removed from normal flow and stick to the left/right-most side of its container. – Unless specified, width and height shrink to fit thecontent.
+                </p>
+              </div>
+              <small class="text-muted">
+                <ul>
+                  <li>如果使用float，就必須進行clearfix</li>
+                </ul>
+                      </small>
+            </li>
+            <li class="list-group-item">
+              <h5 class="card-title">Demo: Image Gallery</h5>
+              <div class="card-text text-center">
+                <div id="galleryContainer">
+                  <img src="https://unsplash.com/photos/KET9k6gNlEg/download?force=true"/>
+                  <img src="https://unsplash.com/photos/xEh4hvxRKXM/download?force=true"/>
+                  <img src="https://unsplash.com/photos/uOi3lg8fGl4/download?force=true"/>
+                  <img src="https://unsplash.com/photos/pHANr-CpbYM/download?force=true"/>
+                  <img src="https://unsplash.com/photos/62V7ntlKgL8/download?force=true"/>
+                  <img src="https://unsplash.com/photos/eWBseWsTEpA/download?force=true"/>
+                  <div class="backmask"></div>
+                </div>
+              </div>
+              <small class="text-muted">
+                <ul>
+                  <li>如果使用float，就必須進行clearfix</li>
+                </ul>
+                      </small>
+            </li>
+            <li class="list-group-item">
+              <h5 class="card-title">Stacking Order</h5>
+              <div class="card-text text-center" style="position:relative;">
+                  <div class="prtest">z2-father<br>
+                    <div class="patest" style="left: 40px;top: 30px;z-index: 4;background: #636363;">z4-child<br></div>
+                  </div>
+                  <div class="patest">z3-father<br>
+                    <div class="patest" style="left: 30px;top: 30px;">z3-child<br></div>
+                  </div>
+                  <br><br><br>
+              </div>
+              <small class="text-muted">
+                <ul>
+                  <li>z-index的對等關係只在siblings同一層的兄弟間比較，父元素或子元素不比較</li>
+                </ul>
+                      </small>
+            </li>
+            <li class="list-group-item">
+              <a class="btn btn-sm btn-danger" target="_blank" href="https://shwu10.cs.nthu.edu.tw/courses-software-studio-2017-spring/lab-css-blog-quiz">CSS Quiz</a>
+              <a class="btn btn-sm btn-success" target="_blank" href="https://www.youtube.com/watch?v=DX10oW-qBQE&list=PLlPcwHqLqJDkGpN5725ZP7jR2vTHayk4E&index=2">Video</a>
+              <a class="btn btn-sm btn-primary" target="_blank" href="https://nthu-datalab.github.io/ss/slides/web/02_CSS.pdf">Slides</a>
+              <a class="btn btn-sm btn-info" target="_blank" href="http://www.csszengarden.com/">CSS Zen Garden</a>
+              <a href="https://fonts.google.com/" target="_blank" class="btn btn-sm btn-info">Google Font</a>
+              <a href="https://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize--net-16048" target="_blank" class="btn btn-sm btn-info">CSS Selectors</a>
+              <a href="https://unsplash.com/" target="_blank" class="btn btn-sm btn-info">Unsplash</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-12">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Bootstrap</li>
+        </ol>
+        <div class="card" id="bootstrap-card">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <h5 class="card-title">Bootstrap CSS name</h5>
+              <div class="card-text">
+                <div class="clearfix" style="height:200px;">
+                  <div class="m-1 w-25 h-25 h-25 float-left" style="background-color:rgb(148, 137, 179);"></div>
+                  <div class="m-1 w-25 h-25 h-25 float-left" style="background-color:rgb(148, 137, 179);"></div>
+                  <div class="m-1 w-25 h-25 h-25 float-left" style="background-color:rgb(148, 137, 179);"></div>
+                </div>
+                <textarea name="name" class="w-100" rows="5">
+                  • Margin/padding: m, p
+                  • Side: t, l, b, r, x, y
+                  • Size: auto, 0, 1, ..., 5 (*0.25rem)
+                  • media: xs, sm, md, lg, xl
+                </textarea>
+              </div>
+              <small class="text-muted">
+                        <ul>
+                          <li>bootstrap 4</li>
+                          <li>Font Awesome</li>
+                          <li>Balsamiq Mockups</li>
+                          <li>Google Forms</li>
+                          <li>Google Analytics</li>
+                          <li>Flexbox, Media Queries, Containers and Grid system</li>
+                        </ul>
+                      </small>
+            </li>
+            <li class="list-group-item">
+              <h5 class="card-title">Flex box</h5>
+              <div class="card-text">
+                <div class="d-flex flex-row my-1">
+                  <div class="p-2 m-1">.flex-row</div>
+                  <div class="p-2 m-1">.flex-row</div>
+                  <div class="p-2 m-1">.flex-row</div>
+                </div>
+                <div class="d-flex flex-row-reverse my-1">
+                  <div class="p-2 m-1">.flex-row-reverse</div>
+                  <div class="p-2 m-1">.flex-row-reverse</div>
+                  <div class="p-2 m-1">.flex-row-reverse</div>
+                </div>
+                <div class="d-flex flex-column my-1" style="height:12rem;">
+                  <div class="p-2 m-1">flex-column</div>
+                  <div class="p-2 m-1">flex-column</div>
+                  <div class="p-2 m-1">flex-column</div>
+                </div>
+                <div class="d-flex flex-column-reverse my-1" style="height:12rem;">
+                  <div class="p-2 m-1">flex-column-reverse</div>
+                  <div class="p-2 m-1">flex-column-reverse</div>
+                  <div class="p-2 m-1">flex-column-reverse</div>
+                </div>
+                <div class="d-flex justify-content-center my-1">
+                  <div class="p-2 m-1">justify-content-center</div>
+                  <div class="p-2 m-1">justify-content-center</div>
+                  <div class="p-2 m-1">justify-content-center</div>
+                </div>
+                <div class="d-flex justify-content-between my-1">
+                  <div class="p-2 m-1">justify-content-between</div>
+                  <div class="p-2 m-1">justify-content-between</div>
+                  <div class="p-2 m-1">justify-content-between</div>
+                </div>
+                <div class="d-flex justify-content-around my-1">
+                  <div class="p-2 m-1">justify-content-around</div>
+                  <div class="p-2 m-1">justify-content-around</div>
+                  <div class="p-2 m-1">justify-content-around</div>
+                </div>
+                <div class="d-flex flex-row align-items-center my-1" style="height: 4rem;">
+                  <div class="p-2 m-1">align-items-center</div>
+                  <div class="p-2 m-1">align-items-center</div>
+                  <div class="p-2 m-1">align-items-center</div>
+                </div>
+                <div class="d-flex flex-row align-items-start my-1" style="height: 4rem;">
+                  <div class="p-2 m-1">align-items-start</div>
+                  <div class="p-2 m-1">align-items-start</div>
+                  <div class="p-2 m-1">align-items-start</div>
+                </div>
+                <div class="d-flex flex-row align-items-end my-1" style="height: 4rem;">
+                  <div class="p-2 m-1">align-items-end</div>
+                  <div class="p-2 m-1">align-items-end</div>
+                  <div class="p-2 m-1">align-items-end</div>
+                </div>
+                <div class="d-flex flex-row align-items-stretch my-1" style="height: 10rem;">
+                  <div class="p-2 m-1">align-items-stretch</div>
+                  <div class="p-2 m-1 align-self-center">align-self-center</div>
+                  <div class="p-2 m-1 align-self-end">align-self-end</div>
+                  <div class="p-2 m-1 align-self-start">align-self-start</div>
+                  <div class="p-2 m-1">align-items-stretch</div>
+                  <div class="p-2 m-1">align-items-stretch</div>
+                </div>
+              </div>
+              <small class="text-muted">
+                        <ul>
+                          <li></li>
+                        </ul>
+                      </small>
+            </li>
+            <li class="list-group-item">
+              <h5 class="card-title">media queries</h5>
+              <div class="card-text">
+                <div class="media-contain text-center">
+
+                </div>
+              </div>
+              <small class="text-muted">
+                        <ul>
+                          <li></li>
+                        </ul>
+                      </small>
+            </li>
+            <li class="list-group-item">
+              <h5 class="card-title">Components & Tools</h5>
+              <div class="card-text">
+                <div class="navbar w-100 bg-light" id="top-menu">
+                  <a href="#" class="navbar-brand">BRAND</a>
+                  <ul class="nav nav-pills">
+                    <li class="nav-item"><a href="#n1" class="nav-link">1</a></li>
+                    <li class="nav-item"><a href="#n2" class="nav-link">2</a></li>
+                    <li class="nav-item"><a href="#n3" class="nav-link">3</a></li>
+                    <li class="nav-item dropdown">
+                      <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">dropdown</a>
+                      <div class="dropdown-menu">
+                        <a href="#t1" class="dropdown-item">t1</a>
+                        <a href="#t2" class="dropdown-item">t2-toggle</a>
+                        <div class="dropdown-divider" role="separator"></div>
+                        <a href="#t3" class="dropdown-item">t3</a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div data-spy="scroll" data-target="#top-menu" data-offset="300" style="height: 400px; overflow:auto;">
+                  <div class="jumbotron" id="n1">
+                    <h1 class="display-3">#n1</h1>
+                    <p class="lead">jump to here</p>
+                    <hr class="my-4">
+                    <p>small text</p>
+                    <p class="lead"><a href="#top-menu" class="btn btn-primary btn-md" role="button">BACK TOP</a></p>
+                  </div>
+                  <div class="jumbotron" id="n2">
+                    <h1 class="display-3">#n2</h1>
+                    <p class="lead">jump to here</p>
+                    <hr class="my-4">
+                    <p>small text</p>
+                    <p class="lead"><a href="#top-menu" class="btn btn-primary btn-md" role="button">BACK TOP</a></p>
+                  </div>
+                  <div class="jumbotron" id="n3">
+                    <h1 class="display-3">#n3</h1>
+                    <p class="lead">jump to here</p>
+                    <hr class="my-4">
+                    <p>small text</p>
+                    <p class="lead"><a href="#top-menu" class="btn btn-primary btn-md" role="button">BACK TOP</a></p>
+                  </div>
+                  <div class="jumbotron" id="t1">
+                    <h1 class="display-3">#t1</h1>
+                    <p class="lead">jump to here</p>
+                    <hr class="my-4">
+                    <p>small text</p>
+                    <p class="lead"><a href="#top-menu" class="btn btn-primary btn-md" role="button">BACK TOP</a></p>
+                  </div>
+                  <div class="jumbotron" id="t2">
+                    <h1 class="display-3">#t2</h1>
+                    <p class="lead">jump to here</p>
+                    <hr class="my-4">
+                    <p>small text</p>
+                    <p class="lead">
+                      <a href="#top-menu" class="btn btn-primary btn-md" role="button">BACK TOP</a>
+                      <button class="btn btn-info btn-md" type="button" data-toggle="modal" data-target="#model1">model toggle</button>
+                    </p>
+                    <!-- Modal -->
+                    <div class="modal fade" id="model1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Popover in a modal</h5>
+                            <p>This
+                              <button role="button" class="btn btn-secondary popover-test" data-container="body" data-toggle="popover" data-placement="right" title="Popover title" data-content="<em><b>Popover body content</b></em> is set in this attribute.">button</button>
+                              triggers a popover on click.
+                            </p>
+                            <hr>
+                            <h5>Tooltips in a modal</h5>
+                            <p>
+                              <a tabindex="0" class="tooltip-test" data-toggle="tooltip" title="Tooltip" data-placement="right">right & tabindex</a>
+                               and
+                              <a href="#" class="tooltip-test" data-toggle="tooltip" title="<em><b>Tooltip</b></em>" data-placement="top" data-html="true">top & title content html</a>
+                               have tooltips on hover.<br>
+                              <a tabindex="0" class="tooltip-test" data-toggle="tooltip" title="Tooltip" data-placement="bottom" data-trigger="click">bot & trigger click</a>
+                             </p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="jumbotron" id="t3">
+                    <h1 class="display-3">#t3</h1>
+                    <p class="lead">jump to here</p>
+                    <hr class="my-4">
+                    <p>small text</p>
+                    <p class="lead"><a href="#top-menu" class="btn btn-primary btn-md" role="button">BACK TOP</a></p>
+                  </div>
+                </div>
+              </div>
+              <small class="text-muted">
+                        <ul>
+                          <li>Popover & tooltip 的Options可以寫在js裡面(如popover的作法)，也可以在字首加data-寫在attr裡面(如tooltip的作法)</li>
+                        </ul>
+                      </small>
+            </li>
+            <li class="list-group-item">
+              <a class="btn btn-sm btn-success" target="_blank" href="https://www.youtube.com/watch?v=JGTk_7kaIQQ&list=PLlPcwHqLqJDlwNSyaBRQ3yao5UyhhxQuf">Video</a>
+              <a class="btn btn-sm btn-primary" target="_blank" href="https://nthu-datalab.github.io/ss/slides/web/03_Bootstrap.pdf">Slides</a>
+              <a class="btn btn-sm btn-info" target="_blank" href="https://getbootstrap.com/docs/4.0/components/scrollspy/">Bootstrap Scrollspy</a>
+              <a class="btn btn-sm btn-info" target="_blank" href="https://getbootstrap.com/docs/4.0/components/modal/">Bootstrap Modal Options</a>
+              <a class="btn btn-sm btn-info" target="_blank" href="https://startbootstrap.com/">Start bootstrap</a>
+              <a class="btn btn-sm btn-info" target="_blank" href="https://balsamiq.com/products/mockups/">Balsamiq Mockup</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery CDN -->
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+  <!--- Bootstrap CDN --->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+  <!--- local --->
+  <script type = "text/javascript">
+    $(function() {
+      // -- CSS Gallery --
+      var thisImg,thisClone, mask=$('.backmask');
+      $('#galleryContainer img').on('click', function() {
+        thisImg = $(this);
+        thisClone = thisImg.clone().insertAfter(thisImg);
+        if (!thisImg.hasClass('active')) {
+          thisImg.add(mask).addClass('active');
+          thisImg.css('margin-left', 0 - thisImg.width() / 2);
+        }
+      })
+      mask.on('click',function(){
+        if (thisImg.hasClass('active')){
+          thisImg = $('#galleryContainer img.active');
+          thisImg.add(mask).removeClass('active').css('margin-left', '');
+          thisClone.remove();
+        }
+      });
+
+      $('[data-toggle="popover"]').popover({
+        html: true
+      });
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
+</body>
+
+</html>

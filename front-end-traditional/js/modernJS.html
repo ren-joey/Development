@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width , initial-scale=1.0">
+
+  <!--- Bootstrap CDN --->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway" rel="stylesheet">
+
+  <!--- local --->
+  <style>
+      body {
+      font-family: 'Raleway',apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif !important;
+      padding-top: .75rem;
+    }
+
+    div , div *{
+      margin-bottom: .25rem;
+    }
+
+    a,
+    a:hover,
+    a:visited {
+      text-decoration: none !important;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+    }
+
+    .display-none{
+      display: none;
+    }
+
+    .card-title::before{
+      content: '📌 ';
+    }
+
+    .card-text {
+      margin-bottom: .75rem;
+    }
+
+    .col,.col-12 {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    h1,h2,h3,h4,h5,h6{
+      font-weight: bolder;
+    }
+
+    .alert p{
+      font-family: sans-serif;
+      font-size: .85rem;
+    }
+
+    /*-- Primitive & Object --*/
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Modern Javascript</li>
+        </ol>
+        <div class="card" id="js-card">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <h5 class="card-title">Node.js</h5>
+              <div class="card-text">
+                  <div class="alert alert-dark" role="alert">
+                    <p>
+                    </p>
+                  </div>
+              </div>
+              <small class="text-muted">
+                        <ul>
+                          <li></li>
+                        </ul>
+                      </small>
+            </li>
+            <li class="list-group-item">
+              <a class="btn btn-sm btn-danger" href="https://nthu-datalab.github.io/ss/" target="_blank">Git</a>
+              <a class="btn btn-sm btn-success" target="_blank" href="https://www.youtube.com/playlist?list=PLlPcwHqLqJDkPXpTPlMh8NtCUC-LWYb-f">Video</a>
+              <a class="btn btn-sm btn-primary" target="_blank" href="https://nthu-datalab.github.io/ss/slides/web/05_Modern-Javascript.pdf">Slides</a>
+              <a class="btn btn-sm btn-info" target="_blank" href="#">#</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery CDN -->
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+  <!--- Bootstrap CDN --->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+  <!--- local --->
+  <script type = "text/javascript">
+    // -- javascript --
+    // -- literal (JSON) --
+    var user = {
+      name: 'Bob',
+      friends: ['Alice', 'Paul'],
+      greet: function(){
+        return 'Hi, I am ' + this.name;
+      }
+    }
+
+    window.onload = function(){
+      //function are first-class citizens，可以傳來傳去的function
+      var el = document.querySelector('section'),
+          scriptType = '\'javascript\'',
+          STNum_4 = scriptType[4],
+          STSlice_2_4 = scriptType.slice(2,4);
+      //預設的object function，稱之為built-in object
+      //ex. document.querySelector
+      //slice(2,4)意思是第2個字元(從0開始)一直算到4-1個字元
+      el.textContent = 'Hello ' + scriptType + ', STNum_4: ' + STNum_4 + ', STSlice_2_4: ' + STSlice_2_4;
+
+      // -- call JSON --
+      var UH = "user.name: " + user.name
+      + "<br>user['name']: " + user['name']
+      + "<br>user.friends[0]: " + user.friends[0]
+      + "<br>user.greet(): " + user.greet(),
+          el2 = document.getElementById('el2'),
+          el3 = document.getElementById('el3'),
+          el4 = document.getElementById('el4');
+      el2.innerHTML = UH;
+      el3.innerHTML = add3(1,5);
+      el4.innerHTML = add2('Aa','Bb','Cc');
+
+      // -- JS Basics --
+      var el4 = document.querySelector('section2');
+      el4.style.color = 'red';
+    };
+
+    // -- function --
+    function add(a,b){
+      return 'add(' + a +',' + b + '): ' + ( a + b );
+    }
+    var add2 = function(a,b,c){
+      return 'add2(' + a +',' + b + ',' + c + '): ' + ( a + b + c );
+    };
+    function add3(){
+      return 'arguments > add(' + arguments[0] +',' + arguments[1] + '): ' + ( arguments[0] + arguments[1] );
+    }
+
+    // -- high order function --
+    function forEach(arr, f) {
+    for(var i = 0; i < arr.length; i++) f(arr[i]);
+    }
+    function f(){
+      /* -- do something -- */
+    }
+    forEach(['a', 'b', 'c'], console.log); // no ()
+    /* -- 先把consle.log的function傳進a,b,c但不加()，意思是不馬上執行該function -- */
+
+    // -- JSON - 當我們需要把Obj轉成string傳送給server的時候就需要用到JSON --
+    var jsonTest = JSON.stringify(user);
+    /* -- obj to JSONstring -- */
+    var user2  = JSON.parse(jsonTest);
+    /* -- JSONstring to obj -- */
+
+    // -- Arrays --
+    var arr = ['r', 'g', 'b'];
+    /* stack */
+    var b = arr.pop(); // ['r', 'g']
+    arr.push('y'); // ['r', 'g', 'y']
+    /* queue */
+    var r = arr.shift(); // ['g', 'y']
+    arr.unshift('y'); // ['y', 'g', 'y']
+    /* loop */
+    function f() {/*do something*/}
+    arr.forEach(f); // high-order function
+
+    // -- Array handler
+    arr = ['r', 'g', 'b', 'g'];
+    arr.indexOf('g'); // 1, not 3
+    arr.indexOf('m'); // -1
+    /* copy */
+    var arr2 = arr.slice(1, 3); // ['g', 'b']
+    arr.length; // 4
+    /* remove */
+    var arr3 = arr.splice(1, 2); // ['g', 'b']
+    arr.length; // 2
+
+    // -- string handler
+    var str = 'Please locate where "locate" is.';
+    str.charAt(0); // 'P'
+    str.search('locate'); // 7
+    var str2 = str.replace(/locate/g, 'find');
+    console.log(str2); // 'Please find where "find" is.
+    console.log(str); // 'Please locate where "locate" is.
+    var srt3 = str.toUpperCase();
+    var str4 = str.split(' '); // 切割string
+    for (var i in str4){
+      console.log(str4[i]);
+    }
+
+    // -- event handling --
+    var TBtn = document.getElementsByClassName('btn');
+    var TContainer = document.getElementById('TT1');
+    var strRemember = '';
+    for(var i = 0; i < 2; i++)
+    TBtn[i].addEventListener('click', clickTry, false);
+    TContainer.addEventListener('mouseenter',function(e){
+      mouseenterTry(true);
+    },false);
+    TContainer.addEventListener('mouseleave',function(e){
+      mouseenterTry(false);
+    });
+    function clickTry(){
+      var clickBtn = this,
+          message = clickBtn.innerHTML,
+          targetDiv = this.getAttribute('data-target');
+          targetDiv = document.getElementById(targetDiv);
+          targetDiv.textContent = '"' + message + '" works!';
+    }
+    function mouseenterTry(bool){
+      if(bool){
+        strRemember = TContainer.textContent;
+        TContainer.textContent = 'Mouseenter!'
+      }else{
+        TContainer.textContent = strRemember;
+      }
+    }
+
+    // -- function owner Binding --
+    var SI1;
+    var TT2 = document.getElementById('TT2');
+    var TT3 = document.getElementById('TT3');
+    var tryUser = {
+      name: 'Joey',
+      val: 0,
+      greet: function(peer,bool){
+        if(!peer){
+          peer = 'Axe';
+        }
+        if(!bool)TT2.innerHTML = 'Hi ' + peer + '. my name is ' + this.name + '<br>'
+        + 'call times: ' + this.val;
+        this.val++;
+        return 'Hi ' + peer + '. my name is ' + this.name;
+      }
+    };
+    var tryUser2 = {
+      name: 'Alice',
+      val: 0,
+    }
+    function startInterval(bool){
+      if(bool){
+        if(!SI1)
+        SI1 = setInterval(tryUser.greet.bind(tryUser), 1000);
+        /*  如果call的function的this要導向正確的function owner(這個例子是user)，
+        *   要在最後加上bind(user)，不然預設會把function owner發給window
+        */
+      }else{
+        clearInterval(SI1);
+        SI1 = '';
+        tryUser.val = 0;
+        TT2.textContent = 'Stop interval';
+      }
+    }
+    function tryApply(){
+      var msg = tryUser.greet.apply(tryUser2, ['John', true]); //還有另一個方法call
+      TT3.textContent = msg;
+    }
+    function tryApplyPaul(){
+      greetFromAlice('Paul', true);
+    }
+    function greetFromAlice(){
+      var msg = tryUser.greet.apply(tryUser2, arguments);
+      TT3.textContent = msg;
+    }
+    /* call&apply 方法主要是使用同一個function但需傳入不同的值所使用
+    * call 傳入的值須依序鍵入在第二個para之後
+    *      ex. tryUser.greet.call(tryUser2, 'Paul', true)
+    * apply 傳入的值可以直接導入一個array
+    *      ex. tryUser.greet.apply(tryUser2, arguments)
+    *          tryUser.greet.apply(tryUser2, ['Paul', true])
+    */
+  </script>
+</body>
+
+</html>

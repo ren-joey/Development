@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+
+    <script>
+        var logo,sub,spans,myAni;
+
+        $(function(){
+            logo = $('.logo');
+            sub = $('.sub-title');
+            spans = $('span');
+            controlBtn = $('.pdControl');
+
+            myAni = new TimelineLite;
+
+            myAni.from(logo,1,{left:"-=60px",opacity:"0",ease:Back.easeOut}).staggerFrom(sub,1,{width:"0",opacity:"0"},1).staggerFrom(spans,1,{top:"-=20px",rotation:"-40deg", alpha:0, scale:1.8, ease:Back.easeOut},0.5);
+
+            controlBtn.on('click',function(){
+                var controlType = $(this).attr('value'),
+                    setEle = $(this).attr('datasrc');
+
+                switch (controlType){
+                    case "play":
+                        myAni.play(setEle);
+                        break;
+                    case "pause":
+                        myAni.pause(setEle);
+                        break;
+                    case "resume":
+                        myAni.resume();
+                        break;
+                    case "reverse":
+                        myAni.reverse(setEle);
+                        break;
+                    case "seek":
+                        myAni.seek(setEle);
+                        break;
+                    case "timeScale":
+                        myAni.timeScale(setEle);
+                        break;
+                    case "restart":
+                        myAni.restart();
+                        break
+                    default:
+                        break;
+                }
+            })
+        });
+    </script>
+
+    <style>
+        .logo{
+            background-image: url("../Burger_King_Logo.svg.png");
+            background-size: contain;
+            width: 50px;
+            height: 50px;
+            position: relative;
+            display: inline-block;
+            line-height: 100px;
+            vertical-align: middle;
+        }
+
+        .sub-title{
+            font-size: 24px;font-weight: 900;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            line-height: 100px;
+            vertical-align: middle;
+        }
+
+        span{
+            position: relative;
+            display: inline-block;
+            line-height: 100px;
+            vertical-align: middle;
+        }
+
+        html{
+            height: 100%;
+        }
+
+        body{
+            display: flex;
+            justify-items: center;
+            align-items: center;
+            min-height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div style="flex: 1; text-align: center;">
+    <div class="logo"></div>
+    <div class="sub-title">Dream come true</div>
+    <div class="sub-title">Surge Studio</div>
+    <span style="font-size: 18px;font-weight: normal;"> imagination </span>
+    <span style="font-size: 18px;font-weight: normal;">your creative </span>
+    <span style="font-size: 18px;font-weight: normal;">out</span>
+    <span style="font-size: 18px;font-weight: normal;">of</span>
+    <span style="font-size: 18px;font-weight: normal;">believing</span>
+    <br>
+    <br>
+    <button class="pdControl" value="play">Play()</button>
+    <button class="pdControl" value="pause">Pause()</button>
+    <button class="pdControl" value="resume">Resume()</button>
+    <button class="pdControl" value="reverse">Reverse()</button>
+    <button class="pdControl" value="play" datasrc="5">Play(5)</button>
+    <button class="pdControl" value="pause" datasrc="3">Pause(3)</button>
+    <button class="pdControl" value="reverse" datasrc="1">Reverse(1)</button>
+    <button class="pdControl" value="seek" datasrc="3">Seek(3)</button>
+    <button class="pdControl" value="timeScale" datasrc="3">TimeScale(3)</button>
+    <button class="pdControl" value="timeScale" datasrc="2">TimeScale(2)</button>
+    <button class="pdControl" value="timeScale" datasrc="1">TimeScale(1)</button>
+    <button class="pdControl" value="timeScale" datasrc="0.5">TimeScale(0.5)</button>
+    <button class="pdControl" value="restart">Restart()</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+若缺少node_modules資料
+npm install
+npm install --dev
+
+----------------------------------------------
+
+node 的 ES6,7 語法不被所有的主流瀏覽器支援，
+因此node程式碼必須經過webpack進行轉碼，
+才有辦法被所有browser看懂
+
+Step 1：
+webpack使用方法：
+./node_modules/.bin/webpack src/main.js \dist/main.bundle.js
+
+Step 2：
+快速使用webpack須設置webpack.config.js
+var path = require ('path');
+
+module.exports = {
+  context: path.resolve(__dirname, './src'),
+  entry: {
+    main: './main.js'
+  },
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: '[name].bundle.js'
+  }
+}
+設置完成後呼叫
+./node_modules/.bin/webpack
+
+Step 3：
+進一步快速呼叫webpack可以自行在package.json設置script function
+"build": "./node_modules/.bin/webpack"
+或
+"build": "webpack"
+或使用watch mode持續更新檔案
+"watch": "webpack -w"
+接著在cmd只需輸入
+npm fun build

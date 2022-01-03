@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width , initial-scale=1.0">
+
+  <!--- Bootstrap CDN --->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway" rel="stylesheet">
+
+  <!--- local --->
+  <style>
+      body {
+      font-family: 'Raleway',apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif !important;
+      padding-top: .75rem;
+    }
+
+    div , div *{
+      margin-bottom: .25rem;
+    }
+
+    a,
+    a:hover,
+    a:visited {
+      text-decoration: none !important;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+    }
+
+    .display-none{
+      display: none;
+    }
+
+    .card-title::before{
+      content: '📌 ';
+    }
+
+    .card-text {
+      margin-bottom: .75rem;
+    }
+
+    .col,.col-12 {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    h1,h2,h3,h4,h5,h6{
+      font-weight: bolder;
+    }
+
+    .alert p{
+      font-family: sans-serif;
+      font-size: .85rem;
+    }
+
+    /*-- Primitive & Object --*/
+    #el1::before{
+      content: 'Slice text';
+      display: block;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+    #el2::before{
+      content: 'Object & JSON things';
+      display: block;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+    #el3::before , #el4::before{
+      content: 'Function things';
+      display: block;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">javascript</li>
+        </ol>
+        <div class="card" id="js-card">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <h5 class="card-title">Primitive & Object</h5>
+              <div class="card-text">
+                  <section id="el1"></section>
+                  <section id="el2"></section>
+                  <section id="el3"></section>
+                  <section id="el4"></section>
+                  <div class="alert alert-dark" role="alert">
+                    <p>
+                      /* arrays */<br>
+                      var arr = [7, 'b', [false]];<br>
+                      var arr = new Array(7, 'b', [false]);<br>
+                      arr[1] // 'b'<br>
+                      arr.length // 3<br>
+                      <br>
+                      /* dates */<br>
+                      var now = new Date();<br>
+                      now.toUTCString()<br>
+                      var d = new Date('March 1, 1997 11:13:00');<br>
+                      <br>
+                      /* regexps */<br>
+                      var re = /ab+/i;<br>
+                      var re = new RegExp('ab+', 'i');<br>
+                      re.test('Abbbc') // true<br>
+                      re.test('bcd') // false<br>
+                      'Abbc abc'.replace(/ab+/ig, 'x') // 'xc xc'<br>
+                    </p>
+                  </div>
+                  <div class="alert alert-dark" role="alert">
+                    <p>
+                      function greet() {<br>
+                      return 'Hi, I am ' + this.name;<br>
+                      }<br>
+                      greet() // 'Hi, I am undefined'<br>
+                      <br>
+                      (this) is the context of<br>
+                      execution<br>
+                      – (window) by default<br>
+                      ex. this.name -&gt; window.name<br>
+                      <br>
+                      var user = {<br>
+                      name: 'Bob'<br>
+                      };<br>
+                      user.greet = greet;<br>
+                      user.greet() // 'Hi, I am Bob'<br>
+                    </p>
+                  </div>
+                  <div class="alert alert-dark" role="alert">
+                    <p>
+                      /* Function as Constructors */<br>
+                      function User(name, friends) {<br>
+                      this.name = name;<br>
+                      this.friends = friends;<br>
+                      this.greet = function() {...};<br>
+                      };<br>
+                      <br>
+                      // saves repeated code<br>
+                      var user1 = new User('Bob', [...]);<br>
+                      var user2 = new User('John', [...]);<br>
+                      typeof User // 'function'<br>
+                      typeof user2 // 'object'<br>
+                      <br>
+                      new creates an empty object, calls constructor,<br>
+                      and then returns the object<br>
+                      • User is called a class<br>
+                      – Blueprint for its objects/instances<br>
+                    </p>
+                  </div>
+                  <div class="alert alert-dark" role="alert">
+                    <p>
+                      /* for in object */<br>
+                      for (var prop in obj) {<br>
+                      obj[prop]...<br>
+                    }<br>
+                    </p>
+                  </div>
+              </div>
+              <small class="text-muted">
+                        <ul>
+                          <li>Chrome Browser Console 可以直接enter JS進去測試</li>
+                          <li>不需要call this的function稱之為Static Methods</li>
+                          <li>要知道任一變數的truthy falsy寫成!!'bob'，如a的T/F，寫成!!a</li>
+                          <li>falsy的value有：false, 0, '', null, undefined, NaN</li>
+                          <li>比較左右會自動去除type，如果不要去除type則應該使用 === or !==</li>
+                        </ul>
+                      </small>
+            </li>
+            <li class="list-group-item">
+              <h5 class="card-title">Bulti in Functions & Methods</h5>
+              <div class="card-text">
+                <div class="alert alert-dark" role="alert">
+                  <p>
+                    /* -- Type Conversion -- */<br>
+                    /* to strings */<br>
+                    String(123) // '123'<br>
+                    (123).toString() // '123'<br>
+                    (12.345).toFixed(2) // '12.35'<br>
+                    String(false) // 'false'<br>
+                    false.toString() // 'false'<br>
+                    <br>
+                    /* to numbers */<br>
+                    Number('3.14') // 3.14<br>
+                    Number(true) // 1<br>
+                    Number('') // 0<br>
+                    Number('99 1') // NaN<br>
+                  </p>
+                </div>
+              </div>
+              <small class="text-muted">
+                        <ul>
+                          <li></li>
+                        </ul>
+                      </small>
+            </li>
+            <li class="list-group-item">
+              <h5 class="card-title">JS Basics</h5>
+              <div class="card-text">
+                <section2>
+                  Testing JS el.style.color
+                </section2>
+                <div class="alert alert-dark" role="alert">
+                  <p>
+                    var el4 = document.querySelector('section2');<br>
+                    el4.style.color = 'red';<br>
+                    <br>
+                    //DOM selectors
+                    document.URL<br>
+                    document.documentElement() // html tag<br>
+                    document.head // head tag<br>
+                    document.body // body tag<br>
+                    document.links<br>
+                    document.querySelector() // returns first match<br>
+                    document.querySelectorAll() // returns a list<br>
+                    document.getElementById()<br>
+                    document.getElementsByCalssName()<br>
+                    document.getElementsByTagName()<br>
+                  </p>
+                </div>
+                <div class="alert alert-dark" role="alert">
+                  <p>
+                    //DOM manipulation<br>
+                    el.classList.add('some-class');<br>
+                    el.classList.remove('some-class');<br>
+                    el.classList.toggle('some-class');<br>
+                    el.textContent = 'Some text'; // no HTML tag<br>
+                    el.innerHTML = 'Some HTML fragment';<br>
+                    el.getAttribute('href')<br>
+                    el.setAttribute('src', 'http://...')<br>
+                  </p>
+                </div>
+              </div>
+              <small class="text-muted">
+                        <ul>
+                          <li>如果要了解DOM的詳細功能，可以用console.dir(..)。如console.dir(window), console.dir(document)</li>
+                        </ul>
+                      </small>
+            </li>
+            <li class="list-group-item">
+              <h5 class="card-title">DOM & Event handling</h5>
+              <div class="card-text">
+                <button class="btn btn-primary btn-md" data-target="TT1">Try it</button>
+                <button class="btn btn-primary btn-md" data-target="TT1">eventListener</button>
+                <button class="btn btn-primary btn-md" onclick="startInterval(true)">start Interval</button>
+                <button class="btn btn-danger btn-md" onclick="startInterval(false)">stop Interval</button>
+                <button class="btn btn-primary btn-md" onclick="tryApply()">apply John</button>
+                <button class="btn btn-primary btn-md" onclick="tryApplyPaul()">call Paul</button>
+                <div class="alert alert-dark" role="alert"><p id="TT1">no event</p></div>
+                <div class="alert alert-dark" role="alert"><p id="TT2">no input</p></div>
+                <div class="alert alert-dark" role="alert"><p id="TT3">no input</p></div>
+                <div class="alert alert-dark" role="alert">
+                  <p>
+                    //event Props/Methods<br>
+                    clientX/Y<br>
+                    type<br>
+                    currentTarget<br>
+                    target<br>
+                    relatedTarget<br>
+                    preventDefault()<br>
+                    stopPropagation()
+                  </p>
+                </div>
+                <div class="alert alert-dark" role="alert">
+                  <p>
+                    // -- Closure function --<br>
+                    <br>
+                    /* high-order function */<br>
+                    function createShift(i) {<br>
+                    return function(j) { // closure<br>
+                    return i + j;<br>
+                    }<br>
+                    }<br>
+                    var shift = createShift(100);<br>
+                    shift(3) // 103<br>
+                    <br>
+                    //正常來說function在return之後會結束，<br>
+                    //但JS允許return之後又call function運算<br>
+                    //這種情況稱之為Closure<br>
+                  </p>
+                </div>
+              </div>
+              <small class="text-muted">
+                        <ul>
+                          <li></li>
+                        </ul>
+                      </small>
+            </li>
+            <li class="list-group-item">
+              <h5 class="card-title">Tricky Parts</h5>
+              <div class="card-text">
+                <div class="alert alert-dark" role="alert">
+                <p>
+                  // -- Closure function fix sample--<br>
+                  // -- wrong --<br>
+                  var trs = document.querySelectorAll(&apos;tr&apos;);<br>
+                  for(var i = 0; i &lt; trs.length; i++) {<br>
+                  var data = ... // based on trs[i]<br>
+                  tr[i].onmouseover = function() {<br>
+                  ... // process data<br>
+                  };<br>
+                  }<br>
+                  <br>
+                  // -- fix --<br>
+                  var trs = document.querySelectorAll(&apos;tr&apos;);<br>
+                  for(var i = 0; i &lt; trs.length; i++) {<br>
+                  var data = ... // based on trs[i]<br>
+                  tr[i].onmouseover = (function(d) {<br>
+                  return function() {<br>
+                  ... // process d<br>
+                  }<br>
+                  })(data); <br>
+                  }<br>
+                  /*把data複製成(d)丟進function裡面變成新的variable<br>
+                  *就不會一直改變data的值<br>
+                  */<br>
+                </p>
+              </div>
+              </div>
+              <small class="text-muted">
+                        <ul>
+                          <li></li>
+                        </ul>
+                      </small>
+            </li>
+            <li class="list-group-item">
+              <a class="btn btn-sm btn-danger" href="https://nthu-datalab.github.io/ss/" target="_blank">Git</a>
+              <a href="https://shwu10.cs.nthu.edu.tw/courses-software-studio-2017-spring/lab-js-color-game-quiz" class="btn btn-sm btn-danger" target="_blank">Color Game Quiz</a>
+              <a class="btn btn-sm btn-success" target="_blank" href="https://www.youtube.com/playlist?list=PLlPcwHqLqJDlKxQfaWR1apRR9EPLz2-yG">Video</a>
+              <a class="btn btn-sm btn-primary" target="_blank" href="https://nthu-datalab.github.io/ss/slides/web/04_Javascript.pdf">Slides</a>
+              <a class="btn btn-sm btn-info" target="_blank" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Regular_Expressions">MDN RegEXP</a>
+              <a class="btn btn-sm btn-info" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/Events">Event type Reforence</a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript" class="btn btn-sm btn-info" target="_blank">JS re-introduction</a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions" class="btn btn-sm btn-info" target="_blank">Regular Expressions</a>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures" class="btn btn-sm btn-info" target="_blank">Closures</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery CDN -->
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+  <!--- Bootstrap CDN --->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+  <!--- local --->
+  <script type = "text/javascript">
+    // -- javascript --
+    // -- literal (JSON) --
+    var user = {
+      name: 'Bob',
+      friends: ['Alice', 'Paul'],
+      greet: function(){
+        return 'Hi, I am ' + this.name;
+      }
+    }
+
+    window.onload = function(){
+      //function are first-class citizens，可以傳來傳去的function
+      var el = document.querySelector('section'),
+          scriptType = '\'javascript\'',
+          STNum_4 = scriptType[4],
+          STSlice_2_4 = scriptType.slice(2,4);
+      //預設的object function，稱之為built-in object
+      //ex. document.querySelector
+      //slice(2,4)意思是第2個字元(從0開始)一直算到4-1個字元
+      el.textContent = 'Hello ' + scriptType + ', STNum_4: ' + STNum_4 + ', STSlice_2_4: ' + STSlice_2_4;
+
+      // -- call JSON --
+      var UH = "user.name: " + user.name
+      + "<br>user['name']: " + user['name']
+      + "<br>user.friends[0]: " + user.friends[0]
+      + "<br>user.greet(): " + user.greet(),
+          el2 = document.getElementById('el2'),
+          el3 = document.getElementById('el3'),
+          el4 = document.getElementById('el4');
+      el2.innerHTML = UH;
+      el3.innerHTML = add3(1,5);
+      el4.innerHTML = add2('Aa','Bb','Cc');
+
+      // -- JS Basics --
+      var el4 = document.querySelector('section2');
+      el4.style.color = 'red';
+    };
+
+    // -- function --
+    function add(a,b){
+      return 'add(' + a +',' + b + '): ' + ( a + b );
+    }
+    var add2 = function(a,b,c){
+      return 'add2(' + a +',' + b + ',' + c + '): ' + ( a + b + c );
+    };
+    function add3(){
+      return 'arguments > add(' + arguments[0] +',' + arguments[1] + '): ' + ( arguments[0] + arguments[1] );
+    }
+
+    // -- high order function --
+    function forEach(arr, f) {
+    for(var i = 0; i < arr.length; i++) f(arr[i]);
+    }
+    function f(){
+      /* -- do something -- */
+    }
+    forEach(['a', 'b', 'c'], console.log); // no ()
+    /* -- 先把consle.log的function傳進a,b,c但不加()，意思是不馬上執行該function -- */
+
+    // -- JSON - 當我們需要把Obj轉成string傳送給server的時候就需要用到JSON --
+    var jsonTest = JSON.stringify(user);
+    /* -- obj to JSONstring -- */
+    var user2  = JSON.parse(jsonTest);
+    /* -- JSONstring to obj -- */
+
+    // -- Arrays --
+    var arr = ['r', 'g', 'b'];
+    /* stack */
+    var b = arr.pop(); // ['r', 'g']
+    arr.push('y'); // ['r', 'g', 'y']
+    /* queue */
+    var r = arr.shift(); // ['g', 'y']
+    arr.unshift('y'); // ['y', 'g', 'y']
+    /* loop */
+    function f() {/*do something*/}
+    arr.forEach(f); // high-order function
+
+    // -- Array handler
+    arr = ['r', 'g', 'b', 'g'];
+    arr.indexOf('g'); // 1, not 3
+    arr.indexOf('m'); // -1
+    /* copy */
+    var arr2 = arr.slice(1, 3); // ['g', 'b']
+    arr.length; // 4
+    /* remove */
+    var arr3 = arr.splice(1, 2); // ['g', 'b']
+    arr.length; // 2
+
+    // -- string handler
+    var str = 'Please locate where "locate" is.';
+    str.charAt(0); // 'P'
+    str.search('locate'); // 7
+    var str2 = str.replace(/locate/g, 'find');
+    console.log(str2); // 'Please find where "find" is.
+    console.log(str); // 'Please locate where "locate" is.
+    var srt3 = str.toUpperCase();
+    var str4 = str.split(' '); // 切割string
+    for (var i in str4){
+      console.log(str4[i]);
+    }
+
+    // -- event handling --
+    var TBtn = document.getElementsByClassName('btn');
+    var TContainer = document.getElementById('TT1');
+    var strRemember = '';
+    for(var i = 0; i < 2; i++)
+    TBtn[i].addEventListener('click', clickTry, false);
+    TContainer.addEventListener('mouseenter',function(e){
+      mouseenterTry(true);
+    },false);
+    TContainer.addEventListener('mouseleave',function(e){
+      mouseenterTry(false);
+    });
+    function clickTry(){
+      var clickBtn = this,
+          message = clickBtn.innerHTML,
+          targetDiv = this.getAttribute('data-target');
+          targetDiv = document.getElementById(targetDiv);
+          targetDiv.textContent = '"' + message + '" works!';
+    }
+    function mouseenterTry(bool){
+      if(bool){
+        strRemember = TContainer.textContent;
+        TContainer.textContent = 'Mouseenter!'
+      }else{
+        TContainer.textContent = strRemember;
+      }
+    }
+
+    // -- function owner Binding --
+    var SI1;
+    var TT2 = document.getElementById('TT2');
+    var TT3 = document.getElementById('TT3');
+    var tryUser = {
+      name: 'Joey',
+      val: 0,
+      greet: function(peer,bool){
+        if(!peer){
+          peer = 'Axe';
+        }
+        if(!bool)TT2.innerHTML = 'Hi ' + peer + '. my name is ' + this.name + '<br>'
+        + 'call times: ' + this.val;
+        this.val++;
+        return 'Hi ' + peer + '. my name is ' + this.name;
+      }
+    };
+    var tryUser2 = {
+      name: 'Alice',
+      val: 0,
+    }
+    function startInterval(bool){
+      if(bool){
+        if(!SI1)
+        SI1 = setInterval(tryUser.greet.bind(tryUser), 1000);
+        /*  如果call的function的this要導向正確的function owner(這個例子是user)，
+        *   要在最後加上bind(user)，不然預設會把function owner發給window
+        */
+      }else{
+        clearInterval(SI1);
+        SI1 = '';
+        tryUser.val = 0;
+        TT2.textContent = 'Stop interval';
+      }
+    }
+    function tryApply(){
+      var msg = tryUser.greet.apply(tryUser2, ['John', true]); //還有另一個方法call
+      TT3.textContent = msg;
+    }
+    function tryApplyPaul(){
+      greetFromAlice('Paul', true);
+    }
+    function greetFromAlice(){
+      var msg = tryUser.greet.apply(tryUser2, arguments);
+      TT3.textContent = msg;
+    }
+    /* call&apply 方法主要是使用同一個function但需傳入不同的值所使用
+    * call 傳入的值須依序鍵入在第二個para之後
+    *      ex. tryUser.greet.call(tryUser2, 'Paul', true)
+    * apply 傳入的值可以直接導入一個array
+    *      ex. tryUser.greet.apply(tryUser2, arguments)
+    *          tryUser.greet.apply(tryUser2, ['Paul', true])
+    */
+  </script>
+</body>
+
+</html>

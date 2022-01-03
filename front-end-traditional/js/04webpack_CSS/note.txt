@@ -1,0 +1,27 @@
+若缺少node_modules資料
+npm install
+npm install --dev
+
+----------------------------------------------
+
+webpack 也可以將CSS的檔案包進整合的檔案中
+
+step1: 需先安裝CSS相關套件
+npm install --save-dev css-loader style-loader
+
+step2: 在準備要包裝的檔案中加入CSS
+import './module.css';
+
+step3: 將CSS包裝方法寫入webpack.config.js
+module.exports = {
+  module: {
+    rules: [{
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader']
+    }]
+  }
+}
+
+關於loader的功用:
+只要是webpack看不懂的檔案，都必須透過loader來讀取
+例如這邊使用到的style-loader, css-loader

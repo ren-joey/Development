@@ -1,0 +1,218 @@
+// *** Color ***
+$default-blue: #5279b3;
+$default-white: #ffffff;
+.font-blue{color: $default-blue;}
+.font-white{color: $default-white;}
+
+// *** Fontsize ***
+// 1rem = 16px in default
+$font-5rem: 5rem;
+$font-4rem: 4rem;
+$font-3rem: 3rem;
+$font-2rem: 2rem;
+$font-15rem: 1.5rem;
+$font-1rem: 1rem;
+$font-085rem: 0.85rem;
+.font-xl{font-size: $font-3rem;text-transform: uppercase;}
+.font-lg{font-size: $font-3rem;}
+.font-md{font-size: $font-15rem;}
+.tw-text{font-size: $font-1rem;}
+.en-text{font-size: $font-085rem;}
+
+$paralucent-thin: 200;
+$paralucent-light: 300;
+$paralucent-medium: 400;
+$paralucent-demibold: 500;
+$chauncy-bold: 700;
+.brand-title{
+  @extend .font-md;
+  @extend .font-blue;
+  font-weight: $chauncy-bold;
+  transition: 1s;
+}
+.off .brand-title{
+  @extend .font-white;
+}
+.off .header-btn span{
+  display: none;
+}
+.menu-btn-font{
+  @extend .en-text;
+  @extend .font-blue;
+  font-weight: $paralucent-demibold;
+}
+.set-center{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.lan-tw{
+  font-size: 80%;
+}
+
+// *** Size ***
+$header: 70px;
+$menu-icon: 1.4rem;
+$container-margin: 2rem;
+
+// *** Text ***
+.title{
+  @extend .font-xl;
+  @extend .font-blue;
+  font-weight: $paralucent-demibold;
+  line-height: $font-3rem;
+}
+.subtitle{
+  @extend .font-md;
+  @extend .font-blue;
+  font-weight: $paralucent-light;
+  line-height: $font-15rem;
+}
+.btn-each{
+  @extend .en-text;
+  @extend .font-blue;
+  font-weight: $paralucent-demibold;
+}
+.project-title{
+  @extend .font-md;
+  @extend .font-blue;
+  font-weight: $paralucent-medium;
+}
+.project-description{
+  @extend .en-text;
+  @extend .font-blue;
+  font-weight: $paralucent-thin;
+}
+
+// *** DOM ***
+body{
+  background-color: #EEEEEE !important;
+}
+
+// *** Layout ***
+// header
+#header{
+  height: $header;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 301;
+  line-height: $header;
+  background-color: $default-white;
+  transition: 1s;
+}
+#project-header{
+  height: $header;
+  width: 100%;
+  line-height: $header;
+  position: relative;
+}
+#header.off{
+  //top: 0 - $header;
+  background-color: $default-blue !important;
+}
+.header-main{
+  display: flex;
+  position: relative;
+  height: $header;
+}
+.brand{
+  @extend .set-center;
+}
+.cls-1{
+  fill: $default-blue;
+  transition: 1s;
+}
+.off .cls-1{
+  fill: $default-white;
+}
+.header-btn{
+  padding: 0 2rem;
+  flex: 1;
+  text-align: right;
+}
+.right-menu{
+  height: $header;
+  width: $header;
+  position: relative;
+  border-left: 1px solid $default-blue;
+  line-height: $header;
+}
+.menu-icon{
+  @extend .set-center;
+  height: $menu-icon * .8;
+  width: $menu-icon;
+  overflow: hidden;
+  cursor: pointer;
+}
+.menu-icon .bar{
+  background-color: $default-blue;
+  height: $menu-icon * .16;
+  margin-bottom: $menu-icon * .16;
+  border-radius: $menu-icon * .16;
+  transition: 1s;
+}
+.off .menu-icon .bar:first-child{
+  transform: translateY(200%) rotate(45deg);
+  background: $default-white;
+}
+.off .menu-icon .bar:last-child{
+  transform: translateY(-200%) rotate(-45deg);
+  background: $default-white;
+}
+.menu-icon .bar-cancel{
+  background-color: $default-blue;
+  height: $menu-icon * .16;
+  margin-bottom: $menu-icon * .16;
+  border-radius: $menu-icon * .16;
+}
+#header.act{
+  background-color: $default-blue;
+  color: $default-white;
+}
+
+// container
+#website, #panel, #GD{
+  margin-bottom: $font-5rem;
+}
+.project-item{
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  transition: .3s;
+}
+.project-item:hover{
+  transform: translateX($font-085rem);
+}
+.project-item.on{
+  transform: translateX(100vw);
+}
+.blue-hr{
+  height: $container-margin;
+  position: relative;
+  border-bottom: 1px solid $default-blue;
+  transform: scaleX(1.4);
+  margin-bottom: $container-margin;
+}
+.btn-each{
+  cursor: pointer;
+}
+
+// project info
+.project-info{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 201;
+  background-color: $default-blue;
+  transition: .3s;
+  transform: translateX(-100%);
+}
+.project-info.on{
+  transform: translateX(0%);
+}

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SURGE Studio</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+    <!-- jquery full page -->
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css">
+    <!-- main css -->
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <!-- preloader damaged -->
+    <div id="preloader" class="bg-dark-gray active">
+        <div id="status" class="bg-gray">
+        </div>
+        <ul>
+            <li class="white">Loading...</li>
+        </ul>
+    </div>
+
+    <nav class="bg-gray">
+        <div class="brand">
+          <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 85.77 57.83">
+            <g data-name="group">
+              <path class="fill-light-gray" id="logo-svg" d="M84.88 4.85h-.27L2.4 0a2.14 2.14 0 0 0-2 1 2.19 2.19 0 0 0 .22 2.65L45 57.39a1.15 1.15 0 0 0 .89.44 1.12 1.12 0 0 0 1-.53l14.8-19.42a1.06 1.06 0 0 1 1-.41 1.12 1.12 0 0 1 .77.58l7 13.4a1.06 1.06 0 0 0 .94.57h.22a1.06 1.06 0 0 0 .84-1l1.93-28.85a3.11 3.11 0 0 1 .2-1 3 3 0 0 1 .51-.9L85.49 6.65a1 1 0 0 0 .27-.71 1.07 1.07 0 0 0-.88-1.09zM72.2 23.46L70.62 47.1l-6.19-11.84a1.72 1.72 0 0 0-.71-.85l-.4-.2L6.88 4.27a.49.49 0 0 1-.26-.45.52.52 0 0 1 .51-.52.47.47 0 0 1 .17 0l64.15 19a1.1 1.1 0 0 1 .55.4 1.15 1.15 0 0 1 .2.76z" data-name="content"/>
+            </g>
+          </svg>
+        </div>
+
+        <h1 id="studio" class="light-gray">
+          SURGE Studio
+        </h1>
+
+        <h2 class="about-me light-gray">
+            <span class="about-me-1 on">Website Creative</span>
+            <span class="about-me-2">UI/UX Design</span>
+            <span class="about-me-3">Graphic Design</span>
+        </h2>
+
+        <div class="swipe-bg bg-gray active"></div>
+        <div class="swipe-bg bg-white"></div>
+        <div class="swipe-bg bg-blue"></div>
+        <div class="swipe-bg bg-light-red"></div>
+    </nav>
+
+    <div id="arrows">
+        <div id="prev" class="bg-light-gray">
+            <div id="up-arrow" class="bg-white"></div>
+            <div class="swipe-bg bg-light-gray active"></div>
+            <div class="swipe-bg bg-white"></div>
+            <div class="swipe-bg bg-pink"></div>
+            <div class="swipe-bg bg-light-red"></div>
+            <div class="swipe-bg bg-red"></div>
+            <div class="swipe-bg bg-teal"></div>
+            <div class="swipe-bg bg-gray"></div>
+            <div class="hover-bg bg-dark-gray"></div>
+        </div>
+        <div id="next" class="bg-light-gray">
+            <div id="down-arrow" class="bg-white"></div>
+            <div class="swipe-bg bg-light-gray active"></div>
+            <div class="swipe-bg bg-white"></div>
+            <div class="swipe-bg bg-pink"></div>
+            <div class="swipe-bg bg-light-red"></div>
+            <div class="swipe-bg bg-red"></div>
+            <div class="swipe-bg bg-teal"></div>
+            <div class="swipe-bg bg-gray"></div>
+            <div class="hover-bg bg-dark-gray"></div>
+        </div>
+    </div>
+
+    <div id="case-title">
+        <!-- <h3 class="case-1 white">Ten Thousand, A Crescent</h3>
+        <h3 class="case-2 white">Kohanaiki Hawai`i</h3>
+        <h3 class="case-3 gray">Mr. C Hotel Beverly Hills</h3>
+        <h3 class="case-4 gray">Deciding Tomorrow Today</h3>
+        <h3 class="case-5 white">Mountainside at Northstar</h3> -->
+        <h3 class="case-1 white">OCEAN D.V. 大洋嚴選</h3>
+        <h3 class="case-2 gray">iBerry 美妍生技</h3>
+        <h3 class="case-3 gray">ennetech 英網科技</h3>
+        <h3 class="case-4 white">Catch Design 禾意數位</h3>
+    </div>
+
+    <div id="case-numbers">
+        <!-- <span class="case-1 white">01</span>
+        <span class="case-2 gray">02</span>
+        <span class="case-3 gray">03</span>
+        <span class="case-4 white">04</span>
+        <span class="case-5 white">05</span> -->
+        <span class="case-1 white">01</span>
+        <span class="case-2 gray">02</span>
+        <span class="case-3 gray">03</span>
+        <span class="case-4 white">04</span>
+    </div>
+
+    <div id="case-outof">
+        <!-- <span class="case-1 white">06</span>
+        <span class="case-2 gray">06</span>
+        <span class="case-3 gray">06</span>
+        <span class="case-4 gray">06</span>
+        <span class="case-5 white">06</span> -->
+        <span class="case-1 white">04</span>
+        <span class="case-2 gray">04</span>
+        <span class="case-3 gray">04</span>
+        <span class="case-4 white">04</span>
+    </div>
+
+    <div class="laptop">
+        <div class="screenshot">
+            <!-- <img class="ten-thousand-screen active no-mobile" src="images/ten-thousand-screen.jpg" alt="Ten Thousand Dial">
+            <img class="ten-thousand-screen active mobile" src="images/ten-thousand-mobile.jpg" alt="Ten Thousand Mobile">
+
+            <img class="kohanaiki-screen no-mobile" src="images/kohanaiki-screen.jpg" alt="Kohanaiki Aloha">
+            <img class="kohanaiki-screen mobile" src="images/kohanaiki-mobile.jpg" alt="Mobile">
+
+            <img class="mr-c-screen no-mobile" src="images/mr-c-screen.jpg" alt="Mr. C Home">
+            <img class="mr-c-screen mobile" src="images/mr-c-mobile.jpg" alt="Mr. C Mobile">
+
+            <img class="nathan-adelson-screen no-mobile" src="images/nathan-adelson-screen.jpg" alt="Nathan Adelson Hourglass">
+            <img class="nathan-adelson-screen mobile" src="images/nathan-adelson-mobile.jpg" alt="Nathan Adelson Mobile">
+
+            <img class="mountainside-screen no-mobile" src="images/mountainside-screen.jpg" alt="Mountainside Home">
+            <img class="mountainside-screen mobile" src="images/mountainside-mobile.jpg" alt="Mountainside Mobile"> -->
+
+            <img class="ocean-d-v-screen active no-mobile" src="images/ocean-d-v-screen.jpg" alt="Mountainside Home">
+            <img class="ocean-d-v-screen active mobile" src="images/ocean-d-v-mobile.jpg" alt="Mountainside Mobile">
+
+            <img class="iberry-screen no-mobile" src="images/iberry-screen.jpg" alt="Mountainside Home">
+            <img class="iberry-screen mobile" src="images/iberry-mobile.jpg" alt="Mountainside Mobile">
+
+            <img class="ennetech-screen no-mobile" src="images/ennetech-screen.jpg" alt="Mountainside Home">
+            <img class="ennetech-screen mobile" src="images/ennetech-mobile.jpg" alt="Mountainside Mobile">
+
+            <img class="catch-screen no-mobile" src="images/catch-screen.jpg" alt="Mountainside Home">
+            <img class="catch-screen mobile" src="images/catch-mobile.jpg" alt="Mountainside Mobile">
+        </div>
+    </div>
+
+    <div class="check-it-out bg-light-gray">
+        <!-- <a id="ten-thousand-case" class="active white">Check It Out</a>
+        <a id="kohanaiki-case" class="gray">Check It Out</a>
+        <a id="mr-c-case" class="white">Check It Out</a>
+        <a id="nathan-adelson-case" class="white">Check It Out</a>
+        <a id="mountainside-case" class="white">Check It Out</a> -->
+        <a id="ocean-d-v-case" class="active white">Check It Out</a>
+        <a id="iberry-case" class="active white">Check It Out</a>
+        <a id="ennetech-case" class="active white">Check It Out</a>
+        <a id="catch-case" class="active white">Check It Out</a>
+        <div class="xback"></div>
+        <div class="swipe-bg bg-light-gray"></div>
+        <div class="swipe-bg bg-white"></div>
+        <div class="swipe-bg bg-pink"></div>
+        <div class="swipe-bg bg-light-red"></div>
+        <div class="swipe-bg bg-red"></div>
+        <div class="swipe-bg bg-gold"></div>
+        <div class="swipe-bg bg-teal"></div>
+        <div class="swipe-bg bg-copper"></div>
+        <div class="hover-bg bg-dark-gray"></div>
+    </div>
+
+    <div id="contact-email">
+        <h4 class="white">RESUME@SURGESTUDIO.NET</h4>
+    </div>
+
+    <div id="case-hashtags">
+        <!-- <h4 class="case-1 white">#UX #DESIGN #DATACAPTURE #WEBGL</h4>
+        <h4 class="case-2 gray">#UX #DESIGN #NAVIGATION #WEBGLMAP</h4>
+        <h4 class="case-3 gray">#UX #DESIGN #SVG #BOOKING</h4>
+        <h4 class="case-4 gray">#UX #DESIGN #SVG #VIDEO</h4>
+        <h4 class="case-5 white">#DESIGN #ANIMATION #SVGMAP</h4> -->
+        <h4 class="case-1 white">#DESIGN #WEBSITE</h4>
+        <h4 class="case-2 gray">#DESIGN #WEBSITE</h4>
+        <h4 class="case-3 gray">#DESIGN #PANEL</h4>
+        <h4 class="case-4 white">#DESIGN #WEBSITE</h4>
+    </div>
+
+    <div id="fullpage">
+
+        <div class="section" name="ocean d v">
+
+            <div class="featured-wrapper bg-dark-gray">
+                <div class="featured-image">
+                    <img src="images/ocean-d-v-featured.jpg" id="first-image" alt="Ten Thousand Lobby">
+                </div>
+            </div>
+
+            <div class="right-half">
+                <div class="accent-wrapper bg-dark-gray">
+                    <div class="accent-image">
+                        <img src="images/ocean-d-v-accent.jpg" alt="Ten Thousand Building">
+                    </div>
+                </div>
+                <div class="content white">
+                    <div class="intro">
+                      <img style="border: solid 1px white" src="./images/ocean-d-v-top-img.png" width="326" height="174" alt="">
+                        <p class="title">Ocean Delicate Value<br>大洋嚴選</p>
+                        <p>
+                            Location: 台灣台北 Taipei, Taiwan<br>
+                            Work: Fresh Seafood<br>
+                            Project Year: May 2017<br>
+                            details: 主視覺、官網企劃
+                            <br><br>
+                        </p>
+                    </div>
+
+                    <div class="section-title">瞄準懷石市場的生鮮食材供應商</div>
+                    <div class="example">
+                        <img class="no-shadow" src="images/ocean-d-v-fresh-seafood.jpg" alt="Ocean Information Architecture">
+                    </div>
+                    <div class="description">
+                        <p class="title">現代與日式的結合</p>
+                        <p>
+                            大洋嚴選是隨著生鮮直播而興起的新創公司，大洋對品質的堅持，吸引了一批來自金字塔頂端的餐飲業者支持。不到兩年的時間，大洋已是為數不少的懷石料理指定選用的生鮮食材供應商。<br><br>
+                            我們輔佐著從直播走向批發市場的大洋，一起思考如何往品牌的方向前進。客群設立在精緻美食「懷石料理」業者，日式為主現代為輔，大洋的品牌建立之路正要開始...
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img class="no-shadow" src="images/ocean-d-v-calligraphy.png" alt="Ten Thousand Data Capture Funnel">
+                    </div>
+                    <div class="description">
+                        <p class="title">大洋莊重的品牌標誌</p>
+                        <p>
+                            企業識別採用草寫書法，強化中日式印象及嚴謹等元素。
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img src="images/ocean-d-v-web-view.jpg" alt="Ten Thousand Dial Evening">
+                    </div>
+                    <div class="description">
+                        <p class="title">大洋的入口</p>
+                        <p>
+                            我們歸納出大洋的定位與「老協珍」相仿，必須樹立記憶點才能讓市場看見，而我們選擇在網頁素材及視覺動態上下手。<br>
+                            不同於仿間電商，大洋採用更仿真、細膩的網頁素材，如日式山海經、原木材質等。
+                        </p>
+                    </div>
+                    <div class="example">
+                        <iframe width="100%" height="500" src="https://www.youtube.com/embed/J8kyxs_K7yI" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                    </div>
+                    <div class="description">
+                        <p class="title">過門 - 更是一場表演</p>
+                        <p>
+                            網站對於初次進入的使用者導入過門動畫，用新鮮感來讓顧客記住。
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img src="images/ocean-d-v-shop.jpg" alt="Ten Thousand Exclusive Residence Expand">
+                    </div>
+                    <div class="description">
+                        <p class="title">大洋商城</p>
+                        <p>
+                            比起首頁，商城更強調的是閱讀性，為此我們選擇在商城進行跳色，除了白底之外，色彩的選用上更為豐富，用來增加購物的熱鬧感。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section" name="iberry">
+
+            <div class="featured-wrapper bg-pink">
+                <div class="featured-image">
+                    <img src="images/iberry-featured.jpg" alt="Ten Thousand Lobby">
+                </div>
+            </div>
+
+            <div class="right-half">
+                <div class="accent-wrapper bg-pink">
+                    <div class="accent-image">
+                        <img src="images/iberry-accent.jpg" alt="Ten Thousand Building">
+                    </div>
+                </div>
+                <div class="content gray bg-white">
+                    <div class="intro">
+                      <img style="border: solid 1px #d59bb7" src="./images/iberry-top-img.png" width="326" height="174" alt="">
+                        <p class="title">iBerry BIOTECHNOLOGY<br>愛蓓莉生技</p>
+                        <p>
+                            Location: Tainan, Taiwan<br>
+                            Work: Biotechnology Factory<br>
+                            Year: Feb 2017<br>
+                            Details: 商品建模、靜態廣告素材、活動網站、APP視覺
+                            <br><br>
+                        </p>
+                    </div>
+                    <div class="section-title">主打輕熟的美妝生技廠</div>
+                    <div class="example">
+                        <img class="no-shadow" src="images/iberry-ad.jpg" alt="Ten Thousand Dial Information Architecture">
+                    </div>
+                    <div class="description">
+                        <p class="title">代工到研發</p>
+                        <p>
+                            iBerry最早是知名美妝品牌朵璽與Dr.Wu的代工廠，累積了大量的生產經驗，近幾年開始著手研發自有配方，以面膜為主打商品開架販售。
+                            他們鎖定輕熟定位輕奢，在今年七夕進行了兩波活動推廣自家產品，悄悄的在保養市場展開自己的新天地。
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img class="no-shadow" src="images/iberry-model.jpg" alt="Ten Thousand Dial Information Architecture">
+                    </div>
+                    <div class="description">
+                        <p class="title">關於產品模型</p>
+                        <p>
+                            「完美無暇的呈現商品全貌」為了這個訴求，我們為iberry打造一系列的產品建模，由數位運算決定最佳的採光、發色及質感。
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img src="images/iberry-loading.jpg" alt="Ten Thousand Dial Evening">
+                    </div>
+                    <div class="example">
+                        <img src="images/iberry-index.jpg" alt="Ten Thousand Data Capture Funnel">
+                    </div>
+                    <div class="description">
+                        <p class="title">「極簡」與「熱鬧」的課題</p>
+                        <p>
+                            iBerry極簡的主視覺，配上辦活動的熱鬧訴求，兩個迥異的元素合併在一起，成為一次特別的開發經歷。
+                            最終，畫面以潔白乾淨為主體，用動畫襯托節慶氣息。
+                        </p>
+                    </div>
+                    <div class="example">
+                        <iframe width="100%" height="500" src="https://www.youtube.com/embed/O0WyL6OPDno?ecver=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                    </div>
+                    <div class="example">
+                        <img class="no-shadow" src="images/iberry-mobile-loading.png" alt="Ten Thousand Exclusive Residence Expand">
+                    </div>
+                    <div class="description">
+                        <p class="title">APP視覺</p>
+                        <p>
+                            iBerry APP主要功能為購物，易讀性跟UI/UX是首要考量。與網站不同的是，APP畫面安排更加緊實，減少留白增加內容量。
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img class="no-shadow" src="images/iberry-mobile-index.png" alt="Ten Thousand Exclusive Amenities">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section" name="ennetech">
+
+            <div class="featured-wrapper bg-white">
+                <div class="featured-image">
+                    <img src="images/ennetech-featured.jpg" alt="Ten Thousand Lobby">
+                </div>
+            </div>
+
+            <div class="right-half">
+                <div class="accent-wrapper bg-white">
+                    <div class="accent-image">
+                        <img src="images/ennetech-accent.jpg" alt="Ten Thousand Building">
+                    </div>
+                </div>
+                <div class="content gray">
+                    <div class="intro">
+                      <img style="border: solid 1px #666666" src="./images/ennetech-top-img.png" width="326" height="119" alt="">
+                        <p class="title">ITRI 工研院</p>
+                        <p>
+                            Location: Hsinchu, Taiwan<br>
+                            Work: Big Data<br>
+                            Year: May 2016<br>
+                            Clients:<br> <img src="./images/ennetech-momo.png" alt=""><img src="./images/ennetech-gohappy.png" alt=""><img src="./images/ennetech-reddoor.png" alt="">
+                            <br><br>
+                        </p>
+                    </div>
+                    <div class="section-title">大數據時代</div>
+                    <div class="example">
+                        <img class="no-shadow" src="images/ennetech-venraas.jpg" alt="Ten Thousand Dial Information Architecture">
+                    </div>
+                    <div class="description">
+                        <p class="title">電商成效控管後台</p>
+                        <p>
+                            工研院與電商公司合作研究並分析顧客購物的各項數據，試圖算出即將爆紅的產品，為此開發出一套販售成效控管的後台。在這項專案我們負責界接巨資試算成果到前端呈現，大多使用RWD動態圖表展示之。
+                        </p>
+                    </div>
+                    <div class="example">
+                      <iframe width="100%" height="500" src="https://www.youtube.com/embed/7O3U3g-1EF4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                    <div class="description">
+                        <p class="title">RWD動態圖表及MENU刻劃</p>
+                        <p>
+                            開啟字幕功能可看到展示影片解說
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img src="images/ennetech-recomd.jpg" alt="Ten Thousand Dial Evening">
+                    </div>
+                    <div class="description">
+                        <p class="title">客製化推薦清單</p>
+                        <p>
+                            工研院合作並開發一套可線上編輯視覺的推薦清單，顧客除了可以自由選擇清單樣式外，更能控制推薦演算方法，達到精準的推薦效果。
+                            該平台可與codepen連動，讓服務電商快速移植到他們想要的購物頁面中。<br>
+                            此研究已實際與紅門互動(EagleEye鷹眼數據)、GoHappy、Friday購物等平台合作上線。
+                        </p>
+                    </div>
+                    <div class="example">
+                        <iframe width="100%" height="500" src="https://www.youtube.com/embed/Cv7zUUPEBeY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                    <div class="description">
+                        <p class="title">客製化平台操作展示</p>
+                        <p>
+                            開啟字幕功能可看到展示影片解說
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img src="images/ennetech-hospital.jpg" alt="Ten Thousand Exclusive WebGL Blueprint">
+                    </div>
+                    <div class="description">
+                        <p class="title">醫療資訊套裝後台</p>
+                        <p>
+                            The essence of this experience lied in the most simple and obvious point of the Ten Thousand brand--literally the number 10,000--which is how many dots we used in our WebGL experience to virtually build a 3D blueprint of the property before the user's eyes. As the user explored personally tailored floorplans and amenities, these dots would shift and reshape in response to their actions.
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img src="images/ennetech-travel.jpg" alt="Ten Thousand Exclusive Residence Expand">
+                    </div>
+                    <div class="description">
+                        <p class="title">WebGL Experience</p>
+                        <p>
+                            The essence of this experience lied in the most simple and obvious point of the Ten Thousand brand--literally the number 10,000--which is how many dots we used in our WebGL experience to virtually build a 3D blueprint of the property before the user's eyes. As the user explored personally tailored floorplans and amenities, these dots would shift and reshape in response to their actions.
+                        </p>
+                    </div>
+                    <div class="example">
+                      <iframe width="100%" height="500" src="https://www.youtube.com/embed/0-6PwFOUSrI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section" name="catch">
+
+            <div class="featured-wrapper bg-dark-gray">
+                <div class="featured-image">
+                    <img src="images/catch-featured.jpg" style="opacity: .35;" alt="Ten Thousand Lobby">
+                </div>
+            </div>
+
+            <div class="right-half">
+                <div class="accent-wrapper bg-dark-gray">
+                    <div class="accent-image">
+                        <img src="images/catch-accent.jpg" alt="Ten Thousand Building">
+                    </div>
+                </div>
+                <div class="content white bg-gray">
+                    <div class="intro">
+                      <img style="border: solid 1px white" src="./images/catch-top-img.jpg" width="326" height="183" alt="">
+                        <p class="title">Catch Design<br>禾意數位</p>
+                        <p>
+                            Location: Taipei, Taiwan<br>
+                            Work: Advertisment<br>
+                            Year: Jen 2015<br>
+                            Clents:<br><img src="./images/catch-marvel.png" alt=""><img src="./images/catch-disney.png" alt=""><img src="./images/catch-lg.png" alt="">
+                            <br><br>
+                        </p>
+                    </div>
+                    <div class="section-title">Experience a Day in the Life</div>
+                    <div class="example">
+                        <img class="no-shadow" src="images/catch-first-img.png" alt="Ten Thousand Dial Information Architecture">
+                    </div>
+                    <div class="description">
+                        <p class="title">A Creative Approach to Information Architecture</p>
+                        <p>
+                            Due to the luxury property still being under construction, the project had to move forward with limited resources. With access to only a handful of renderings, it would have been easy to conventionally organize a website that consisted of the typical Residences, Amenities and Gallery pages but we wanted to do more with less. Rather than categorize information page by page, we decided to distribute information equally throughout one unified experience. This information architecture laid the groundwork for interactive dial design to follow.
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img class="no-shadow" src="images/catch-avengers.jpg" alt="Ten Thousand Dial Information Architecture">
+                    </div>
+                    <div class="description">
+                        <p class="title">Elevated Living</p>
+                        <p>
+                            From a design perspective, the challenge was to simply and effectively convey the elite status of living at Ten Thousand. Fortunately, the high quality renderings that were provided to us told a story among themselves offering a taste of the residents' daily lifestyle. So why not give the user a taste of what it's like to experience a day in the life at Ten Thousand? This sparked the creation of the interactive dial on the home page of the site that weaved a meaningful narrative into otherwise simple information and functionality.
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img src="images/catch-BH6-0.jpg" alt="Ten Thousand Dial Evening">
+                    </div>
+                    <div class="description">
+                        <p class="title">Elevated Living</p>
+                        <p>
+                            From a design perspective, the challenge was to simply and effectively convey the elite status of living at Ten Thousand. Fortunately, the high quality renderings that were provided to us told a story among themselves offering a taste of the residents' daily lifestyle. So why not give the user a taste of what it's like to experience a day in the life at Ten Thousand? This sparked the creation of the interactive dial on the home page of the site that weaved a meaningful narrative into otherwise simple information and functionality.
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img src="images/catch-BH6-1.jpg" alt="Ten Thousand Data Capture Funnel">
+                    </div>
+                    <div class="description">
+                        <p class="title">Data Capture Funnel</p>
+                        <p>
+                            The client showed keen emphasis on selling their signature "predictive and personalized service" which we wanted to begin to display even on the most initial of interactions with the Ten Thousand brand. For qualified users, we designed a detailed data capture funnel that led them to a personalized web experience. Once in this funnel, a series of touchpoints and user interactions would notify their corresponding leasing representative of valuable benchmarks. Did the user receive their email, open it and view their personalized URL? What floorplans and amenities was the user most interested in? With this information, a leasing rep could then have a better gauge of how to personally reach out to future residents.
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img src="images/catch-BH6-2.jpg" alt="Ten Thousand Exclusive WebGL Blueprint">
+                    </div>
+                    <div class="description">
+                        <p class="title">WebGL Experience</p>
+                        <p>
+                            The essence of this experience lied in the most simple and obvious point of the Ten Thousand brand--literally the number 10,000--which is how many dots we used in our WebGL experience to virtually build a 3D blueprint of the property before the user's eyes. As the user explored personally tailored floorplans and amenities, these dots would shift and reshape in response to their actions.
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img src="images/catch-itw-1.jpg" alt="Ten Thousand Exclusive Residence Expand">
+                    </div>
+                    <div class="example">
+                        <img src="images/catch-itw-2.jpg" alt="Ten Thousand Exclusive Amenities">
+                    </div>
+                    <div class="description">
+                        <p class="title">Notify Personal Representative</p>
+                        <p>
+                            The design reinforced the property's signature "predictive and personalized service" and was designed to seamlessly be "one step ahead" of the user. At any point throughout the experience, a future resident could directly notify their representative and ask for more information and exclusive access to the property.
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img src="images/catch-tomorrowland.jpg" alt="Ten Thousand Exclusive Amenities">
+                    </div>
+                    <div class="description">
+                        <p class="title">Notify Personal Representative</p>
+                        <p>
+                            The design reinforced the property's signature "predictive and personalized service" and was designed to seamlessly be "one step ahead" of the user. At any point throughout the experience, a future resident could directly notify their representative and ask for more information and exclusive access to the property.
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img src="images/catch-upside-down.jpg" alt="Ten Thousand Exclusive Amenities">
+                    </div>
+                    <div class="description">
+                        <p class="title">Notify Personal Representative</p>
+                        <p>
+                            The design reinforced the property's signature "predictive and personalized service" and was designed to seamlessly be "one step ahead" of the user. At any point throughout the experience, a future resident could directly notify their representative and ask for more information and exclusive access to the property.
+                        </p>
+                    </div>
+                    <div class="example">
+                        <img src="images/catch-cinderella.jpg" alt="Ten Thousand Exclusive Amenities">
+                    </div>
+                    <div class="description">
+                        <p class="title">Notify Personal Representative</p>
+                        <p>
+                            The design reinforced the property's signature "predictive and personalized service" and was designed to seamlessly be "one step ahead" of the user. At any point throughout the experience, a future resident could directly notify their representative and ask for more information and exclusive access to the property.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- jquery -->
+    <script src="common/jquery-3.2.1.min.js"></script>
+    <!-- GSAP -->
+    <script src="common/TweenMax.min.js"></script>
+	<script src="common/EasePack.js"></script>
+    <script src="common/CSSPlugin.min.js"></script>
+    <!-- jquery full page -->
+    <script src="js/jquery.fullPage.min.js"></script>
+    <!-- main js -->
+    <script src="js/my-script.js"></script>
+    <!-- google font -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','../www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-53963457-1', 'auto');
+        ga('send', 'pageview');
+
+        $("a#ten-thousand-case").click( function() {
+            ga('send', 'event', 'case', 'click', 'Ten Thousand');
+        });
+        $("a#kohanaiki-case").click( function() {
+            ga('send', 'event', 'case', 'click', 'Kohanaiki');
+        });
+        $("a#visit-koha").click( function() {
+            ga('send', 'event', 'site', 'click', 'Kohanaiki Site');
+        });
+        $("a#mr-c-case").click( function() {
+            ga('send', 'event', 'case', 'click', 'Mr. C');
+        });
+        $("a#visit-mrch").click( function() {
+            ga('send', 'event', 'site', 'click', 'Mr. C Site');
+        });
+        $("a#nathan-adelson-case").click( function() {
+            ga('send', 'event', 'case', 'click', 'Nathan Adelson');
+        });
+        $("a#visit-nah").click( function() {
+            ga('send', 'event', 'site', 'click', 'Nathan Adelson Site');
+        });
+        $("a#mountainside-case").click( function() {
+            ga('send', 'event', 'case', 'click', 'Mountainside');
+        });
+        $("a#visit-mtsd").click( function() {
+            ga('send', 'event', 'site', 'click', 'Mountainside Site');
+        });
+        $("#resume a").click( function() {
+            ga('send', 'event', 'resume', 'click', 'Resume Download');
+        });
+
+    </script>
+</body>
+</html>

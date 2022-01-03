@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+</head>
+<body>
+<canvas id="myCanvas" width="300" height="200">
+    Your browser does not support the canvas element.
+</canvas>
+    <script>
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(0,0,200,150);
+        ctx.moveTo(0,0);
+        ctx.lineTo(300,50);
+        ctx.stroke();
+    </script>
+</body>
+</html>

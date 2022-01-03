@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>event bubbling</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <style>
+    div{
+      position: relative;
+      left: 0;
+      top: 0;
+      height: 100px;
+    }
+    .div-lg{
+      background-color: #000;
+    }
+    .div-md{
+      background-color: blue;
+      width: 50%;
+    }
+    .div-sm{
+      background-color: red;
+      width: 25%
+    }
+    </style>
+  </head>
+  <body>
+    <div class="div-lg">
+      <div class="div-md">
+        <div class="div-sm"></div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./jquery/dist/jquery.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        $('div').on('click', function(e){
+          if(e.target.className == 'div-sm'){ //在event bubbling的情況，e.target可以找到源頭的第一個div
+            console.log('div-sm');
+          }else if (this.className == 'div-md') { //this的用途跟e.target相同
+            console.log('div-md');
+          }else{
+            console.log('div-lg');
+            return;
+          }
+          e.stopPropagation();
+        })
+      })
+    </script>
+  </body>
+</html>

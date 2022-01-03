@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+
+    <script>
+        $(function(){
+            TweenLite.to($('.logo'),2,{left:"50%"});
+        });
+
+        function animation_start() {
+            TweenLite.to($('.logo'),2,{left:"0"});
+        })
+    </script>
+
+    <style>
+        .logo{
+            background-image: url("Burger_King_Logo.svg.png");
+            background-size: contain;
+            width: 300px;
+            height: 300px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div class="logo" onclick="animation_start()"></div>
+</body>
+</html>

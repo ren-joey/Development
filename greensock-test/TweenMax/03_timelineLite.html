@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+
+    <script>
+        var logo,sub,spans,myAni;
+
+        $(function(){
+            logo = $('.logo');
+            sub = $('.sub-title');
+            spans = $('span');
+
+            myAni = new TimelineLite;
+
+            myAni.from(logo,0.5,{left:"-=60px",ease:Back.easeOut}).staggerFrom(sub,0.5,{width:"0",opacity:"0"},0.5).staggerFrom(spans,0.5,{top:"-=20px",rotation:"-40deg", alpha:0, scale:1.8, ease:Back.easeOut},0.2);
+        });
+    </script>
+
+    <style>
+        .logo{
+            background-image: url("../Burger_King_Logo.svg.png");
+            background-size: contain;
+            width: 50px;
+            height: 50px;
+            position: relative;
+            display: inline-block;
+            line-height: 100px;
+            vertical-align: middle;
+        }
+
+        .sub-title{
+            font-size: 24px;font-weight: 900;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            line-height: 100px;
+            vertical-align: middle;
+        }
+
+        span{
+            position: relative;
+            display: inline-block;
+            line-height: 100px;
+            vertical-align: middle;
+        }
+
+        html{
+            height: 100%;
+        }
+
+        body{
+            display: flex;
+            justify-items: center;
+            align-items: center;
+            min-height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div style="flex: 1; text-align: center;">
+    <div class="logo"></div>
+    <div class="sub-title">Dream come true</div>
+    <div class="sub-title">Surge Studio</div>
+    <span style="font-size: 18px;font-weight: normal;"> imagination </span>
+    <span style="font-size: 18px;font-weight: normal;">your creative </span>
+    <span style="font-size: 18px;font-weight: normal;">out</span>
+    <span style="font-size: 18px;font-weight: normal;">of</span>
+    <span style="font-size: 18px;font-weight: normal;">believing</span>
+</div>
+</body>
+</html>

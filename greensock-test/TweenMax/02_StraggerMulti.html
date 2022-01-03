@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+
+    <script>
+        var boxes, green, yellow, red, blue, thisAni;
+        $(function(){
+            green = $('.box-green');
+            yellow = $('.box-yellow');
+            red = $('.box-red');
+            blue = $('.box-blue');
+            boxes = $('.box');
+
+            // thisAni = TweenMax.staggerTo([green,yellow,blue,red],1,{scale:"0"},1); Another method to solve this problem.
+            thisAni = TweenMax.staggerTo(boxes,1,{scale:"0"},1);//last "1" means it delay 1s between evey boxes animation.
+        })
+    </script>
+
+    <style>
+        .box{
+            display: inline-block;
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+        }
+        .box-green{
+            background-color: green;
+        }
+        .box-blue{
+            background-color: blue;
+        }
+        .box-red{
+            background-color: red;
+        }
+        .box-yellow{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+<div class="box box-green"></div>
+<div class="box box-blue"></div>
+<div class="box box-red"></div>
+<div class="box box-yellow"></div>
+</body>
+</html>

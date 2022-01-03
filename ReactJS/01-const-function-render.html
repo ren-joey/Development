@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+    <script type="text/babel">
+        const user = { firstname : "Ren" , lastname : "Joey" };
+
+        const element = ( <h1>Hello, {printName(user)} </h1> );
+
+        function printName (user){
+            return user.firstname + " " + user.lastname;
+        }
+
+        ReactDOM.render(
+            element,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+</html>

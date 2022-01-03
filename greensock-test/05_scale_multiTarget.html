@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+
+    <script>
+        $(function(){
+            TweenLite.from($('.box'),2,{scale:"0",opacity:"0"});
+        });
+
+        function animation_start() {
+            var yellow = $('.box-green'),
+                blue = $('.box-blue'),
+                red = $('.box-red');
+            TweenLite.to([yellow,blue,red],2,{scale:"0",opacity:"0"});
+        }
+    </script>
+
+    <style>
+        .box{
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+        }
+        .box-green{
+            background-color: green;
+        }
+        .box-blue{
+            background-color: blue;
+        }
+        .box-red{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box box-green"></div>
+    <div class="box box-blue"></div>
+    <div class="box box-red"></div>
+    <button type="button" onclick="animation_start()">Tween</button>
+</body>
+</html>

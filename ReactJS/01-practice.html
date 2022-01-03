@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+    <script type="text/babel">
+        const user = {
+            name : "品澔",
+            phone : "0929152771"
+        };
+
+        const element = (
+                <h1>your best friends list :<br />
+                    {printName(user)}</h1>
+        );
+
+        function printName(user) {
+            if(user){
+                return "name: " + user.name + " " + user.phone;
+            }else {
+                return "you have no friend";
+            }
+        }
+
+        ReactDOM.render(
+            element,
+                document.getElementById('root')
+        );
+    </script>
+</body>
+</html>

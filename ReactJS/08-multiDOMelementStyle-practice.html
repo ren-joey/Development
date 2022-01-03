@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+
+    <style>
+        body{
+            background-color: #dddddd;
+        }
+        .GreenStyle{
+            color: green;
+        }
+        .inner{
+            background-color: #ffffff;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="root"></div>
+    <script type="text/babel">
+        function formatDate(date) {
+            return date.toLocaleDateString();
+        }
+
+        function Comment (props){
+            return(
+                <div className="col-3">
+                    <div className="inner">
+                        <p className="GreenStyle">name:{props.author.name}</p>
+                        <p className="GreenStyle">phone:{props.author.phone}</p>
+                        <p>{formatDate(props.date)}</p>
+                        <p>{props.text}</p>
+                        <img src={props.author.src} width="100%" height="auto"/>
+                    </div>
+                </div>
+            );
+        }
+
+        const comment = {
+            date : new Date(),
+            text : "I hope you enjoy the tutorial",
+            author : {
+            name : "joey",
+            phone : "0937472767",
+            src : "https://scontent-tpe1-1.xx.fbcdn.net/v/t45.5328-4/c106.0.631.631/p843x403/14751097_970370549741560_7235769998147321856_n.jpg?oh=fa107e9f9bdf6167ec16cf2a670f7de3&oe=5A10BDCF"
+            }
+        };
+
+        const rowStyle = {
+            marginTop : "20px"
+        };
+
+        ReactDOM.render(
+            <div className="row" style={rowStyle}>
+                <Comment
+                        date = {comment.date}
+                        text = {comment.text}
+                        author = {comment.author}
+                />
+                <Comment
+                        date = {comment.date}
+                        text = {comment.text}
+                        author = {comment.author}
+                />
+                <Comment
+                        date = {comment.date}
+                        text = {comment.text}
+                        author = {comment.author}
+                />
+                <Comment
+                        date = {comment.date}
+                        text = {comment.text}
+                        author = {comment.author}
+                />
+            </div>
+            ,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+</html>

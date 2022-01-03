@@ -1,0 +1,61 @@
+設置react
+
+Step1:
+安裝react
+npm install --save react react-dom
+npm install --save-dev babel-preset-react babel-cli
+
+Step2:
+設置webpack.config.js
+如果想要把react的script vendor bundle起來
+entry: {
+  main: './index.jsx',
+  vendor: ['react', 'react-dom']
+}
+
+module: {
+  rules: [{
+    test: /\.(js|jsx)$/,
+    exclude: /node_modules/,
+    use: [{
+      loader: 'babel-loader',
+      options: {
+        presets: [['es2015', {modules: false}], 'react'],
+        plugins: ['transform-class-properties']
+      }
+    }]
+  }]
+}
+
+.jsx等同於.js只是還多了html的語法在裡面
+
+Step3(測試無法使用):
+設定webpack developer server
+webpack.config.js 最尾段
+devServer: {
+  contentBase: distPath,
+  compress: true,
+  port: 8080
+}
+設定package.json -> "scripts"
+"start": "webpack-dev-server"
+
+Choice - webpack aliasing(測試無法使用):
+如果想要webpack協助你自動替換路徑，可以在webpack.config.js中進行設定
+resolve: {
+  alias: {
+    components: path.resolve(srcPath, 'components');
+  }
+}
+意思是要求webpack只要看到components的路徑，就自動替換成設定好的絕對路徑'components'
+如此一來，以後路徑如果更改，不需要每個檔案逐一更改
+只需要在webpack修改一次即可(類似SCSS)
+
+Step4:
+如果要使用ES7(ES2016)的語法，必須額外設定webpack.config.js
+npm install --save-dev babel-plugin-transform-class-properties
+
+options: {
+  presets: [['es2015', {modules: false}]],
+  plugins: ['transform-class-properties']
+}

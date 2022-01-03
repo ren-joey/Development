@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<div id="img"></div>
+    <script type="text/babel">
+        const user = {
+            name : "joey",
+            phone : "0937472767",
+            src : "images/01.jpg"
+        };
+
+        const img = (
+                <img src={user.src}></img>
+        );
+
+        const element = (
+                <div>
+                    <h1>{user.name}</h1>
+                    <p>{user.phone}</p>
+                </div>
+        );
+
+        ReactDOM.render(
+            img,
+            document.getElementById('img')
+        );
+
+        ReactDOM.render(
+            element,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+</html>

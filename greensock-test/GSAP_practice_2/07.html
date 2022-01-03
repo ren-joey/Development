@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>GSAP 二次練習</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <style media="screen">
+      .box{
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        text-align: center;
+        line-height: 100px;
+        background-color: #000;
+        color: #fff;
+        position: relative;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <div class="box red"></div>
+    <div class="box"></div>
+
+    <script type="text/javascript">
+        $(function(){
+          $('.box').boxAni();
+          $('.box.red').boxAni({
+            changeTo: 'red'
+          });
+        });
+
+        (function($){
+          $.fn.boxAni = function(options){
+            var settings = $.extend({
+              changeTo: 'blue',
+              seconds: .3
+            }, options);
+
+            return this.each(function(){
+              var target = $(this);
+              TweenLite.to(target, settings.seconds, {backgroundColor: settings.changeTo});
+            });
+          }
+        }(jQuery));
+
+    </script>
+  </body>
+</html>

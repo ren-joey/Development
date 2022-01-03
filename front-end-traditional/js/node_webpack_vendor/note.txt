@@ -1,0 +1,12 @@
+multi bundle
+可以將多個檔案指定包到一個entry
+entry: {
+  main: ['./main.js', './module.js', ...]
+}
+或指定哪些檔案包到哪些特定的entry
+entry: {
+  main: 'main.js',
+  module: 'module.js'
+}
+
+vendor bundle 可以進一步將重複的code分離開來

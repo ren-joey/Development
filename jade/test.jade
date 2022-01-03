@@ -1,0 +1,83 @@
+//output:test.html
+doctype
+
+html
+  
+  //注意include的大小寫
+  include head.jade
+  
+  body
+    p First Paragraph
+    p
+      | Upsource 2017.2 supports external inspection runners like SonarQube, ReSharper or IntelliJ code inspections bundled with TeamCity. The analysis is performed on your CI server and the results are presented right in Upsource UI alongside with results of the built-in IntelliJ inspections.
+    p.
+      <em>Upsource 2017.2</em> supports external inspection runners like SonarQube, ReSharper or IntelliJ code inspections bundled with TeamCity. The analysis is performed on your CI server and the results are presented right in Upsource UI alongside with results of the built-in IntelliJ inspections.
+    p(id="4th",
+    class="p-white").
+      <em>Upsource 2017.2</em> supports external inspection runners like SonarQube, ReSharper or IntelliJ code inspections bundled with TeamCity. The analysis is performed on your CI server and the results are presented right in Upsource UI alongside with results of the built-in IntelliJ inspections.
+    #2end_div.lorem_ipsum.very_import.
+      <em>Upsource 2017.2</em> supports external inspection runners like SonarQube, ReSharper or IntelliJ code inspections bundled with TeamCity. The analysis is performed on your CI server and the results are presented right in Upsource UI alongside with results of the built-in IntelliJ inspections.
+      
+    ul
+      li#bbp_list_item
+        a(href="#") Barry Bonds
+      li#bbp_list_item2
+        a(href="#") Hank Aaron
+      li#bbp_list_item3
+        a(href="#") Babe Ruth
+        
+    ul
+      li.second_type: a(href="#") This is cool.
+      li.second_type: a(href="#").
+        <em>This is cool</em>
+    
+    - myName = "Joey"
+    p Hello #{myName}
+    p 123 * 123 = #{123*123}
+    
+    -website = "https://tw.yahoo.com"
+    a(href="#{website}") LINK TO YAHOO
+
+    -heroes = ['Wonder Woman','Super Girl','Bat Men']
+    ul
+      li.super_heros: a(href="#") #{heroes[0]}
+      li.super_heros: a(href="#") #{heroes[1]}
+      li.super_heros: a(href="#") #{heroes[2]}
+
+    -favor_fruit = "kiwi"
+    p #{favor_fruit} is my favor fruit.
+    
+    -data = "Support on Patreon is Greatly Appreciated : https://www.patreon.com/derekbanas"
+    p= data
+    
+    -fnI = {'type':'text','name':'fName'}
+    span First name
+    input(type=fnI.type, name=fnI.name)
+      
+    -someInfo = "<i>This is p dom</i>" 
+    p!= someInfo
+    
+    -date = new Date()
+    -hour = date.getHours()
+    -if((hour >=6)&&(hour<=17)){
+      h3 Day Time
+    -}else{
+      h3 Night Time
+    -}
+    
+    -age= 18
+    -if((age >=16)&&(age<18))
+      h3 Joey can drive
+    -else if(age >=18)
+      h3 Joey cna drive and vote
+    -else
+      h3 To can wait till you're 16
+      
+    unless age >=16
+      h3 You'll drive at 16
+    -else
+      h3 You can drive
+  
+  
+    //continue at https://www.youtube.com/watch?v=l5AXcXAP4r8 17:17
+    

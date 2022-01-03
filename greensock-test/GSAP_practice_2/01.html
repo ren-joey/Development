@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html onclick="boxReset()">
+  <head>
+    <meta charset="utf-8">
+    <title>GSAP 二次練習</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <style media="screen">
+      .box{
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        background-color: #000;
+        position: relative;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" index="0"></div>
+    <div class="box" index="1"></div>
+    <div class="box" index="2"></div><br>
+    <button type="button" name="button" onclick="startSelect()">SELECT</button><button type="button" name="button" onclick="doneSelect()">OK</button>
+
+    <script type="text/javascript">
+      function startSelect(){
+        var allBox = document.getElementsByClassName('box');
+        for(var i = 0; i < allBox.length; i++){
+          allBox[i].addEventListener('click', actAnimation, false);
+        }
+        document.querySelector('html').addEventListener('click', boxReset, false);
+      }
+
+      function doneSelect(){
+        var allBoxSelect = boxReset();
+      }
+
+      function actAnimation(event){
+        event.stopPropagation();
+        var target = this, targetClass = target.className;
+        if(targetClass.indexOf('on') > 0){
+          var ani = new TweenLite(target, .3, {scale: 1});
+          target.classList.remove('on');
+        }else {
+          var ani = new TweenLite(target, .3, {scale: 1.2});
+          target.classList.add('on');
+        }
+      }
+
+      function boxReset() {
+        var allBoxSelect = document.getElementsByClassName('on');
+        TweenLite.to(allBoxSelect, .3, {scale: 1});
+        for(var i = 0; i < allBoxSelect.length; i++){
+          allBoxSelect[i].classList.remove('on');
+        }
+        return
+      }
+    </script>
+  </body>
+</html>

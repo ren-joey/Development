@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>GSAP 二次練習</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <style media="screen">
+      .box{
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        text-align: center;
+        line-height: 100px;
+        background-color: #000;
+        color: #fff;
+        position: relative;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+
+    <button type="button" name="button" onclick="moveBoxes(30)">+=30</button>
+    <button type="button" name="button" onclick="moveBoxes(-30)">-=30</button>
+    <button type="button" name="button" onclick="removeAni()">remove animation</button>
+
+    <script type="text/javascript">
+      window.onload = function(){
+        startAni();
+      }
+
+      function startAni(){
+        var boxes = document.getElementsByClassName('box');
+        var ani = TweenLite.to(boxes, 1, {
+          left: function(index, target){console.log(index, target); return Math.random() * 100;}
+        });
+      }
+
+      function moveBoxes(val){
+        var boxes = document.getElementsByClassName('box');
+        var ani = TweenMax.staggerTo(boxes, 1, {
+          left: '+=' + val + 'px',
+          onComplete: logInfo,
+          cycle: {
+            onCompleteParams:
+              function(index, target){
+                return [index, target]
+              }
+          }
+        }, 0);
+      }
+
+      function logInfo(index, target){
+        console.log(index, target);
+      }
+
+      function removeAni(){
+        var boxes = document.getElementsByClassName('box');
+        TweenLite.killTweensOf(boxes);
+      }
+    </script>
+  </body>
+</html>

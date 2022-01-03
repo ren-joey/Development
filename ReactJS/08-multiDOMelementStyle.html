@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+
+    <style>
+        body{
+            background-color: #dddddd;
+        }
+        .GreenStyle{
+            color: green;
+        }
+        .inner{
+            background-color: #ffffff;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<div id="img"></div>
+    <script type="text/babel">
+        function formatDate(date) {
+            return date.toLocaleDateString();
+        }
+
+        const divStyle = {
+            marginTop: "20px"
+        };
+
+        function Comment (props){
+            return(
+                <div className="container">
+                    <div className="row" style={divStyle}>
+                        <div className="col-3">
+                            <div className="inner">
+                                <p className="GreenStyle">name:{props.author.name}</p>
+                                <p className="GreenStyle">phone:{props.phone}</p>
+                                <p>{formatDate(props.date)}</p>
+                                <p>{props.text}</p>
+                                <img src={props.author.src} width="100%" height="auto"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>);
+        }
+
+        const comment = {
+            date : new Date(),
+            text : "I hope you enjoy the tutorial",
+            author : {
+            name : "joey",
+            phone : "0937472767",
+            src : "https://i.ytimg.com/vi/r0ILvVmdiAg/hqdefault.jpg"
+            }
+        };
+
+        ReactDOM.render(
+            <Comment
+                date = {comment.date}
+                text = {comment.text}
+                author = {comment.author}
+            />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+</html>

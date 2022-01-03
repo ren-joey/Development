@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <style>
+        .GreenStyle{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<div id="img"></div>
+    <script type="text/babel">
+        function setIntervalUsingReactJS() {
+            const createElement = (
+                    <div>
+                        <h1>Hello World!</h1>
+                        <h2 className="GreenStyle">It is {new Date().toLocaleTimeString()}.</h2>
+                    </div>
+            );
+
+            ReactDOM.render(
+                createElement,
+                document.getElementById('root')
+            );
+        }
+
+        setInterval(setIntervalUsingReactJS,1000);
+    </script>
+</body>
+</html>

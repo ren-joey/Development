@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <style>
+        .GreenStyle{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+<div id="img"></div>
+    <script type="text/babel">
+        //type 1, 2, 3 are same
+
+        const createElement_type1 = (
+                <div className="GreenStyle" id="01">Hello World</div>
+        );
+
+        const createElement_type2 = React.createElement(
+            "div",
+            {
+                className:"GreenStyle",
+                id:"01"
+            },
+            "Hello World"
+        );
+
+        //type 3 is damaged
+        const createElement_type3 =  {
+            type : "div",
+            props : {
+                className : "GreenStyle",
+                id : "01",
+                children : "Hello World"
+            }
+        };
+
+        ReactDOM.render(
+            createElement_type2,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+</html>

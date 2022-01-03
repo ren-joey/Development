@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>GSAP 二次練習</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <style media="screen">
+      .box{
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        text-align: center;
+        line-height: 100px;
+        background-color: #000;
+        color: #fff;
+        position: relative;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" index="0"></div>
+    <div class="box" index="1"></div>
+
+    <script type="text/javascript">
+      window.onload = function(){
+        animationStart();
+      }
+
+      function animationStart(){
+        var boxes = document.querySelectorAll('.box');
+        var boxesAni = TweenLite.to(boxes, .1, {left: function(index, target){return (index + 1) * 100;}})
+        boxesAni.eventCallback('onStart', logFunc, ['onStart']);
+        boxesAni.eventCallback('onUpdate', logFunc, ['update']);
+        boxesAni.eventCallback('onComplete', logFunc, ['onComplete']);
+      }
+
+      function logFunc(callbackType){
+        var list = this.target;
+        for(i = 0; i < list.length; i ++ ){
+          console.log(callbackType + ': ');
+          console.log(list[i]);
+        }
+      }
+    </script>
+  </body>
+</html>
